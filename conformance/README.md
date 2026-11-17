@@ -3,8 +3,8 @@
 This directory contains original language-neutral inspection fixtures in `inspection/`, covering raw
 default evidence, conflict isolation, root rejection, invalid encoding and budget failures. The
 fixtures are MIT-licensed under the repository LICENSE. The MSTest fixture runner compares all
-structured fields through the public inspection API. Typed bindings and substituted output
-expectations will accompany the later binding implementation.
+structured fields through the public inspection API. The `substitution/` fixtures exercise typed
+bindings and semantic XML output.
 
 Compare semantic structure where XML serialization is allowed to change; do not accidentally require
 attribute ordering, quote style or byte-identical formatting. Preserve meaningful text whitespace,
@@ -44,3 +44,16 @@ Unicode keys and ordinal differences such as `red` versus `#ff0000`. These must 
 without value diagnostics. Cover mixed presence, conflicting labels retained with a warning, foreign
 namespace targets and text child elements rejected structurally. Interpretation fixtures belong to
 the optional helpers and must not become discovery admission tests.
+
+## Substitution fixture convention
+
+Each directory contains `input.svg`, `bindings.json` and `expected.json`. Successful cases also
+contain `output.svg`, compared as XML with whitespace, comments and processing instructions
+preserved. Lexical attribute order and quote style are not requirements.
+
+Both JSON files contain `format_version: 0`. Requests contain an ordered `bindings` array of `key`,
+`kind` and `value`. Kinds are `text`, `paint`, `image_reference` and `image_content`.
+Encoded-content values are base64 bytes and include `media_type`. Expected results contain
+`document_available` and ordered structured `diagnostics` using the inspection fixture field
+conventions, without messages. Fixtures use default configuration; generated boundary tests cover
+configurable policies and limits.

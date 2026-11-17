@@ -1,0 +1,10 @@
+{
+  "format_version": 0,
+  "bindings": [
+    {
+      "key": "accent",
+      "kind": "paint",
+      "value": "none"
+    }
+  ]
+}

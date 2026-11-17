@@ -1,0 +1,11 @@
+{
+  "format_version": 0,
+  "bindings": [
+    {
+      "key": "portrait",
+      "kind": "image_content",
+      "value": "AQID",
+      "media_type": "image/png"
+    }
+  ]
+}

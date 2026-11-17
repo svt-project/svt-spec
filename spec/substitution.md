@@ -1,8 +1,8 @@
 # SVT substitution
 
-This contract is agreed but not implemented. The [.NET binding API](../docs/binding-api.md) defines
-the public surface. Inspection remains independent of substitution and optional value
-interpretation.
+This contract defines implemented substitution behavior. The
+[.NET binding API](../docs/binding-api.md) defines the public surface. Inspection remains
+independent of substitution and optional value interpretation.
 
 ## Admission and atomicity
 

@@ -21,9 +21,9 @@ For example, this template exposes a text input with key `heading` and display l
 </svg>
 ```
 
-Inspection reports `Welcome` as the authored default. A future binding call would address `heading`,
-not `Main heading`. Omitting that input when binding preserves the original text. Inspection itself
-never changes the SVG; substitution is specified but not yet implemented.
+Inspection reports `Welcome` as the authored default. A binding call addresses `heading`, not
+`Main heading`. Omitting that input when binding preserves the original text. Inspection itself
+never changes the SVG; binding produces an independent SVG document.
 
 The same key-and-label pairing applies to images and paints. These elements could appear inside a
 root carrying `data-svt-version="0"`:
@@ -64,9 +64,9 @@ The inspection contract is specified in these focused references:
 - [Substitution policies, diagnostics and limits](substitution.md)
 - [.NET binding API](../docs/binding-api.md)
 
-Structural inspection is implemented; substitution remains a contract for later implementation.
-Discovery preserves raw authored values; it does not certify SVG validity or rendering. Optional
-value interpretation and replacement-value APIs are separate responsibilities.
+Structural inspection and substitution are implemented. Discovery preserves raw authored values; it
+does not certify SVG validity or rendering. Optional value interpretation is a separate
+responsibility.
 
 The root marker is currently `data-svt-version="0"`; see [bindings and syntax](bindings.md). The
 format is unreleased, with no compatibility promise or migration mechanism.

@@ -77,5 +77,5 @@ evidence, not effective paint. Styling may override it. Optional interpretation 
 inspection or replacement and never rewrite omitted values.
 
 SVG retains geometry, transforms, clipping, paint order and text layout. XML serialization may
-change lexical formatting; semantic preservation does not imply byte-identical output. Substitution
-implementation is outside the first inspection slice.
+change lexical formatting; semantic preservation does not imply byte-identical output. See the
+[substitution contract](substitution.md) for operation policies and limits.
