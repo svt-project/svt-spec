@@ -1,7 +1,6 @@
-# Version-zero bindings
+# SVT bindings
 
-This is the normative version-zero inspection contract. It defines the portable behavior implemented
-by the inspection library.
+This document defines the normative SVT binding syntax and inspection behavior.
 
 ## Document and annotations
 
