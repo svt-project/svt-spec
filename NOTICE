@@ -1,6 +1,9 @@
-SVT is under private, unreleased development.
+SVT — Scalable Vector Templates
+Copyright (c) 2026 Bathos Pty Ltd
 
-No public redistribution license has been selected for the source code,
-specification, examples or conformance assets. Access does not itself grant
-publication or redistribution rights. Explicit terms must be established before
-public release.
+The source code, specification, documentation and repository-authored examples
+and conformance assets are provided under the MIT License; see LICENSE.
+Third-party material, if introduced, retains its applicable license and notices.
+
+SVT is under private, unreleased development. Licensing does not indicate that
+a package has been published or that the format or API is stable.
