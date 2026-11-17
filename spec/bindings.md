@@ -59,9 +59,11 @@ invalid hook excluded before grouping cannot invalidate a compatible hook elsewh
 ## Binding semantics
 
 Omission preserves authored content. An explicit value replaces every admitted target for its key.
-Unknown or rejected keys, wrong value kinds, XML-unrepresentable replacement text fail the complete
-binding operation: no partial output and no fallback to defaults. Each bind starts from the
-immutable inspected template; previous results cannot affect later calls.
+Unknown keys fail by default; configured IgnoreWithWarning skips them with a warning. Rejected keys,
+duplicate assignments, wrong value kinds and XML-unrepresentable replacements fail the complete
+operation. No partial output or fallback to defaults is published. Each bind starts from the
+immutable inspected template; previous results cannot affect later calls. See
+[substitution](substitution.md) for policies, diagnostics and budgets.
 
 Text is literal character data, including the empty string. Replacement preserves comments,
 processing instructions and unrelated nodes and never interprets markup. Paint and image references

@@ -61,6 +61,8 @@ The inspection contract is specified in these focused references:
 - [Image values and resource ownership](images.md)
 - [Authored defaults](defaults.md)
 - [Inspection diagnostics and limits](inspection.md)
+- [Substitution policies, diagnostics and limits](substitution.md)
+- [.NET binding API](../docs/binding-api.md)
 
 Structural inspection is implemented; substitution remains a contract for later implementation.
 Discovery preserves raw authored values; it does not certify SVG validity or rendering. Optional

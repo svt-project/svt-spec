@@ -1,7 +1,7 @@
 # Image values and resource ownership
 
 SVT supports two supplied image forms. Both are immutable values, independent of image acquisition
-or rendering. This contract defines behavior; exact binding API signatures belong to a later slice.
+or rendering. The agreed [.NET binding API](../docs/binding-api.md) is not implemented yet.
 
 | Form            | Ownership and output                                                                        |
 | --------------- | ------------------------------------------------------------------------------------------- |
@@ -39,8 +39,25 @@ resource-access policy at their execution boundary.
 
 ## Encoded-content convenience
 
-Encoded content is an optional formatting convenience, not an image validator. Capture supplied
-bytes and the declared media type and construct a data URI without decoding, checking signatures or
-certifying MIME correctness. Exact constructors, data-URI formatting constraints and replacement
-size budgets belong to the substitution API design. They do not restrict authored defaults or raw
-reference replacement. There is no core portable-image profile or PNG/JPEG admission rule.
+Encoded content is an optional formatting convenience, not an image validator. EncodedImage.Create
+checks encoded-byte limit, media-type length, then media-type grammar before copying supplied bytes.
+A successful image owns its bytes, exposes only MediaType and ByteLength, and can be reused. Failure
+returns a diagnostic result; callers must not silently omit a failed image selection. Empty bytes
+are allowed. Binding rechecks image limits under its own configuration.
+
+The media type must contain case-insensitive `image/` followed by a nonempty ASCII subtype
+containing only letters, digits or `!#$&^_.+-`. Store it in lowercase. Reject whitespace,
+parameters, wildcards and entire data URLs. This is the convenience grammar, not a registry lookup
+or proof of MIME correctness. No decoding, signature validation or PNG/JPEG admission rule is
+introduced.
+
+Format output as `data:<media-type>;base64,<content>` with standard padded base64 and no line
+breaks. Percent-encode subtype characters outside ASCII letters, digits, `-`, `.`, `_` and `~` using
+uppercase hexadecimal, so accepted characters such as `#` cannot become URI delimiters. Keep the
+separating slash literal. MediaType exposes the normalized type, not the URI-escaped spelling. This
+follows [data URL syntax](https://www.rfc-editor.org/rfc/rfc2397), which requires media-type tokens
+to be URL-escaped where necessary.
+
+More elaborate data URLs remain available through raw reference replacement. These construction
+rules do not constrain authored defaults or raw reference strings. See
+[substitution](substitution.md) for capture, aggregate replacement and serialized-output budgets.
