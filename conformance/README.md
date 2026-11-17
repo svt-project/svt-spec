@@ -1,7 +1,10 @@
 # Conformance fixtures
 
-This directory will contain language-neutral SVG inputs, typed bindings, expected discovered inputs,
-diagnostics and substituted output expectations. No fixtures are implemented yet.
+This directory contains original language-neutral inspection fixtures in `inspection/`, covering raw
+default evidence, conflict isolation, root rejection, invalid encoding and budget failures. The
+fixtures are MIT-licensed under the repository LICENSE. The MSTest fixture runner compares all
+structured fields through the public inspection API. Typed bindings and substituted output
+expectations will accompany the later binding implementation.
 
 Compare semantic structure where XML serialization is allowed to change; do not accidentally require
 attribute ordering, quote style or byte-identical formatting. Preserve meaningful text whitespace,
@@ -29,7 +32,7 @@ contain `line` and `column`; related locations retain order. Options use the exa
 names plus the fixture format marker. These JSON files describe test expectations, not a published
 CLI wire protocol.
 
-The suite must exercise limits at equality and immediately above, immutable ownership after caller
+Boundary tests exercise limits at equality and immediately above, immutable ownership after caller
 buffer mutation, cancellation, UTF-8/UTF-16 and invalid encodings, multiline/non-ASCII positions,
 root failures, common/mixed/absent summaries and present/absent target evidence and conflict
 isolation. Large boundary inputs may be generated deterministically in tests rather than committed

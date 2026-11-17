@@ -1,0 +1,31 @@
+{
+  "format_version": 0,
+  "template_available": true,
+  "inputs": [
+    {
+      "key": "caption",
+      "label": "caption",
+      "kind": "text",
+      "targets": [
+        {
+          "hook": "text",
+          "element_name": "text",
+          "location": {
+            "line": 2,
+            "column": 9
+          },
+          "default": {
+            "state": "present",
+            "raw": "A & <B>!",
+            "source": "text_content"
+          }
+        }
+      ],
+      "default": {
+        "state": "common",
+        "raw": "A & <B>!"
+      }
+    }
+  ],
+  "diagnostics": []
+}

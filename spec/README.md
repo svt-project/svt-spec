@@ -14,9 +14,9 @@ The inspection contract is specified in these focused references:
 - [Authored defaults](defaults.md)
 - [Inspection diagnostics and limits](inspection.md)
 
-These contracts define implementation requirements, not completed functionality. Discovery preserves
-raw authored values; it does not certify SVG validity or rendering. Optional value interpretation
-and replacement-value APIs are separate responsibilities.
+Structural inspection is implemented; substitution remains a contract for later implementation.
+Discovery preserves raw authored values; it does not certify SVG validity or rendering. Optional
+value interpretation and replacement-value APIs are separate responsibilities.
 
 The format will use a version-zero envelope during unreleased development. No released compatibility
 promise or migration mechanism exists yet.

@@ -1,7 +1,7 @@
 # Version-zero bindings
 
-This is the normative version-zero inspection contract. It defines intended behavior for the first
-implementation; it does not claim that an implementation already exists.
+This is the normative version-zero inspection contract. It defines the portable behavior implemented
+by the inspection library.
 
 ## Document and annotations
 
