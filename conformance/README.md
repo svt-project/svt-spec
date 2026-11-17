@@ -8,8 +8,36 @@ attribute ordering, quote style or byte-identical formatting. Preserve meaningfu
 element order, geometry and references.
 
 Cover root failures separately from scoped hook findings, conflicting keys, value-kind mismatches,
-literal XML-sensitive text, default intent, shared colors and supplied image references. Keep native
+literal XML-sensitive text, default intent, shared paints and supplied image references. Keep native
 renderer checks and authoring-tool round trips distinct from core conformance.
 
 Use small original fixtures with explicit redistribution terms before publication. Do not import
 private consumer artwork or generated preview corpora.
+
+## Inspection fixture convention
+
+Each case has its own directory containing `input.svg` and `expected.json`, with optional
+`options.json` for budget overrides. Malformed-byte cases may use `input.bin` instead of input.svg;
+exactly one input file is present. JSON fixtures use `format_version: 0`.
+
+Expected output contains `template_available`, ordered `inputs`, and ordered `diagnostics`. Use
+snake_case field names corresponding to the [inspection model](../docs/inspection-api.md),
+snake_case enum values and explicit nulls for unavailable values. Raw evidence is a JSON string,
+including the empty string; source values are `text_content`, `fill`, `stroke`, `href` and
+`xlink_href`. Omit diagnostic messages because parser wording is not normative. Source locations
+contain `line` and `column`; related locations retain order. Options use the exact public budget
+names plus the fixture format marker. These JSON files describe test expectations, not a published
+CLI wire protocol.
+
+The suite must exercise limits at equality and immediately above, immutable ownership after caller
+buffer mutation, cancellation, UTF-8/UTF-16 and invalid encodings, multiline/non-ASCII positions,
+root failures, common/mixed/absent summaries and present/absent target evidence and conflict
+isolation. Large boundary inputs may be generated deterministically in tests rather than committed
+as bulky fixtures. Do not assert exact parser locations for invalid-byte sequences where the
+contract leaves them unspecified.
+
+Include empty attributes, malformed paint and URI strings, CSS expressions, unknown SVG elements,
+Unicode keys and ordinal differences such as `red` versus `#ff0000`. These must remain discoverable
+without value diagnostics. Cover mixed presence, conflicting labels retained with a warning, foreign
+namespace targets and text child elements rejected structurally. Interpretation fixtures belong to
+the optional helpers and must not become discovery admission tests.
