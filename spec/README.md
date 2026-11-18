@@ -63,7 +63,7 @@ The contracts are specified in these focused references:
 - [Inspection diagnostics and limits](inspection.md)
 - [Substitution policies, diagnostics and limits](substitution.md)
 - [.NET binding API](../docs/binding-api.md)
-- [Command-line interface](cli.md) (agreed; not yet implemented)
+- [Command-line interface](cli.md)
 
 Structural inspection and substitution are implemented. Discovery preserves raw authored values; it
 does not certify SVG validity or rendering. Optional value interpretation is a separate

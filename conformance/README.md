@@ -57,3 +57,17 @@ Encoded-content values are base64 bytes and include `media_type`. Expected resul
 `document_available` and ordered structured `diagnostics` using the inspection fixture field
 conventions, without messages. Fixtures use default configuration; generated boundary tests cover
 configurable policies and limits.
+
+## CLI validation
+
+The CLI test project also executes the inspection and substitution fixtures through the real command
+entry point. It compares discovery data, structured diagnostics and semantic XML output, while
+checking exit status and separating stdout results from stderr diagnostics. Fixture options are
+translated explicitly into CLI configuration; the fixture envelope is not an additional CLI format.
+
+Additional tests generate small isolated requests for strict JSON and Unicode, configuration
+precedence, stdin ownership, relative image acquisition, admission policies, resource limits and
+publication behavior. File tests cover resolved input collisions, symbolic links, distinct hard
+links, filesystem case behavior, overwrite races and preservation of existing output. Staging
+boundaries and controlled streams exercise cancellation and reporting failures without timing-based
+polling. Native rendering and authoring-tool round trips remain separate evidence.
