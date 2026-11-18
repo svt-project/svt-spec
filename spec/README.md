@@ -53,6 +53,9 @@ rectangle's fill and the path's stroke. Their matching authored strings produce 
 Descriptions and centralized input metadata are not part of the current format. SVG content remains
 the source of authored defaults.
 
+See the [authoring guide](../docs/authoring.md) and
+[original examples](../examples/authoring/README.md) for save/reopen and rendering checks.
+
 ## Detailed contracts
 
 The contracts are specified in these focused references:

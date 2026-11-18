@@ -71,3 +71,10 @@ publication behavior. File tests cover resolved input collisions, symbolic links
 links, filesystem case behavior, overwrite races and preservation of existing output. Staging
 boundaries and controlled streams exercise cancellation and reporting failures without timing-based
 polling. Native rendering and authoring-tool round trips remain separate evidence.
+
+## Authoring examples
+
+The [authoring corpus](../examples/authoring/README.md) adds independently authored visual examples,
+raw inventories and expected SVGs. The API/CLI tests exercise these alongside portable conformance.
+The [native runner](../eng/visual/README.md) separately records editor round trips, resource
+readiness and rendered comparisons; its reports are not portable conformance fixtures.
