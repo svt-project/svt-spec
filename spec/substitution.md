@@ -1,8 +1,8 @@
 # SVT substitution
 
 This contract defines substitution behavior. The [.NET binding API](../docs/binding-api.md) defines
-the public surface and identifies the agreed caller-buffer export extension awaiting implementation.
-Inspection remains independent of substitution and optional value interpretation.
+the public surface, including caller-buffer export. Inspection remains independent of substitution
+and optional value interpretation.
 
 ## Admission and atomicity
 
@@ -50,11 +50,11 @@ No CSS evaluation, resource resolution, color normalization or annotation stripp
 
 ### Caller-owned byte output
 
-The agreed [.NET output export contract](../docs/binding-api.md#output-export) adds exact UTF-8
-sizing and writing into caller-owned storage after successful binding. Its bytes must equal the
-allocating export, and insufficient destination capacity must leave that destination unchanged. The
-immutable document retains no destination memory and remains independently reusable. This is an
-output API extension, not a template-format change or a new binding mode.
+The [.NET output export contract](../docs/binding-api.md#output-export) provides exact UTF-8 sizing
+and writing into caller-owned storage after successful binding. Its bytes must equal the allocating
+export, and insufficient destination capacity must leave that destination unchanged. The immutable
+document retains no destination memory and remains independently reusable. This is an output API
+extension, not a template-format change or a new binding mode.
 
 The output budget is enforced before the completed document becomes available, not deferred until
 export. Export adds no configuration, diagnostics, cancellation or resource access. Successful
