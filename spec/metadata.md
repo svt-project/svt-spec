@@ -157,6 +157,12 @@ Malformed XML and exceeded inspection budgets still reject the whole template un
 [inspection contract](inspection.md). Binding preserves metadata semantically, including ignored
 declarations, alongside unrelated artwork; it does not repair or remove metadata.
 
+Warning messages explain the specific failed rule and what was ignored: for example, the permitted
+`order` grammar/range, the prohibition on description child elements, or the single-description
+limit. Findings sharing a code must still distinguish those failures for authors. Message wording is
+explanatory, not a machine interface; use the existing codes and structured fields for program
+logic. Locations, severity, recovery and diagnostic budgets are unchanged by message detail.
+
 | Code                     | Condition                                                                               | Recovery                                                                                                  |
 | ------------------------ | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
 | `svt.metadata.container` | More than one eligible `svt:inputs` container                                           | Ignore all central metadata; use inline/key labels and the unnamed section                                |
