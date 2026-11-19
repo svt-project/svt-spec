@@ -10,7 +10,8 @@ versions or development aliases. XML namespace prefix spelling is immaterial. DT
 and external entity resolution is disabled. Templates retain `.svg` filenames. Unknown non-SVT
 content remains renderer-owned.
 
-Only these unnamespaced, case-sensitive attributes carry SVT meaning:
+These unnamespaced, case-sensitive attributes define binding annotations. Optional structured
+[presentation metadata](metadata.md) uses a separate namespace without changing these hooks:
 
 | Attribute          | Value and meaning                             |
 | ------------------ | --------------------------------------------- |
@@ -23,10 +24,12 @@ Only these unnamespaced, case-sensitive attributes carry SVT meaning:
 
 Keys are nonempty strings after XML attribute normalization. Compare ordinally; do not trim,
 case-fold or impose an ASCII identifier grammar. Labels trim leading and trailing XML whitespace
-(space, tab, CR, LF); missing or empty labels use the key. Labels never establish identity. Unknown
-unnamespaced `data-svt-*` attributes produce a warning and no binding behavior. A version marker on
-a descendant produces a warning; it does not introduce a nested template. A label without a hook is
-inert. Foreign-namespaced lookalikes are not SVT annotations.
+(space, tab, CR, LF); missing or empty inline labels use the key. Labels never establish identity.
+Unknown unnamespaced `data-svt-*` attributes produce a warning and no binding behavior. A version
+marker on a descendant produces a warning; it does not introduce a nested template. A label without
+a hook is inert. Foreign-namespaced lookalikes are not binding annotations. SVG `metadata` elements
+and their subtrees are excluded from binding-annotation interpretation under the agreed
+[metadata contract](metadata.md#vocabulary-and-placement); this extension is pending implementation.
 
 ## Targets and conflicts
 
@@ -42,9 +45,11 @@ non-character nodes. Foreign-namespace elements are incompatible targets.
 
 Text and image keys each identify exactly one target. Fill and stroke share the Paint kind: a key
 may occur at several targets, including fill and stroke on one element. Authored values may differ;
-see [defaults](defaults.md). The first target supplies the effective input label. Differing labels
-produce one warning at the first target, with only differing-label targets as related locations, but
-do not reject a usable binding. Emit this warning only after the group passes ambiguity checks.
+see [defaults](defaults.md). A valid central label overrides inline labels under the
+[metadata precedence rules](metadata.md#values-and-resolution). Otherwise the first target supplies
+the effective input label. Differing effective target labels then produce one warning at the first
+target, with only differing-label targets as related locations, but do not reject a usable binding.
+Emit this warning only after the group passes ambiguity checks and no central label resolves.
 
 Process known hooks in document preorder, with hook order `text`, `image`, `fill`, `stroke` within
 an element, independent of XML attribute order. Check target compatibility, then key presence. A
@@ -53,8 +58,10 @@ hooks by exact key. Duplicate text/image targets or mixed kinds reject every mem
 Report one ambiguity error at its first hook, with the other hook locations as related locations.
 Retain unrelated valid inputs.
 
-Inputs appear in first-valid-target order. Targets within an input retain discovery order. An
-invalid hook excluded before grouping cannot invalidate a compatible hook elsewhere.
+Inputs appear in first-valid-target order. Targets within an input retain discovery order. The
+separate [presentation view](metadata.md#ordering-and-single-level-groups) never reorders either
+structural collection. An invalid hook excluded before grouping cannot invalidate a compatible hook
+elsewhere.
 
 ## Binding semantics
 

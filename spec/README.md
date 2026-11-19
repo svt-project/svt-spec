@@ -43,15 +43,37 @@ rectangle's fill and the path's stroke. Their matching authored strings produce 
 
 - Use `data-svt-text` for text, `data-svt-image` for an image reference, and `data-svt-fill` or
   `data-svt-stroke` for paint.
-- Without a nonempty label, the key is also the display label. Labels trim XML whitespace; keys
-  remain exact and case-sensitive.
-- A label applies to every hook on its element. For a shared paint input, the first target supplies
-  the label; differing labels produce a warning.
+- Without a nonempty central or inline label, the key is also the display label. Labels trim XML
+  whitespace; keys remain exact and case-sensitive.
+- An inline label applies to every hook on its element. Without a central override, the first target
+  supplies a shared paint input's label; differing labels produce a warning.
 - Text and image inputs each have one target. Paint inputs may share a key across fill and stroke
   targets. Reusing a key across different input kinds is an error.
 
-Descriptions and centralized input metadata are not part of the current format. SVG content remains
-the source of authored defaults.
+## Optional presentation metadata
+
+The agreed [metadata extension](metadata.md) adds central labels, descriptions, ordering and one
+level of groups. Implementation is pending
+[issue #6](https://github.com/bathos-labs/svt-dotnet/issues/6). Inline labels remain useful; central
+labels deliberately override them for a logical input. For example, add this direct child of the SVG
+root to polish the `heading` input above:
+
+```xml
+<metadata xmlns="http://www.w3.org/2000/svg" xmlns:svt="https://bathos-labs.github.io/svt">
+  <svt:inputs>
+    <svt:group key="content" label="Content" order="10"/>
+    <svt:input key="heading" label="Headline" group="content" order="10">
+      <svt:description>A short heading displayed above the artwork.</svt:description>
+    </svt:input>
+  </svt:inputs>
+</metadata>
+```
+
+The key is still `heading`; its display label becomes `Headline`. Its authored default is still
+`Welcome`. Metadata creates no new input and does not require that input to be bound. The
+[complete example](metadata.md#authoring-example) covers shared paints and distinct labels for
+multiple inputs on one element. Group/input order guides automatic forms while structural discovery
+order remains available. SVG artwork remains the sole source of authored defaults.
 
 See the [authoring guide](../docs/authoring.md) and
 [original examples](../examples/authoring/README.md) for save/reopen and rendering checks.
@@ -61,6 +83,7 @@ See the [authoring guide](../docs/authoring.md) and
 The contracts are specified in these focused references:
 
 - [Bindings and syntax](bindings.md)
+- [Input presentation metadata](metadata.md)
 - [Image values and resource ownership](images.md)
 - [Authored defaults](defaults.md)
 - [Inspection diagnostics and limits](inspection.md)

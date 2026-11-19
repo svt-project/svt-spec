@@ -23,25 +23,32 @@ element name. These are points, not byte spans. Root parsing failures use the pa
 when available; failures before parsing may have no location. Invalid-byte failure locations are not
 guaranteed. Related locations preserve discovery order.
 
-| Code                     | Severity | Effect                                                                     |
-| ------------------------ | -------- | -------------------------------------------------------------------------- |
-| `svt.xml.invalid`        | Error    | No template                                                                |
-| `svt.xml.encoding`       | Error    | Unsupported declared encoding; no template                                 |
-| `svt.xml.dtd`            | Error    | Prohibited DTD; no template                                                |
-| `svt.root.invalid`       | Error    | Wrong root namespace/name; no template                                     |
-| `svt.version.invalid`    | Error    | Missing/nonzero root marker; no template                                   |
-| `svt.limit.exceeded`     | Error    | No template; structured `limit` identifies the exceeded option             |
-| `svt.hook.target`        | Error    | Reject incompatible hook                                                   |
-| `svt.hook.key`           | Error    | Reject empty-key hook                                                      |
-| `svt.input.ambiguous`    | Error    | Reject all conflicting group members                                       |
-| `svt.input.labels`       | Warning  | Retain group with first label; related locations identify differing labels |
-| `svt.annotation.unknown` | Warning  | Ignore unknown SVT annotation                                              |
-| `svt.version.nested`     | Warning  | Ignore descendant version marker                                           |
+| Code                     | Severity | Effect                                                                                          |
+| ------------------------ | -------- | ----------------------------------------------------------------------------------------------- |
+| `svt.xml.invalid`        | Error    | No template                                                                                     |
+| `svt.xml.encoding`       | Error    | Unsupported declared encoding; no template                                                      |
+| `svt.xml.dtd`            | Error    | Prohibited DTD; no template                                                                     |
+| `svt.root.invalid`       | Error    | Wrong root namespace/name; no template                                                          |
+| `svt.version.invalid`    | Error    | Missing/nonzero root marker; no template                                                        |
+| `svt.limit.exceeded`     | Error    | No template; structured `limit` identifies the exceeded option                                  |
+| `svt.hook.target`        | Error    | Reject incompatible hook                                                                        |
+| `svt.hook.key`           | Error    | Reject empty-key hook                                                                           |
+| `svt.input.ambiguous`    | Error    | Reject all conflicting group members                                                            |
+| `svt.input.labels`       | Warning  | Without a central label, retain first target label; related locations identify differing labels |
+| `svt.annotation.unknown` | Warning  | Ignore unknown SVT annotation                                                                   |
+| `svt.version.nested`     | Warning  | Ignore descendant version marker                                                                |
 
-Hook diagnostics sort by primary source position, then code ordinally for ties. Ambiguity locations
-identify the first admitted group member. Root/limit failures return one terminal diagnostic and no
-partial discovery findings. If multiple faults exist, report the first encountered by bounded XML
-parsing; after a successful parse check root name before version, then inspect hooks.
+The agreed [metadata extension](metadata.md#diagnostics-and-recovery), pending implementation, adds
+the warning codes `svt.metadata.container`, `svt.metadata.duplicate`, `svt.metadata.input`,
+`svt.metadata.group`, `svt.metadata.invalid` and `svt.metadata.unknown`. Its recovery rules define
+label precedence, declaration rejection and field-level fallback without changing hook admission.
+
+Scoped diagnostics sort by primary source position, then code ordinally for ties. Ambiguity
+locations identify the first admitted group member. Root/limit failures return one terminal
+diagnostic and no partial discovery findings. If multiple faults exist, report the first encountered
+by bounded XML parsing; after a successful parse check root name before version, then inspect hooks
+and resolve metadata. Defer inline-label conflict findings until central label resolution is known.
+Metadata warnings share the diagnostic budget and final ordering with hook findings.
 
 ## Configurable inspection budgets
 
@@ -61,9 +68,11 @@ is no unlimited sentinel. A value exactly equal to a limit is permitted.
 
 Apply byte limits before copying input; enforce structural limits during streaming XML parsing,
 before constructing an unbounded tree. Discovery and grouping must be linear apart from bounded
-diagnostic ordering; no recursive filesystem or SVG dependency traversal is allowed. Check
-cancellation before work and at element/discovery boundaries. These budgets do not bound native
-decoding or pixel allocation because inspection performs neither.
+diagnostic and presentation ordering; no recursive filesystem or SVG dependency traversal is
+allowed. Metadata counts toward all applicable budgets, including hooks excluded from discovery
+inside SVG metadata. Check cancellation before work and at element/discovery, metadata-resolution
+and sorting boundaries. These budgets do not bound native decoding or pixel allocation because
+inspection performs neither.
 
 When the next scoped diagnostic would exceed the diagnostic budget, discard the partial inspection
 and return a single `svt.limit.exceeded` with `limit=MaxDiagnostics`. Treat other budget failures
