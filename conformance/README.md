@@ -59,6 +59,28 @@ Encoded-content values are base64 bytes and include `media_type`. Expected resul
 conventions, without messages. Fixtures use default configuration; generated boundary tests cover
 configurable policies and limits.
 
+## Interpretation fixture convention
+
+The optional interpreter uses `interpretation/cases.json`: format_version 0 with ordered cases
+containing hook (fill or image), nullable raw evidence, nullable options using public budget names,
+expected kind, nullable normalized RGBA color array, declared_media_type and exceeded_limit. These
+are fixture fields, not additions to CLI output. The runner creates an ordinary annotated SVG,
+inspects it, and interprets the resulting target through the public API. Every case checks target
+identity and raw preservation; colors use the contract's absolute tolerance of 1e-12.
+
+`interpretation/named-colors.json` records the fixed named-color keyword/hex facts from
+[CSS Color 4, November 18, 2026](https://www.w3.org/TR/2026/CRD-css-color-4-20261118/#named-colors).
+The runner covers the complete table, aliases and ASCII casing. Other fixtures are independently
+authored grammar, context, resource, header and budget examples. Generated tests cover large
+payloads, deep nesting, nullable/argument boundaries, cancellation, culture, concurrent reuse and
+independence from binding. They do not compute effective appearance or fetch resources.
+
+The [host editor example](../examples/editor/README.md) is also compiled into behavioral tests and
+the isolated package consumer. Its separate interaction checks establish that chooser
+initialization, quantization and unchanged/canceled interactions do not become implicit bindings.
+These are host intent tests, not additional color grammar, inspection admission rules or
+documentation wording tests.
+
 ## CLI validation
 
 The CLI test project also executes the inspection and substitution fixtures through the real command

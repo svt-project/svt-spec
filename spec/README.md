@@ -100,8 +100,8 @@ The contracts are specified in these focused references:
 - [Command-line interface](cli.md)
 
 Structural inspection and substitution are implemented. Discovery preserves raw authored values; it
-does not certify SVG validity or rendering. Optional per-target interpretation has an agreed
-contract and awaits implementation. It preserves raw evidence and defers aggregation to hosts. The
+does not certify SVG validity or rendering. Optional per-target interpretation preserves raw
+evidence and defers aggregation to hosts. The
 [.NET caller-buffer export](../docs/binding-api.md#output-export) supports exact UTF-8 sizing and
 allocation-free writes to supplied storage without changing the template format.
 

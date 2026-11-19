@@ -1,0 +1,2118 @@
+{
+  "format_version": 0,
+  "cases": [
+    {
+      "raw": null,
+      "hook": "fill",
+      "options": null,
+      "kind": "Absent",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": " ",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "nonsense",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "#12",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "#12345",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "#1234567",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "#123456789",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "#ggg",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "rgb(1. 2 3)",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "rgb(1,2 3)",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "rgb(1 2,3)",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "rgb(1%,2,3)",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "rgb(1 2)",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "rgb(1 2 3 4)",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "rgb(1 2 3, .5)",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "rgba(1,2,3/.5)",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "rgb(1 2 3 /)",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "rgb(1 2 3) red",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "rgb (1 2 3)",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "rgb(1 2 3 / none)",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "rgb(none 0 0)",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "rgb(1e309 0 0)",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "rgb(NaN 0 0)",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "rgb(Infinity 0 0)",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "rgb(١ 0 0)",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "rgb(1 2 3 / 5 %)",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "hsl(0 100 50)",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "hsl(0% 100% 50%)",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "hsl(1px 100% 50%)",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "hsl(0, 100%, 50% / .5)",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "hwb(0 0% 0%)",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "color(display-p3 1 0 0)",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "color(srgb 1 0 0)",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "lab(50 10 10)",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "rgb(from red r g b)",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "rgb(calc(1 + 2) 0 0)",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "r\\65 d",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "red/*comment*/",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "rgb(1/**/2 3)",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "notvar(--x)",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "rgb(1var(--x) 0 0)",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "var(x)",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "var(--)",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "var(--x garbage)",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "var(--x",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "var(--x))",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "var(--x) red",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "var(--x) var(--y)",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "var(--é)",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "var(--x, (red))",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "var(--x,[red])",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "var(--x,red;blue)",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "var(--x, var(bad))",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "var(--x, \"unterminated)",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "var(--x, \"back\\slash\")",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "url()",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "url(\"\")",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "url(foo bar)",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "url(foo(bar))",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "url(foo)red",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "url(foo) red blue",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "url(foo) inherit",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "url(foo) url(bar)",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "url(foo) color(display-p3 1 0 0)",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "url(foo%XX)",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "url(\"space here\")",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "\"var(--x)\"",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": " red",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "RED ",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "#123",
+      "hook": "fill",
+      "options": null,
+      "kind": "Literal",
+      "color": [
+        0.06666666666666667,
+        0.13333333333333333,
+        0.2,
+        1
+      ],
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "#1234",
+      "hook": "fill",
+      "options": null,
+      "kind": "Literal",
+      "color": [
+        0.06666666666666667,
+        0.13333333333333333,
+        0.2,
+        0.26666666666666666
+      ],
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "#123456",
+      "hook": "fill",
+      "options": null,
+      "kind": "Literal",
+      "color": [
+        0.07058823529411765,
+        0.20392156862745098,
+        0.33725490196078434,
+        1
+      ],
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "#12345678",
+      "hook": "fill",
+      "options": null,
+      "kind": "Literal",
+      "color": [
+        0.07058823529411765,
+        0.20392156862745098,
+        0.33725490196078434,
+        0.47058823529411764
+      ],
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "transparent",
+      "hook": "fill",
+      "options": null,
+      "kind": "Literal",
+      "color": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "RGB(300 -10 0 / 150%)",
+      "hook": "fill",
+      "options": null,
+      "kind": "Literal",
+      "color": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "rgba(1,2,3)",
+      "hook": "fill",
+      "options": null,
+      "kind": "Literal",
+      "color": [
+        0.00392156862745098,
+        0.00784313725490196,
+        0.011764705882352941,
+        1
+      ],
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "rgb(1,2,3,25%)",
+      "hook": "fill",
+      "options": null,
+      "kind": "Literal",
+      "color": [
+        0.00392156862745098,
+        0.00784313725490196,
+        0.011764705882352941,
+        0.25
+      ],
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "rgba(100%,0%,0%,.5)",
+      "hook": "fill",
+      "options": null,
+      "kind": "Literal",
+      "color": [
+        1,
+        0,
+        0,
+        0.5
+      ],
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "rgb(50% 127.5 0 / .125)",
+      "hook": "fill",
+      "options": null,
+      "kind": "Literal",
+      "color": [
+        0.5,
+        0.5,
+        0,
+        0.125
+      ],
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "rgb(+.5e2 0 0)",
+      "hook": "fill",
+      "options": null,
+      "kind": "Literal",
+      "color": [
+        0.19607843137254902,
+        0,
+        0,
+        1
+      ],
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "rgb(-0 0 -0 / -0)",
+      "hook": "fill",
+      "options": null,
+      "kind": "Literal",
+      "color": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "rgb(1e-999 0 0)",
+      "hook": "fill",
+      "options": null,
+      "kind": "Literal",
+      "color": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "rgb(1e308 0 0)",
+      "hook": "fill",
+      "options": null,
+      "kind": "Literal",
+      "color": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "hsl(120 100% 50%)",
+      "hook": "fill",
+      "options": null,
+      "kind": "Literal",
+      "color": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "HSLA(-240DEG,100%,50%,50%)",
+      "hook": "fill",
+      "options": null,
+      "kind": "Literal",
+      "color": [
+        0,
+        1,
+        0,
+        0.5
+      ],
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "hsl(.5turn 100% 50%)",
+      "hook": "fill",
+      "options": null,
+      "kind": "Literal",
+      "color": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "hsl(200grad 100% 50%)",
+      "hook": "fill",
+      "options": null,
+      "kind": "Literal",
+      "color": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "hsl(3.141592653589793rad 100% 50%)",
+      "hook": "fill",
+      "options": null,
+      "kind": "Literal",
+      "color": [
+        0,
+        1,
+        1,
+        1
+      ],
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "hsl(99999999 0% 25%)",
+      "hook": "fill",
+      "options": null,
+      "kind": "Literal",
+      "color": [
+        0.25,
+        0.25,
+        0.25,
+        1
+      ],
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "hsl(0 200% 50% / -1)",
+      "hook": "fill",
+      "options": null,
+      "kind": "Literal",
+      "color": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "hsl(0 -10% 200%)",
+      "hook": "fill",
+      "options": null,
+      "kind": "Literal",
+      "color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "hsl(360 100% 50%)",
+      "hook": "fill",
+      "options": null,
+      "kind": "Literal",
+      "color": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": " \tReD\n",
+      "hook": "fill",
+      "options": null,
+      "kind": "Literal",
+      "color": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "none",
+      "hook": "fill",
+      "options": null,
+      "kind": "NoPaint",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": " NONE ",
+      "hook": "fill",
+      "options": null,
+      "kind": "NoPaint",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "currentColor",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "inherit",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "initial",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "unset",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "revert",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "revert-layer",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "context-fill",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "context-stroke",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "CanvasText",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "WindowText",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "AccentColor",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "var(--x)",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "VAR( --x )",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "var(--x,)",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "var(--x,red)",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "var(--x, var(--fallback, red))",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "rgb(var(--red) 0 0)",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "calc(var(--x) + 1)",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "var(--x, \"(notvar(--y))\")",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "var(--x, url(\"var(--z)\"))",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "url(#g)",
+      "hook": "fill",
+      "options": null,
+      "kind": "ResourceReference",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "URL( \"#g\" )",
+      "hook": "fill",
+      "options": null,
+      "kind": "ResourceReference",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "url(foo) red",
+      "hook": "fill",
+      "options": null,
+      "kind": "ResourceReference",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "url(foo) none",
+      "hook": "fill",
+      "options": null,
+      "kind": "ResourceReference",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "url(foo) currentColor",
+      "hook": "fill",
+      "options": null,
+      "kind": "ResourceReference",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "url(foo) var(--x)",
+      "hook": "fill",
+      "options": null,
+      "kind": "ResourceReference",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "url(\"var(--x)\")",
+      "hook": "fill",
+      "options": null,
+      "kind": "ResourceReference",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "url('a\"b')",
+      "hook": "fill",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": null,
+      "hook": "image",
+      "options": null,
+      "kind": "Absent",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "",
+      "hook": "image",
+      "options": null,
+      "kind": "Empty",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "#",
+      "hook": "image",
+      "options": null,
+      "kind": "FragmentReference",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "#part",
+      "hook": "image",
+      "options": null,
+      "kind": "FragmentReference",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "../a%20b.png",
+      "hook": "image",
+      "options": null,
+      "kind": "RelativeReference",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "//example.test/a",
+      "hook": "image",
+      "options": null,
+      "kind": "RelativeReference",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "/a",
+      "hook": "image",
+      "options": null,
+      "kind": "RelativeReference",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "?a:b",
+      "hook": "image",
+      "options": null,
+      "kind": "RelativeReference",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "https://",
+      "hook": "image",
+      "options": null,
+      "kind": "AbsoluteReference",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "custom+x:a",
+      "hook": "image",
+      "options": null,
+      "kind": "AbsoluteReference",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "C:/image.png",
+      "hook": "image",
+      "options": null,
+      "kind": "AbsoluteReference",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "data:,not validated",
+      "hook": "image",
+      "options": null,
+      "kind": "DataUri",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "DATA:IMAGE/PNG;base64,not base64",
+      "hook": "image",
+      "options": null,
+      "kind": "DataUri",
+      "color": null,
+      "declared_media_type": "image/png",
+      "exceeded_limit": null
+    },
+    {
+      "raw": "data:;charset=UTF-8,",
+      "hook": "image",
+      "options": null,
+      "kind": "DataUri",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "data:image/x%23%5E;flag=a%3Bb;base64,",
+      "hook": "image",
+      "options": null,
+      "kind": "DataUri",
+      "color": null,
+      "declared_media_type": "image/x#^",
+      "exceeded_limit": null
+    },
+    {
+      "raw": "data:text/plain;name=a;name=b,",
+      "hook": "image",
+      "options": null,
+      "kind": "DataUri",
+      "color": null,
+      "declared_media_type": "text/plain",
+      "exceeded_limit": null
+    },
+    {
+      "raw": "data:application/json;base64=x,",
+      "hook": "image",
+      "options": null,
+      "kind": "DataUri",
+      "color": null,
+      "declared_media_type": "application/json",
+      "exceeded_limit": null
+    },
+    {
+      "raw": " ",
+      "hook": "image",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": " x",
+      "hook": "image",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "x ",
+      "hook": "image",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "a\\b",
+      "hook": "image",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "é.png",
+      "hook": "image",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "a%ZZ",
+      "hook": "image",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "a%",
+      "hook": "image",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": ":x",
+      "hook": "image",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "1:a",
+      "hook": "image",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "data:",
+      "hook": "image",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "data:image/png",
+      "hook": "image",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "data:image/,",
+      "hook": "image",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "data:/png,",
+      "hook": "image",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "data:image%2Fpng,",
+      "hook": "image",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "data:image/png;unknown,",
+      "hook": "image",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "data:image/png;base64;base64,",
+      "hook": "image",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "data:image/png;base64;foo=x,",
+      "hook": "image",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "data:image/png;foo=,",
+      "hook": "image",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "data:image/png;=x,",
+      "hook": "image",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "data:image/png;foo='x',",
+      "hook": "image",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "data:image/png;foo=\"x\",",
+      "hook": "image",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "data:image/x#,",
+      "hook": "image",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "data:image/x^,",
+      "hook": "image",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "data:image/x%2F,",
+      "hook": "image",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "data:image/png;,",
+      "hook": "image",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "data:image/png;foo=a#b,",
+      "hook": "image",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "red",
+      "hook": "fill",
+      "options": {
+        "MaxPaintCharacters": 2
+      },
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": "PaintCharacters"
+    },
+    {
+      "raw": "rgb(10 0 0)",
+      "hook": "fill",
+      "options": {
+        "MaxNumericTokenCharacters": 1
+      },
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": "NumericTokenCharacters"
+    },
+    {
+      "raw": "var(--a,var(--b))",
+      "hook": "fill",
+      "options": {
+        "MaxNestingDepth": 1
+      },
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": "NestingDepth"
+    },
+    {
+      "raw": "abc",
+      "hook": "image",
+      "options": {
+        "MaxReferenceCharacters": 2
+      },
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": "ReferenceCharacters"
+    },
+    {
+      "raw": "data:,payload",
+      "hook": "image",
+      "options": {
+        "MaxDataUriHeaderCharacters": 5
+      },
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": "DataUriHeaderCharacters"
+    },
+    {
+      "raw": "AccentColorText",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "ActiveBorder",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "ActiveCaption",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "ActiveText",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "AppWorkspace",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "Background",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "ButtonBorder",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "ButtonFace",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "ButtonHighlight",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "ButtonShadow",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "ButtonText",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "Canvas",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "CaptionText",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "Field",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "FieldText",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "GrayText",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "Highlight",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "HighlightText",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "InactiveBorder",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "InactiveCaption",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "InactiveCaptionText",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "InfoBackground",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "InfoText",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "LinkText",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "Mark",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "MarkText",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "Menu",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "MenuText",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "Scrollbar",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "SelectedItem",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "SelectedItemText",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "ThreeDDarkShadow",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "ThreeDFace",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "ThreeDHighlight",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "ThreeDLightShadow",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "ThreeDShadow",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "VisitedText",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "Window",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "WindowFrame",
+      "hook": "fill",
+      "options": null,
+      "kind": "RequiresContext",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "hsl(60 100% 50%)",
+      "hook": "fill",
+      "options": null,
+      "kind": "Literal",
+      "color": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "hsl(240 100% 50%)",
+      "hook": "fill",
+      "options": null,
+      "kind": "Literal",
+      "color": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "hsl(300 100% 50%)",
+      "hook": "fill",
+      "options": null,
+      "kind": "Literal",
+      "color": [
+        1,
+        0,
+        1,
+        1
+      ],
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "hsl(330 100% 25%)",
+      "hook": "fill",
+      "options": null,
+      "kind": "Literal",
+      "color": [
+        0.5,
+        0,
+        0.25,
+        1
+      ],
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "hsl(420 100% 50%)",
+      "hook": "fill",
+      "options": null,
+      "kind": "Literal",
+      "color": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "hsl(0 100% -1%)",
+      "hook": "fill",
+      "options": null,
+      "kind": "Literal",
+      "color": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "declared_media_type": null,
+      "exceeded_limit": null
+    }
+  ]
+}

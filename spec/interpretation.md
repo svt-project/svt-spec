@@ -1,9 +1,8 @@
 # Optional authored-value interpretation
 
-This is the agreed contract, recorded before implementation. Interpretation is an explicit,
-per-target operation after inspection. It helps hosts initialize editor controls from supplied
-authored defaults. It does not establish rendered appearance, certify SVG/CSS/URI validity, or
-participate in inspection or binding admission.
+Interpretation is an explicit, per-target operation after inspection. It helps hosts initialize
+editor controls from supplied authored defaults. It does not establish rendered appearance, certify
+SVG/CSS/URI validity, or participate in inspection or binding admission.
 
 The lifecycle is inspect, optionally interpret individual targets, present host controls, and bind
 only explicit edits. Retain the original target, its XML-processed raw string, source attribute and
@@ -276,6 +275,16 @@ Use focused behavioral tests and language-neutral examples for:
   original target order when hosts iterate, and no aggregate or inferred edit.
 - Discovery and binding remaining usable independently of interpretation, including unsupported
   strings and limit results; no new CLI output fields or default interpretation.
+
+Consumer interaction acceptance must distinguish authored evidence, interpreted presentation and
+initial chooser state. Initialization notifications, no-edit acceptance, cancel and a change back to
+the session's initial chooser value preserve existing binding intent. A genuine accepted change
+creates an explicit replacement; Reset removes it. Widget quantization is display-only until such an
+edit, alpha must not be silently discarded, and raw Mixed stays Mixed even when swatches match. A
+paint-server fallback is never an effective chooser default. The
+[executable editor example](../examples/editor/README.md) demonstrates these checks with a
+conservative opaque RGB chooser policy. That policy and editing lifecycle belong to the host;
+interpretation adds no editor state, binding service or aggregate result to the core.
 
 Run the full portable validation gate and isolated public API/package consumption after
 implementation. Native rendering is not an oracle for authored-value interpretation and cannot

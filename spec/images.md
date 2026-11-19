@@ -63,8 +63,8 @@ More elaborate data URLs remain available through raw reference replacement. The
 rules do not constrain authored defaults or raw reference strings. See
 [substitution](substitution.md) for capture, aggregate replacement and serialized-output budgets.
 
-The agreed [optional interpretation contract](interpretation.md#image-reference-interpretation)
-classifies one inspected image target at a time; implementation is pending. Its bounded data-header
-reader may interpret percent-escaped media-type tokens into a separate lowercase declared-type
-field. The reference and payload remain untouched, and this derived field never validates image
-bytes, implies MIME sniffing or changes resource policy.
+The [optional interpretation contract](interpretation.md#image-reference-interpretation) classifies
+one inspected image target at a time. Its bounded data-header reader may interpret percent-escaped
+media-type tokens into a separate lowercase declared-type field. The reference and payload remain
+untouched, and this derived field never validates image bytes, implies MIME sniffing or changes
+resource policy.
