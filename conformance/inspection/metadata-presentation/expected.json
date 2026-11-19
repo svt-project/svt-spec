@@ -1,0 +1,122 @@
+{
+  "format_version": 0,
+  "template_available": true,
+  "inputs": [
+    {
+      "key": "accent",
+      "label": "Shared",
+      "kind": "paint",
+      "targets": [
+        {
+          "hook": "fill",
+          "element_name": "rect",
+          "location": {
+            "line": 7,
+            "column": 7
+          },
+          "default": {
+            "state": "present",
+            "raw": "#123456",
+            "source": "fill"
+          }
+        },
+        {
+          "hook": "stroke",
+          "element_name": "path",
+          "location": {
+            "line": 8,
+            "column": 7
+          },
+          "default": {
+            "state": "present",
+            "raw": "#123456",
+            "source": "stroke"
+          }
+        }
+      ],
+      "default": {
+        "state": "common",
+        "raw": "#123456"
+      },
+      "description": "Paint help",
+      "label_source": "metadata",
+      "order": 20
+    },
+    {
+      "key": "line",
+      "label": "Outline",
+      "kind": "paint",
+      "targets": [
+        {
+          "hook": "stroke",
+          "element_name": "rect",
+          "location": {
+            "line": 7,
+            "column": 30
+          },
+          "default": {
+            "state": "present",
+            "raw": "none",
+            "source": "stroke"
+          }
+        }
+      ],
+      "default": {
+        "state": "common",
+        "raw": "none"
+      },
+      "description": null,
+      "label_source": "metadata",
+      "order": 0
+    },
+    {
+      "key": "caption",
+      "label": "caption",
+      "kind": "text",
+      "targets": [
+        {
+          "hook": "text",
+          "element_name": "text",
+          "location": {
+            "line": 9,
+            "column": 7
+          },
+          "default": {
+            "state": "present",
+            "raw": "Hi",
+            "source": "text_content"
+          }
+        }
+      ],
+      "default": {
+        "state": "common",
+        "raw": "Hi"
+      },
+      "description": null,
+      "label_source": "key",
+      "order": null
+    }
+  ],
+  "input_groups": [
+    {
+      "key": "colors",
+      "label": "Palette",
+      "description": "Colors",
+      "order": 10,
+      "input_keys": [
+        "line",
+        "accent"
+      ]
+    },
+    {
+      "key": null,
+      "label": null,
+      "description": null,
+      "order": null,
+      "input_keys": [
+        "caption"
+      ]
+    }
+  ],
+  "diagnostics": []
+}

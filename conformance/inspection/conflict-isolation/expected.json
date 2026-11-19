@@ -24,7 +24,10 @@
       "default": {
         "state": "absent",
         "raw": null
-      }
+      },
+      "description": null,
+      "label_source": "key",
+      "order": null
     }
   ],
   "diagnostics": [
@@ -43,6 +46,17 @@
         }
       ],
       "limit": null
+    }
+  ],
+  "input_groups": [
+    {
+      "key": null,
+      "label": null,
+      "description": null,
+      "order": null,
+      "input_keys": [
+        "independent"
+      ]
     }
   ]
 }

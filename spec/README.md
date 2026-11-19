@@ -52,20 +52,26 @@ rectangle's fill and the path's stroke. Their matching authored strings produce 
 
 ## Optional presentation metadata
 
-The agreed [metadata extension](metadata.md) adds central labels, descriptions, ordering and one
-level of groups. Implementation is pending
-[issue #6](https://github.com/bathos-labs/svt-dotnet/issues/6). Inline labels remain useful; central
-labels deliberately override them for a logical input. For example, add this direct child of the SVG
-root to polish the `heading` input above:
+Optional [metadata](metadata.md) adds central labels, descriptions, ordering and one level of
+groups. Inline labels remain useful; central labels deliberately override them for a logical input.
+The RDF/XML envelope describes the SVG document; `svt:inputs` carries its presentation metadata as
+an XML literal. For example, add this direct child of the SVG root to polish the `heading` input
+above:
 
 ```xml
-<metadata xmlns="http://www.w3.org/2000/svg" xmlns:svt="https://bathos-labs.github.io/svt">
-  <svt:inputs>
-    <svt:group key="content" label="Content" order="10"/>
-    <svt:input key="heading" label="Headline" group="content" order="10">
-      <svt:description>A short heading displayed above the artwork.</svt:description>
-    </svt:input>
-  </svt:inputs>
+<metadata xmlns="http://www.w3.org/2000/svg"
+          xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+          xmlns:svt="https://bathos-labs.github.io/svt">
+  <rdf:RDF>
+    <rdf:Description rdf:about="">
+      <svt:inputs rdf:parseType="Literal">
+        <svt:group key="content" label="Content" order="10"/>
+        <svt:input key="heading" label="Headline" group="content" order="10">
+          <svt:description>A short heading displayed above the artwork.</svt:description>
+        </svt:input>
+      </svt:inputs>
+    </rdf:Description>
+  </rdf:RDF>
 </metadata>
 ```
 

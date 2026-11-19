@@ -1,7 +1,6 @@
 # Input presentation metadata
 
-This is the agreed contract for optional centralized labels, descriptions, ordering and single-level
-groups. Implementation is pending [issue #6](https://github.com/bathos-labs/svt-dotnet/issues/6).
+This document defines optional centralized labels, descriptions, ordering and single-level groups.
 The existing binding hooks and inline `data-svt-label` remain sufficient for a usable template.
 
 Metadata describes admitted logical inputs. It never creates inputs, changes kinds or authored
@@ -9,38 +8,79 @@ defaults, rescues rejected hooks, or imposes binding requirements. Presentation 
 hosts may choose their own controls and layout. Descriptions are authored help text, not runtime
 diagnostics, validation expressions or binding configuration.
 
+## RDF document metadata
+
+Central metadata is an RDF/XML description of the SVG resource, carried in SVG's `metadata` element.
+RDF expresses resource/property/value statements. Here the resource is the document's effective base
+URI, the property is `svt:inputs`, and the value is an XML literal containing the input and group
+declarations. RDF is part of the interchange contract, independent of any editor's handling of
+foreign elements. The XML literal retains declaration structure and order; RDF graph statement order
+does not determine presentation order.
+
+This uses the established
+[RDF/XML embedding in SVG](https://www.w3.org/TR/rdf-syntax-grammar/#section-rdf-in-SVG) and
+[XML literal mechanism](https://www.w3.org/TR/rdf-syntax-grammar/#section-Syntax-XML-literals). SVG
+also permits non-RDF metadata; RDF is an SVT representation choice, not a requirement for all SVG
+extensions. A general RDF reader sees one XML-valued property; interpreting its inputs still
+requires the SVT vocabulary. SVT validates this bounded XML profile, not arbitrary RDF graphs or
+semantically equivalent RDF serializations. No RDF library, schema loading or network access is
+required.
+
 ## Vocabulary and placement
 
-Use the namespace name `https://bathos-labs.github.io/svt` for metadata elements. It is an exact,
-case-sensitive identifier, not a schema or a resource to fetch. Prefix spelling is immaterial.
-Binding hooks remain unnamespaced `data-svt-*` attributes and the root marker remains
-`data-svt-version="0"`. No DTD, schema loading or network access is introduced. This follows the
-[SVG metadata extension mechanism](https://www.w3.org/TR/SVG2/struct.html#MetadataElement).
+Use the namespace name `https://bathos-labs.github.io/svt` for SVT metadata elements and
+`http://www.w3.org/1999/02/22-rdf-syntax-ns#` for the RDF envelope. Both are exact, case-sensitive
+identifiers, not resources to fetch. Prefix spelling is immaterial. Binding hooks remain
+unnamespaced `data-svt-*` attributes and the root marker remains `data-svt-version="0"`.
 
-At most one `svt:inputs` element may be a direct child of an SVG-namespace `metadata` element that
-is itself a direct child of the root SVG. Several root-level SVG `metadata` elements are allowed;
-count eligible `svt:inputs` containers across all of them. Empty containers are valid. Metadata
-elsewhere does not participate in resolution. In particular, containers in nested SVGs or under
-foreign wrappers are not searched or merged.
+Recognize only this direct-child path from the root SVG:
 
-Within those root-level SVG `metadata` elements, inspect direct children in the SVT namespace;
-unknown SVT elements warn and their subtrees are ignored. Other namespaces are opaque. Within a
-recognized container, only the following direct-child relationships and unnamespaced attributes are
+```text
+svg / metadata / rdf:RDF / rdf:Description[@rdf:about=""] / svt:inputs[@rdf:parseType="Literal"]
+```
+
+`svg` and `metadata` must be in the SVG namespace. The empty, explicitly present `rdf:about`
+identifies the document's effective base URI under RDF/XML rules, normally the document itself. An
+inherited `xml:base` may identify that resource differently; it is preserved, without URI resolution
+or resource access by SVT. SVT selects this exact local XML profile, not other subject spellings
+that could resolve to the same URI. Descriptions with absent or nonempty `rdf:about` are opaque:
+they describe anonymous or other resources and do not supply template metadata.
+
+Count direct `svt:inputs` properties across all matching descriptions in all root-level SVG
+`metadata` elements and their direct `rdf:RDF` children. At most one may occur, even if its literal
+marker is invalid. Multiple containers disable central metadata before envelope or field validation.
+A single container requires exactly `rdf:parseType="Literal"`; missing, differently cased or other
+values produce one `svt.metadata.invalid` warning and discard its contents. No additional
+RDF-namespace attributes are supported on that description or property, including alternate
+identity, reference and datatype attributes. They invalidate the container rather than changing its
+meaning. Check the literal marker first, then the description's RDF attributes, then the property's
+RDF attributes; report only the first offending attribute in source order in that stage. Missing
+markers point at the property element. No descendant findings are produced for a discarded
+container.
+
+Empty containers are valid. Direct SVT children of a matching description other than `svt:inputs`
+warn as unknown and their subtrees are ignored. Unrelated RDF properties, foreign subtrees, typed
+RDF node elements, nested SVGs and other wrappers are opaque. Direct `svt:inputs` children of SVG
+`metadata` have no presentation meaning. SVT does not search descendants for an alternate layout,
+merge containers, validate unrelated RDF, or repair metadata. Whitespace, comments and processing
+instructions around the envelope do not change selection.
+
+Within a recognized XML-literal property, only these relationships and unnamespaced attributes are
 defined:
 
 | Element           | Parent                     | Attributes                                         | Children                      |
 | ----------------- | -------------------------- | -------------------------------------------------- | ----------------------------- |
-| `svt:inputs`      | Root-level SVG `metadata`  | None                                               | `svt:input`, `svt:group`      |
+| `svt:inputs`      | Document `rdf:Description` | Required `rdf:parseType="Literal"`                 | `svt:input`, `svt:group`      |
 | `svt:input`       | `svt:inputs`               | Required `key`; optional `label`, `order`, `group` | At most one `svt:description` |
 | `svt:group`       | `svt:inputs`               | Required `key`; optional `label`, `order`          | At most one `svt:description` |
 | `svt:description` | `svt:input` or `svt:group` | None                                               | Plain text                    |
 
-Known names in the wrong position inside this vocabulary are unknown elements, ignored with their
+Known names in the wrong position inside the literal are unknown elements, ignored with their
 subtrees. This includes nested groups and nested containers. Unnamespaced or foreign-namespaced
 elements are opaque rather than alternate spellings. Unknown unnamespaced attributes and attributes
 in the SVT namespace warn and are ignored; attributes in other namespaces and namespace declarations
-are ignored. Recognized attributes must be unnamespaced. No metadata meaning is assigned to SVT
-elements outside the placement rules above.
+are ignored, except for the envelope's RDF rules above. Recognized input/group attributes must be
+unnamespaced. No metadata meaning is assigned to SVT elements outside the placement rules above.
 
 All SVG-namespace `metadata` elements and their entire subtrees, wherever located, are nonbinding
 content. Do not discover hooks, inline labels, unknown `data-svt-*` annotations or nested version
@@ -117,19 +157,19 @@ Malformed XML and exceeded inspection budgets still reject the whole template un
 [inspection contract](inspection.md). Binding preserves metadata semantically, including ignored
 declarations, alongside unrelated artwork; it does not repair or remove metadata.
 
-| Code                     | Condition                                                              | Recovery                                                                                      |
-| ------------------------ | ---------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| `svt.metadata.container` | More than one eligible `svt:inputs` container                          | Ignore all central metadata; use inline/key labels and the unnamed section                    |
-| `svt.metadata.duplicate` | Repeated input or group key, even with identical declarations          | Ignore every declaration of that identity, not just later occurrences                         |
-| `svt.metadata.input`     | Input declaration references an unknown or rejected input              | Ignore the declaration                                                                        |
-| `svt.metadata.group`     | Input references an unknown or discarded group                         | Ignore membership; retain its other valid fields                                              |
-| `svt.metadata.invalid`   | Missing/empty identity, invalid optional field or unexpected text      | Ignore the declaration for an invalid identity; otherwise ignore only the affected field/text |
-| `svt.metadata.unknown`   | Unknown SVT element or unknown attribute in the interpreted vocabulary | Ignore that attribute or the element's complete subtree                                       |
+| Code                     | Condition                                                                               | Recovery                                                                                                  |
+| ------------------------ | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `svt.metadata.container` | More than one eligible `svt:inputs` container                                           | Ignore all central metadata; use inline/key labels and the unnamed section                                |
+| `svt.metadata.duplicate` | Repeated input or group key, even with identical declarations                           | Ignore every declaration of that identity, not just later occurrences                                     |
+| `svt.metadata.input`     | Input declaration references an unknown or rejected input                               | Ignore the declaration                                                                                    |
+| `svt.metadata.group`     | Input references an unknown or discarded group                                          | Ignore membership; retain its other valid fields                                                          |
+| `svt.metadata.invalid`   | Invalid RDF envelope, missing/empty identity, invalid optional field or unexpected text | Ignore the container for an invalid envelope, declaration for an invalid identity, or affected field/text |
+| `svt.metadata.unknown`   | Unknown SVT element or unknown attribute in the interpreted vocabulary                  | Ignore that attribute or the element's complete subtree                                                   |
 
 Apply these precedence rules to avoid document-order-dependent recovery and cascading diagnostics:
 
 - Multiple containers produce one container warning at the first container with the remaining
-  containers as related locations. Do not interpret or diagnose their contents.
+  containers as related locations. Do not interpret or diagnose their envelopes or contents.
 - For a single container, identify all direct input/group declarations by their keys first. A
   missing/empty key produces one invalid warning and suppresses further diagnostics in that
   declaration. A nonempty key participates in duplicate detection even if its other fields are
@@ -172,19 +212,24 @@ on the same element. Central declaration order does not determine form order:
 ```xml
 <svg xmlns="http://www.w3.org/2000/svg"
      xmlns:svt="https://bathos-labs.github.io/svt"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      data-svt-version="0" viewBox="0 0 320 120">
   <metadata>
-    <svt:inputs>
-      <svt:group key="appearance" label="Appearance" order="20">
-        <svt:description>Colors used throughout the artwork.</svt:description>
-      </svt:group>
-      <svt:group key="content" label="Content" order="10"/>
-      <svt:input key="outline" label="Outline color" group="appearance" order="20"/>
-      <svt:input key="heading" label="Main heading" group="content" order="10">
-        <svt:description>The heading displayed above the artwork.</svt:description>
-      </svt:input>
-      <svt:input key="accent" label="Accent color" group="appearance" order="10"/>
-    </svt:inputs>
+    <rdf:RDF>
+      <rdf:Description rdf:about="">
+        <svt:inputs rdf:parseType="Literal">
+          <svt:group key="appearance" label="Appearance" order="20">
+            <svt:description>Colors used throughout the artwork.</svt:description>
+          </svt:group>
+          <svt:group key="content" label="Content" order="10"/>
+          <svt:input key="outline" label="Outline color" group="appearance" order="20"/>
+          <svt:input key="heading" label="Main heading" group="content" order="10">
+            <svt:description>The heading displayed above the artwork.</svt:description>
+          </svt:input>
+          <svt:input key="accent" label="Accent color" group="appearance" order="10"/>
+        </svt:inputs>
+      </rdf:Description>
+    </rdf:RDF>
   </metadata>
   <text x="16" y="40" data-svt-text="heading" data-svt-label="Heading">Welcome</text>
   <rect x="16" y="64" width="288" height="32" fill="#336699" stroke="#112233"
@@ -212,10 +257,11 @@ No binding lifecycle, assignment shape or default interpretation changes.
 
 Implementation acceptance must cover hook-only and partially annotated templates; shared paint and
 multiple hooks per element; label precedence and provenance; description whitespace/CDATA/markup;
-duplicate containers, identities and descriptions; exact and rejected references; namespace and
-placement boundaries; invalid fields with independent recovery; equal/absent/extreme orders; empty
-groups; zero inputs; deterministic ties; and complete, unique presentation membership. Verify the
-same input object identities in both API views, explicit JSON nulls and unchanged structural order.
+duplicate containers, identities and descriptions; exact and rejected references; namespace, RDF
+subject/literal and placement boundaries; invalid fields with independent recovery;
+equal/absent/extreme orders; empty groups; zero inputs; deterministic ties; and complete, unique
+presentation membership. Verify the same input object identities in both API views, explicit JSON
+nulls and unchanged structural order.
 
 Exercise budget equality/excess, diagnostic suppression/locations, cancellation and semantic
 preservation through binding. Hooks inside metadata must neither become inputs nor affect artwork
@@ -226,5 +272,5 @@ that synchronize documentation text with implementation.
 Separately verify a representative metadata-bearing template through the repeatable Inkscape
 save/reopen checks and Chrome/resvg release rendering checks. Record tool versions and annotation
 preservation separately from rendering evidence. Portable conformance does not prove editor
-round-trip preservation or renderer equivalence, and a contract-only commit supplies neither native
-evidence nor an implemented metadata capability.
+round-trip preservation or renderer equivalence, and native evidence must identify the exact tested
+source and tools.

@@ -37,8 +37,22 @@
       "default": {
         "state": "mixed",
         "raw": null
-      }
+      },
+      "description": null,
+      "label_source": "key",
+      "order": null
     }
   ],
-  "diagnostics": []
+  "diagnostics": [],
+  "input_groups": [
+    {
+      "key": null,
+      "label": null,
+      "description": null,
+      "order": null,
+      "input_keys": [
+        "accent"
+      ]
+    }
+  ]
 }

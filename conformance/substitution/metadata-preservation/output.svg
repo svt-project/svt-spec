@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:s="https://bathos-labs.github.io/svt" xmlns:r="http://www.w3.org/1999/02/22-rdf-syntax-ns#" data-svt-version="0">
+<metadata data-svt-fill="accent" fill="orange"><r:RDF><r:Description r:about=""><s:inputs r:parseType="Literal">
+<s:group key="colors" label="Palette" order="10"><s:description>Colors</s:description></s:group>
+<s:input key="line" label="Outline" order="0" group="colors"/>
+<s:input key="accent" label="Shared" order="20" group="colors"><s:description>Paint help</s:description></s:input>
+<f:sample xmlns:f="urn:example:documentation">
+<svg data-svt-version="99"><text data-svt-text="caption">Sample text</text><image data-svt-image="portrait" href="sample.png"/>
+<rect data-svt-fill="accent" data-svt-stroke="line" fill="gold" stroke="green"/></svg>
+</f:sample>
+</s:inputs></r:Description></r:RDF></metadata>
+<rect data-svt-fill="accent" data-svt-stroke="line" data-svt-label="Panel" fill="blue" stroke="black"/>
+<path data-svt-stroke="accent" stroke="blue"/>
+<text data-svt-text="caption">Changed</text>
+<image data-svt-image="portrait" href="after.png"/>
+</svg>

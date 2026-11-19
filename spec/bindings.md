@@ -28,8 +28,8 @@ case-fold or impose an ASCII identifier grammar. Labels trim leading and trailin
 Unknown unnamespaced `data-svt-*` attributes produce a warning and no binding behavior. A version
 marker on a descendant produces a warning; it does not introduce a nested template. A label without
 a hook is inert. Foreign-namespaced lookalikes are not binding annotations. SVG `metadata` elements
-and their subtrees are excluded from binding-annotation interpretation under the agreed
-[metadata contract](metadata.md#vocabulary-and-placement); this extension is pending implementation.
+and their subtrees are excluded from binding-annotation interpretation under the
+[metadata contract](metadata.md#vocabulary-and-placement).
 
 ## Targets and conflicts
 

@@ -23,14 +23,15 @@ Each case has its own directory containing `input.svg` and `expected.json`, with
 `options.json` for budget overrides. Malformed-byte cases may use `input.bin` instead of input.svg;
 exactly one input file is present. JSON fixtures use `format_version: 0`.
 
-Expected output contains `template_available`, ordered `inputs`, and ordered `diagnostics`. Use
-snake_case field names corresponding to the [inspection model](../docs/inspection-api.md),
-snake_case enum values and explicit nulls for unavailable values. Raw evidence is a JSON string,
-including the empty string; source values are `text_content`, `fill`, `stroke`, `href` and
-`xlink_href`. Omit diagnostic messages because parser wording is not normative. Source locations
-contain `line` and `column`; related locations retain order. Options use the exact public budget
-names plus the fixture format marker. These JSON files describe test expectations, not a published
-CLI wire protocol.
+Expected output contains `template_available`, structural `inputs`, ordered `input_groups` with key
+references, and ordered `diagnostics`. Presentation fields and explicit nulls match
+[CLI discovery JSON](../spec/cli.md#discovery-json). Use snake_case field names corresponding to the
+[inspection model](../docs/inspection-api.md), snake_case enum values and explicit nulls for
+unavailable values. Raw evidence is a JSON string, including the empty string; source values are
+`text_content`, `fill`, `stroke`, `href` and `xlink_href`. Omit diagnostic messages because parser
+wording is not normative. Source locations contain `line` and `column`; related locations retain
+order. Options use the exact public budget names plus the fixture format marker. These JSON files
+describe test expectations, not a published CLI wire protocol.
 
 Boundary tests exercise limits at equality and immediately above, immutable ownership after caller
 buffer mutation, cancellation, UTF-8/UTF-16 and invalid encodings, multiline/non-ASCII positions,

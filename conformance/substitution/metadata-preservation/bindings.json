@@ -1,0 +1,25 @@
+{
+  "format_version": 0,
+  "bindings": [
+    {
+      "key": "accent",
+      "kind": "paint",
+      "value": "blue"
+    },
+    {
+      "key": "line",
+      "kind": "paint",
+      "value": "black"
+    },
+    {
+      "key": "caption",
+      "kind": "text",
+      "value": "Changed"
+    },
+    {
+      "key": "portrait",
+      "kind": "image_reference",
+      "value": "after.png"
+    }
+  ]
+}

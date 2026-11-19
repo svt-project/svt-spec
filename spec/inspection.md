@@ -38,10 +38,10 @@ guaranteed. Related locations preserve discovery order.
 | `svt.annotation.unknown` | Warning  | Ignore unknown SVT annotation                                                                   |
 | `svt.version.nested`     | Warning  | Ignore descendant version marker                                                                |
 
-The agreed [metadata extension](metadata.md#diagnostics-and-recovery), pending implementation, adds
-the warning codes `svt.metadata.container`, `svt.metadata.duplicate`, `svt.metadata.input`,
-`svt.metadata.group`, `svt.metadata.invalid` and `svt.metadata.unknown`. Its recovery rules define
-label precedence, declaration rejection and field-level fallback without changing hook admission.
+The [metadata contract](metadata.md#diagnostics-and-recovery) defines the warning codes
+`svt.metadata.container`, `svt.metadata.duplicate`, `svt.metadata.input`, `svt.metadata.group`,
+`svt.metadata.invalid` and `svt.metadata.unknown`. Its recovery rules define label precedence,
+declaration rejection and field-level fallback without changing hook admission.
 
 Scoped diagnostics sort by primary source position, then code ordinally for ties. Ambiguity
 locations identify the first admitted group member. Root/limit failures return one terminal

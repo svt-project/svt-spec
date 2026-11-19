@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:s="https://bathos-labs.github.io/svt" xmlns:r="http://www.w3.org/1999/02/22-rdf-syntax-ns#" data-svt-version="0">
+<metadata><r:RDF><r:Description r:about=""><s:inputs r:parseType="Literal">
+<s:input key="a" label="First" order="bad"/>
+<s:input key="a" label="Second"/>
+<s:group key="g" order="bad"/>
+<s:group key="g"/>
+<s:input key="b" label="Valid" order="-1" group="g"><s:description>One</s:description><s:description>Two</s:description></s:input>
+<s:input key="unknown" order="bad"><s:unexpected/></s:input>
+</s:inputs></r:Description></r:RDF></metadata>
+<rect data-svt-fill="a" data-svt-stroke="b" data-svt-label="Inline"/>
+</svg>
