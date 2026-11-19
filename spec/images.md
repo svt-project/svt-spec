@@ -18,9 +18,10 @@ supports them.
 
 Relative and absolute references are supported. Preserve authored reference text after XML attribute
 normalization; do not perform path normalization, percent-decoding, case folding or
-working-directory lookup. The eventual consumer resolves relative references against the SVG
-element's effective base. The host must retain that context or explicitly prepare new references
-when relocating output. Inspection accepts source bytes without requiring a filesystem location.
+working-directory lookup on the reference. The eventual consumer resolves relative references
+against the SVG element's effective base. The host must retain that context or explicitly prepare
+new references when relocating output. Inspection accepts source bytes without requiring a
+filesystem location.
 
 For default evidence, use unnamespaced `href` when present, including when empty; otherwise use
 `href` in `http://www.w3.org/1999/xlink`. Record which attribute supplied the evidence. This follows
@@ -61,3 +62,9 @@ to be URL-escaped where necessary.
 More elaborate data URLs remain available through raw reference replacement. These construction
 rules do not constrain authored defaults or raw reference strings. See
 [substitution](substitution.md) for capture, aggregate replacement and serialized-output budgets.
+
+The agreed [optional interpretation contract](interpretation.md#image-reference-interpretation)
+classifies one inspected image target at a time; implementation is pending. Its bounded data-header
+reader may interpret percent-escaped media-type tokens into a separate lowercase declared-type
+field. The reference and payload remain untouched, and this derived field never validates image
+bytes, implies MIME sniffing or changes resource policy.

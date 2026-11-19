@@ -92,15 +92,18 @@ The contracts are specified in these focused references:
 - [Input presentation metadata](metadata.md)
 - [Image values and resource ownership](images.md)
 - [Authored defaults](defaults.md)
+- [Optional per-target interpretation](interpretation.md)
+- [.NET interpretation API](../docs/interpretation-api.md)
 - [Inspection diagnostics and limits](inspection.md)
 - [Substitution policies, diagnostics and limits](substitution.md)
 - [.NET binding API](../docs/binding-api.md)
 - [Command-line interface](cli.md)
 
 Structural inspection and substitution are implemented. Discovery preserves raw authored values; it
-does not certify SVG validity or rendering. Optional value interpretation is a separate
-responsibility. The [.NET caller-buffer export](../docs/binding-api.md#output-export) supports exact
-UTF-8 sizing and allocation-free writes to supplied storage without changing the template format.
+does not certify SVG validity or rendering. Optional per-target interpretation has an agreed
+contract and awaits implementation. It preserves raw evidence and defers aggregation to hosts. The
+[.NET caller-buffer export](../docs/binding-api.md#output-export) supports exact UTF-8 sizing and
+allocation-free writes to supplied storage without changing the template format.
 
 The root marker is currently `data-svt-version="0"`; see [bindings and syntax](bindings.md). The
 format is unreleased, with no compatibility promise or migration mechanism.

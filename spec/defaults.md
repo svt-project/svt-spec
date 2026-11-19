@@ -38,3 +38,9 @@ Mixed nor Absent is a discovery error. Omission preserves every target independe
 Optional interpretation can help editors offer controls, but cannot replace this evidence or claim
 to know rendered appearance. Opening and accepting a panel without an explicit edit must not
 canonicalize authored values.
+
+The agreed [per-target interpretation contract](interpretation.md) adds explicit, optional paint and
+image operations; implementation is pending. Each result retains the original target evidence.
+Interpretation does not replace the raw summary or add an interpreted aggregate: callers retain
+target order and decide whether their controls consider interpreted values equivalent. In
+particular, no byte quantization or approximate color comparison is implicit.
