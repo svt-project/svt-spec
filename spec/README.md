@@ -99,6 +99,7 @@ The contracts are specified in these focused references:
 - [.NET binding API](../docs/binding-api.md)
 - [Command-line interface](cli.md), including help and human-readable presentation
 - [CLI packaging and release](tool-distribution.md)
+- [Compatibility and Semantic Versioning](compatibility.md)
 
 Structural inspection and substitution are implemented. Discovery preserves raw authored values; it
 does not certify SVG validity or rendering. Optional per-target interpretation preserves raw
@@ -106,8 +107,10 @@ evidence and defers aggregation to hosts. The
 [.NET caller-buffer export](../docs/binding-api.md#output-export) supports exact UTF-8 sizing and
 allocation-free writes to supplied storage without changing the template format.
 
-The root marker is currently `data-svt-version="0"`; see [bindings and syntax](bindings.md). The
-format is unreleased, with no compatibility promise or migration mechanism.
+The root marker is `data-svt-version="0"`; see [bindings and syntax](bindings.md). It remains 0 at
+stable 1.0, independently of the package version. The RC is provisionally frozen during
+production-template evaluation; formal stable guarantees begin at `1.0.0`. The
+[compatibility policy](compatibility.md) defines that transition without prerelease migrations.
 
 The specification must be usable without the .NET implementation or any consuming application. See
 [design issues](https://github.com/bathos-labs/svt-dotnet/issues) for unresolved choices.
