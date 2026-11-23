@@ -187,13 +187,18 @@ supply an implicit media type: DeclaredMediaType records only an explicit declar
 data-URI processing has defaults under [RFC 2397](https://www.rfc-editor.org/rfc/rfc2397.html).
 
 For this profile, type, subtype and parameter names are nonempty ASCII tokens containing letters,
-digits or `!#$&^_.+-`. Require the type/subtype separating slash literally in the header. Token
-characters may be percent-escaped; validate each decoded byte against that token alphabet. Raw token
-characters must also be legal URI characters: hash and caret require escaping. An escaped slash does
-not replace the literal type/subtype separator or become part of either token. Expose only the
-explicit type/subtype as a lowercase DeclaredMediaType, without parameters. This bounded
-header-token interpretation handles percent-escaped subtypes produced by SVT's encoded-image
-constructor. It does not decode or rewrite the reference or payload.
+digits or `!$%&^_.+-`. Require the type/subtype separating slash literally in the header. Parse
+tokens literally, without percent-decoding, following the
+[Fetch data-URL processor](https://fetch.spec.whatwg.org/#data-url-processor). Percent is a MIME
+token character, not an escape introducer here; even `%` or `%ZZ` remains literal token text. For
+example, `image/svg%2Bxml` yields `image/svg%2bxml`, not `image/svg+xml`. An escaped slash does not
+replace the required separator. Reject a literal hash before the header's comma because it starts a
+fragment, not header or payload content. A caret remains literal.
+
+Expose only the explicit type/subtype as a lowercase DeclaredMediaType, without parameters. This is
+a bounded header profile, not a complete URL or MIME parser. It does not decode or rewrite the
+reference or payload. Encoded-image creation admits a narrower alphabet for newly generated URLs;
+interpretation must not make an authored percent-bearing type appear to be another type.
 
 Parameter values are nonempty opaque sequences using the ordinary reference character alphabet,
 excluding literal hash, semicolon and comma; percent escapes must be complete. Raw quotes and

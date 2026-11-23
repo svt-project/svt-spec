@@ -47,24 +47,28 @@ returns a diagnostic result; callers must not silently omit a failed image selec
 are allowed. Binding rechecks image limits under its own configuration.
 
 The media type must contain case-insensitive `image/` followed by a nonempty ASCII subtype
-containing only letters, digits or `!#$&^_.+-`. Store it in lowercase. Reject whitespace,
-parameters, wildcards and entire data URLs. This is the convenience grammar, not a registry lookup
-or proof of MIME correctness. No decoding, signature validation or PNG/JPEG admission rule is
-introduced.
+containing only letters, digits or `!$&^_.+-`. Store it in lowercase. Reject whitespace, parameters,
+wildcards, percent escapes, fragment delimiters (`#`) and entire data URLs. This is the convenience
+grammar, not a registry lookup or proof of MIME correctness. No decoding, signature validation or
+PNG/JPEG admission rule is introduced.
 
 Format output as `data:<media-type>;base64,<content>` with standard padded base64 and no line
-breaks. Percent-encode subtype characters outside ASCII letters, digits, `-`, `.`, `_` and `~` using
-uppercase hexadecimal, so accepted characters such as `#` cannot become URI delimiters. Keep the
-separating slash literal. MediaType exposes the normalized type, not the URI-escaped spelling. This
-follows [data URL syntax](https://www.rfc-editor.org/rfc/rfc2397), which requires media-type tokens
-to be URL-escaped where necessary.
+breaks. Write the normalized media type literally, preserving admitted punctuation, including the
+`+` in `image/svg+xml`. XML attribute escaping is separate: an admitted `&` is serialized as
+`&amp;`, preserving its character value when the XML is read. Do not apply a generic URI-component
+encoder to the media type or the completed data URL.
+
+The [Fetch data-URL processor](https://fetch.spec.whatwg.org/#data-url-processor) parses the media
+type without percent-decoding it. Thus `image/svg%2Bxml` is a different type from `image/svg+xml`.
+Reject `#` during encoded-image preparation because a literal hash starts a URL fragment and `%23`
+does not preserve the declared type. MediaType and the data-URL header use the same lowercase type.
 
 More elaborate data URLs remain available through raw reference replacement. These construction
 rules do not constrain authored defaults or raw reference strings. See
 [substitution](substitution.md) for capture, aggregate replacement and serialized-output budgets.
 
 The [optional interpretation contract](interpretation.md#image-reference-interpretation) classifies
-one inspected image target at a time. Its bounded data-header reader may interpret percent-escaped
-media-type tokens into a separate lowercase declared-type field. The reference and payload remain
+one inspected image target at a time. Its bounded data-header reader reports a lowercase literal
+declared-type field without percent-decoding header tokens. The reference and payload remain
 untouched, and this derived field never validates image bytes, implies MIME sniffing or changes
 resource policy.

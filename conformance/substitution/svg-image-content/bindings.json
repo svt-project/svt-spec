@@ -1,0 +1,11 @@
+{
+  "format_version": 0,
+  "bindings": [
+    {
+      "key": "art",
+      "kind": "image_content",
+      "value": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDQ4IDQ4Ij48cmVjdCB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIGZpbGw9IiNlMDIwODAiLz48Y2lyY2xlIGN4PSIyNCIgY3k9IjI0IiByPSIxMiIgZmlsbD0iI2ZmZDA2MCIvPjwvc3ZnPgo=",
+      "media_type": "IMAGE/SVG+XML"
+    }
+  ]
+}

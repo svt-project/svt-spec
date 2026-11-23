@@ -1369,7 +1369,7 @@
       "options": null,
       "kind": "DataUri",
       "color": null,
-      "declared_media_type": "image/x#^",
+      "declared_media_type": "image/x%23%5e",
       "exceeded_limit": null
     },
     {
@@ -1592,18 +1592,18 @@
       "raw": "data:image/x^,",
       "hook": "image",
       "options": null,
-      "kind": "UnsupportedOrUnrecognized",
+      "kind": "DataUri",
       "color": null,
-      "declared_media_type": null,
+      "declared_media_type": "image/x^",
       "exceeded_limit": null
     },
     {
       "raw": "data:image/x%2F,",
       "hook": "image",
       "options": null,
-      "kind": "UnsupportedOrUnrecognized",
+      "kind": "DataUri",
       "color": null,
-      "declared_media_type": null,
+      "declared_media_type": "image/x%2f",
       "exceeded_limit": null
     },
     {
@@ -2112,6 +2112,87 @@
         1
       ],
       "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "data:image/svg+xml;base64,invalid",
+      "hook": "image",
+      "options": null,
+      "kind": "DataUri",
+      "color": null,
+      "declared_media_type": "image/svg+xml",
+      "exceeded_limit": null
+    },
+    {
+      "raw": "data:IMAGE/SVG%2BXML;base64,invalid",
+      "hook": "image",
+      "options": null,
+      "kind": "DataUri",
+      "color": null,
+      "declared_media_type": "image/svg%2bxml",
+      "exceeded_limit": null
+    },
+    {
+      "raw": "data:im%61ge/svg+xml,",
+      "hook": "image",
+      "options": null,
+      "kind": "DataUri",
+      "color": null,
+      "declared_media_type": "im%61ge/svg+xml",
+      "exceeded_limit": null
+    },
+    {
+      "raw": "data:image/svg%,",
+      "hook": "image",
+      "options": null,
+      "kind": "DataUri",
+      "color": null,
+      "declared_media_type": "image/svg%",
+      "exceeded_limit": null
+    },
+    {
+      "raw": "data:image/svg%ZZxml,",
+      "hook": "image",
+      "options": null,
+      "kind": "DataUri",
+      "color": null,
+      "declared_media_type": "image/svg%zzxml",
+      "exceeded_limit": null
+    },
+    {
+      "raw": "data:image/x!$&^_.+-,",
+      "hook": "image",
+      "options": null,
+      "kind": "DataUri",
+      "color": null,
+      "declared_media_type": "image/x!$&^_.+-",
+      "exceeded_limit": null
+    },
+    {
+      "raw": "data:image/png#fragment,ignored",
+      "hook": "image",
+      "options": null,
+      "kind": "UnsupportedOrUnrecognized",
+      "color": null,
+      "declared_media_type": null,
+      "exceeded_limit": null
+    },
+    {
+      "raw": "data:image/png;base64,ignored#fragment",
+      "hook": "image",
+      "options": null,
+      "kind": "DataUri",
+      "color": null,
+      "declared_media_type": "image/png",
+      "exceeded_limit": null
+    },
+    {
+      "raw": "data:image/png;na%6De=value,",
+      "hook": "image",
+      "options": null,
+      "kind": "DataUri",
+      "color": null,
+      "declared_media_type": "image/png",
       "exceeded_limit": null
     }
   ]
