@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:x="http://www.w3.org/1999/xlink" data-svt-version="0">
+  <text data-svt-text=" a&amp;b ">&amp; &lt; &gt; " ' &amp;amp; &amp;#13; %2F %252F + # ?</text>
+  <text data-svt-text="é">composed: é 😀</text>
+  <text data-svt-text="é">decomposed: é 😀</text>
+  <text data-svt-text="line&#9;&#13;&#10;key"> a&#13;&#10;b&#13;c&#10;d&#9;e&#160;&#8203; </text>
+  <path data-svt-fill="paint" data-svt-stroke="paint" fill=" url(&quot;paint%20file.svg?a=1&amp;b=two+words#part&quot;)&#9;red " stroke=" url(&quot;paint%20file.svg?a=1&amp;b=two+words#part&quot;)&#9;red "/>
+  <image data-svt-image="reference" href="relative%20image.svg?a=%252F&amp;b=two+words#part" x:href="relative%20image.svg?a=%252F&amp;b=two+words#part"/>
+  <image data-svt-image="data" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'/%3E"/>
+</svg>

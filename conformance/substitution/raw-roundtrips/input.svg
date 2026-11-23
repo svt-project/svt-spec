@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:x="http://www.w3.org/1999/xlink" data-svt-version="0">
+  <text data-svt-text=" a&amp;b ">old</text>
+  <text data-svt-text="é">old</text>
+  <text data-svt-text="é">old</text>
+  <text data-svt-text="line&#9;&#13;&#10;key">old</text>
+  <path data-svt-fill="paint" data-svt-stroke="paint" fill="red" stroke="blue"/>
+  <image data-svt-image="reference" href="old" x:href="different"/>
+  <image data-svt-image="data" href="old"/>
+</svg>

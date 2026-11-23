@@ -1,0 +1,40 @@
+{
+  "format_version": 0,
+  "bindings": [
+    {
+      "key": " a&b ",
+      "kind": "text",
+      "value": "& < > \" ' &amp; &#13; %2F %252F + # ?"
+    },
+    {
+      "key": "\u00e9",
+      "kind": "text",
+      "value": "composed: \u00e9 😀"
+    },
+    {
+      "key": "e\u0301",
+      "kind": "text",
+      "value": "decomposed: e\u0301 😀"
+    },
+    {
+      "key": "line\t\r\nkey",
+      "kind": "text",
+      "value": " a\r\nb\rc\nd\te\u00a0\u200b "
+    },
+    {
+      "key": "paint",
+      "kind": "paint",
+      "value": " url(\"paint%20file.svg?a=1&b=two+words#part\")\tred "
+    },
+    {
+      "key": "reference",
+      "kind": "image_reference",
+      "value": "relative%20image.svg?a=%252F&b=two+words#part"
+    },
+    {
+      "key": "data",
+      "kind": "image_reference",
+      "value": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'/%3E"
+    }
+  ]
+}
