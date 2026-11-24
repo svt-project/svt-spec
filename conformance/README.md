@@ -23,15 +23,36 @@ Each case has its own directory containing `input.svg` and `expected.json`, with
 `options.json` for budget overrides. Malformed-byte cases may use `input.bin` instead of input.svg;
 exactly one input file is present. JSON fixtures use `format_version: 0`.
 
-Expected output contains `template_available`, structural `inputs`, ordered `input_groups` with key
-references, and ordered `diagnostics`. Presentation fields and explicit nulls match
-[CLI discovery JSON](../spec/cli.md#discovery-json). Use snake_case field names corresponding to the
-[inspection model](../docs/inspection-api.md), snake_case enum values and explicit nulls for
-unavailable values. Raw evidence is a JSON string, including the empty string; source values are
-`text_content`, `fill`, `stroke`, `href` and `xlink_href`. Omit diagnostic messages because parser
-wording is not normative. Source locations contain `line` and `column`; related locations retain
-order. Options use the exact public budget names plus the fixture format marker. These JSON files
-describe test expectations, not a published CLI wire protocol.
+The fixture schema below defines observations independently of implementation types or CLI output.
+All listed expected fields are present; unavailable values use explicit JSON null, not omission.
+Object-property order is insignificant. Array order, string values and enum spelling are
+significant.
+
+| Object            | Fields                                                                                                                                                                                                     |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Inspection result | `format_version`: 0; `template_available`: boolean; `inputs`, `input_groups`, `diagnostics`: arrays                                                                                                        |
+| Input             | `key`, `label`: strings; `kind`: `text`, `image` or `paint`; `targets`: array; `default`: input default; `description`: string/null; `label_source`: `key`, `element` or `metadata`; `order`: integer/null |
+| Target            | `hook`: `text`, `image`, `fill` or `stroke`; `element_name`: SVG local-name string; `location`: location; `default`: target default                                                                        |
+| Target default    | `state`: `present` or `absent`; `raw`: string/null; `source`: `text_content`, `fill`, `stroke`, `href`, `xlink_href` or null                                                                               |
+| Input default     | `state`: `common`, `mixed` or `absent`; `raw`: string/null                                                                                                                                                 |
+| Input group       | `key`, `label`, `description`: string/null; `order`: integer/null; `input_keys`: ordered array of string keys                                                                                              |
+| Diagnostic        | `code`: string; `severity`: `error` or `warning`; `key`: string/null; `location`: location/null; `related_locations`: array of locations; `limit`: budget-name string/null                                 |
+| Location          | `line`, `column`: positive integers using the [inspection location convention](../spec/inspection.md#diagnostic-model)                                                                                     |
+
+Inputs and targets use structural discovery order; groups and their key references use presentation
+order. Diagnostics and related locations use the specified diagnostic order. When no template is
+available, inputs and groups are empty arrays. A present target's raw value is a string, including
+empty; an absent target has null raw. Absent paint retains `fill` or `stroke` as its source; absent
+image has null source. Only a common input default has a non-null raw string. The unnamed group has
+null key, label, description and order. Orders, when present, are integers from 0
+through 2147483647. Diagnostic messages are omitted because wording is not normative.
+
+`options.json` contains `format_version: 0` and any positive-integer inspection budget overrides:
+`MaxSourceBytes`, `MaxXmlCharacters`, `MaxElementDepth`, `MaxElements`, `MaxAttributesPerElement`,
+`MaxHooks` and `MaxDiagnostics`. Omitted settings use the
+[inspection profile values](../spec/inspection.md#configurable-inspection-budgets). These exact
+names identify fixture settings and diagnostic limits; a runner maps them to its implementation's
+configuration surface. They do not require CLR properties or a CLI wire format.
 
 Boundary tests exercise limits at equality and immediately above, immutable ownership after caller
 buffer mutation, cancellation, UTF-8/UTF-16 and invalid encodings, multiline/non-ASCII positions,
@@ -57,7 +78,11 @@ Both JSON files contain `format_version: 0`. Requests contain an ordered `bindin
 Encoded-content values are base64 bytes and include `media_type`. Expected results contain
 `document_available` and ordered structured `diagnostics` using the inspection fixture field
 conventions, without messages. Fixtures use default configuration; generated boundary tests cover
-configurable policies and limits.
+configurable policies and limits. For `text`, `paint` and `image_reference`, `value` is a raw
+string. For `image_content`, `value` is a base64 string and the assignment also has a `media_type`
+string. Keys are strings; array order is assignment order. The default profile rejects unknown keys
+and uses the [substitution budget values](../spec/substitution.md#budgets). A runner must select
+this profile even when its host normally uses different settings.
 
 ## Interpretation fixture convention
 
@@ -67,6 +92,15 @@ expected kind, nullable normalized RGBA color array, declared_media_type and exc
 are fixture fields, not additions to CLI output. The runner creates an ordinary annotated SVG,
 inspects it, and interprets the resulting target through the public API. Every case checks target
 identity and raw preservation; colors use the contract's absolute tolerance of 1e-12.
+
+Every case contains `hook`, `raw`, `options`, `kind`, `color`, `declared_media_type` and
+`exceeded_limit`. A null raw value means an absent attribute; an empty string means present and
+empty. `options` is null or an object of positive-integer overrides using the exact names in the
+[interpretation budget profile](../spec/interpretation.md#budgets-and-precedence); omitted values
+use that profile. `color` is null or four numbers in R, G, B, A order. `declared_media_type` is a
+string or null. Unlike inspection enums, interpretation kind and exceeded-limit strings use the
+PascalCase spellings in the interpretation contract (for example `RequiresContext` and
+`NumericTokenCharacters`). These fixture spellings are independent of a runner's enum names.
 
 `interpretation/named-colors.json` records the fixed named-color keyword/hex facts from
 [CSS Color 4, November 18, 2026](https://www.w3.org/TR/2026/CRD-css-color-4-20261118/#named-colors).

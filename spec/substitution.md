@@ -83,10 +83,10 @@ cancellation throughout all phases.
 ## Diagnostics
 
 Reuse the inspection diagnostic model. Binding results contain findings from this attempt only;
-inspection findings remain in InspectionResult. Known-key locations point to original hook
-attributes, with other relevant targets in discovery order as RelatedLocations. Unknown keys and
-image-creation failures have no template locations. Diagnostic Key is the supplied key when
-applicable. Limit is non-null only for budget failures, using the exact public option name.
+inspection findings remain in the inspection result. Known-key locations point to original hook
+attributes, with other relevant targets in discovery order as related locations. Unknown keys and
+image-creation failures have no template locations. The diagnostic key is the supplied key when
+applicable. The limit field is non-null only for budget failures, using the budget name below.
 
 | Code                    | Meaning                                                     | Effect                                               |
 | ----------------------- | ----------------------------------------------------------- | ---------------------------------------------------- |
@@ -110,6 +110,11 @@ Defaults are operational policy, not format restrictions. All limits are positiv
 is allowed and there is no unlimited sentinel. Use overflow-safe accounting. Configuration is
 immutable and reusable, but limits apply per operation, not to application-wide retained objects or
 concurrent work.
+
+The following profile supplies the .NET defaults and conformance-fixture settings. Budget names are
+fixture identifiers, not a requirement to expose matching programming-language properties. Other
+hosts may configure different positive limits while preserving the counting and failure rules. This
+does not relax the .NET implementation's compatibility promises for its defaults.
 
 | Option                    | Default    | Counting rule                                                                                                      |
 | ------------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------ |

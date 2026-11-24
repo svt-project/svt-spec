@@ -1,0 +1,45 @@
+{
+  "format_version": 0,
+  "template_available": true,
+  "inputs": [
+    {
+      "key": "a",
+      "label": "Inline",
+      "kind": "paint",
+      "targets": [
+        {
+          "hook": "fill",
+          "element_name": "rect",
+          "location": {
+            "line": 6,
+            "column": 7
+          },
+          "default": {
+            "state": "present",
+            "raw": "red",
+            "source": "fill"
+          }
+        }
+      ],
+      "default": {
+        "state": "common",
+        "raw": "red"
+      },
+      "description": null,
+      "label_source": "element",
+      "order": null
+    }
+  ],
+  "input_groups": [
+    {
+      "key": null,
+      "label": null,
+      "description": null,
+      "order": null,
+      "input_keys": [
+        "a"
+      ]
+    }
+  ],
+  "diagnostics": []
+}

@@ -7,8 +7,9 @@ valid inputs remain available. This is tolerant inspection, not strict authoring
 Support UTF-8 and UTF-16 XML encodings, including their optional byte-order marks, using XML
 encoding detection. Reject other declared encodings. Invalid byte sequences are errors, never
 replacement characters. XML 1.0 processing is required; duplicate attributes are malformed XML. DTD
-declarations are rejected and external resolution is disabled. Cancellation throws
-OperationCanceledException; it must not be reported as malformed input or return a partial result.
+declarations are rejected and external resolution is disabled. Cancellation must remain distinct
+from malformed input and must not return a partial result. The [.NET API](../docs/inspection-api.md)
+maps cancellation to OperationCanceledException.
 
 ## Diagnostic model
 
@@ -55,6 +56,12 @@ Metadata warnings share the diagnostic budget and final ordering with hook findi
 Defaults are operational policy, not format restrictions or performance guarantees. Callers may
 raise or lower each positive integer limit explicitly; invalid options are programming errors. There
 is no unlimited sentinel. A value exactly equal to a limit is permitted.
+
+The table defines the named budget profile used by the .NET implementation and conformance fixtures.
+Other implementations may expose different configuration APIs and host defaults; fixture runs must
+select these values unless the fixture overrides them. Counting units, equality and terminal-failure
+semantics remain portable. A different host budget does not change the template grammar or authorize
+unbounded parsing. Changing a published .NET default remains subject to its compatibility policy.
 
 | Option                    | Default    | Counting rule                                                                                         |
 | ------------------------- | ---------- | ----------------------------------------------------------------------------------------------------- |

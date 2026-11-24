@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:alias="urn:example:foreign" xmlns:r="http://www.w3.org/1999/02/22-rdf-syntax-ns#" data-svt-version="0">
+<metadata><r:RDF><r:Description r:about=""><alias:inputs r:parseType="Literal">
+<alias:group key="content" label="Content" order="1"/>
+<alias:input key="a" label="Central" group="content" order="2"><alias:description>Help</alias:description></alias:input>
+</alias:inputs></r:Description></r:RDF></metadata>
+<rect data-svt-fill="a" data-svt-label="Inline" fill="red"/>
+</svg>

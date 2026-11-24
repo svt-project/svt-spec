@@ -40,11 +40,11 @@ resource-access policy at their execution boundary.
 
 ## Encoded-content convenience
 
-Encoded content is an optional formatting convenience, not an image validator. EncodedImage.Create
-checks encoded-byte limit, media-type length, then media-type grammar before copying supplied bytes.
-A successful image owns its bytes, exposes only MediaType and ByteLength, and can be reused. Failure
-returns a diagnostic result; callers must not silently omit a failed image selection. Empty bytes
-are allowed. Binding rechecks image limits under its own configuration.
+Encoded content is an optional formatting convenience, not an image validator. Preparation checks
+encoded-byte limit, media-type length, then media-type grammar before copying supplied bytes. A
+successful image owns its bytes and declared media type and can be reused. Failure returns a
+diagnostic result; callers must not silently omit a failed image selection. Empty bytes are allowed.
+Binding rechecks image limits under its own configuration.
 
 The media type must contain case-insensitive `image/` followed by a nonempty ASCII subtype
 containing only letters, digits or `!$&^_.+-`. Store it in lowercase. Reject whitespace, parameters,
@@ -61,7 +61,8 @@ encoder to the media type or the completed data URL.
 The [Fetch data-URL processor](https://fetch.spec.whatwg.org/#data-url-processor) parses the media
 type without percent-decoding it. Thus `image/svg%2Bxml` is a different type from `image/svg+xml`.
 Reject `#` during encoded-image preparation because a literal hash starts a URL fragment and `%23`
-does not preserve the declared type. MediaType and the data-URL header use the same lowercase type.
+does not preserve the declared type. The captured media type and data-URL header use the same
+lowercase type.
 
 More elaborate data URLs remain available through raw reference replacement. These construction
 rules do not constrain authored defaults or raw reference strings. See

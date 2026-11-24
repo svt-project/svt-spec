@@ -61,7 +61,7 @@ above:
 ```xml
 <metadata xmlns="http://www.w3.org/2000/svg"
           xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-          xmlns:svt="https://bathos-labs.github.io/svt">
+          xmlns:svt="https://svt-project.github.io/ns/svt">
   <rdf:RDF>
     <rdf:Description rdf:about="">
       <svt:inputs rdf:parseType="Literal">
@@ -84,18 +84,44 @@ order remains available. SVG artwork remains the sole source of authored default
 See the [authoring guide](../docs/authoring.md) and
 [original examples](../examples/authoring/README.md) for save/reopen and rendering checks.
 
+## Contract boundaries
+
+The portable contracts define observable behavior without requiring the .NET library or CLI:
+
+| Area                    | Contract                                                                                   |
+| ----------------------- | ------------------------------------------------------------------------------------------ |
+| Template format         | SVG admission, hooks, exact keys, raw defaults, metadata and format identity               |
+| Processing              | Discovery order, scoped rejection, atomic substitution, preservation and diagnostics       |
+| Resource bounds         | Explicit counting units, equality and failure rules; named fixture settings                |
+| Optional interpretation | Bounded authored-value grammar and results, independent of binding admission               |
+| Conformance data        | Implementation-neutral requests and expected observations with a separate fixture envelope |
+
+UTF-16 source columns and budget units are explicit cross-language conventions. They do not require
+a particular string representation. Budget profile defaults are operational settings, not template
+grammar. The .NET API's types, exceptions, allocation guarantees and configuration surface are
+implementation contracts. CLI transport, filesystem publication, package compatibility and release
+policy likewise belong to the implementation.
+
+Authoring recipes and named renderer observations are informative. SVG owns layout and appearance;
+successful SVT conformance does not certify font availability, resource loading or identical pixels.
+
 ## Detailed contracts
 
 The contracts are specified in these focused references:
 
 - [Bindings and syntax](bindings.md)
+- [Format identity and versioning](versions.md)
 - [Input presentation metadata](metadata.md)
 - [Image values and resource ownership](images.md)
 - [Authored defaults](defaults.md)
 - [Optional per-target interpretation](interpretation.md)
-- [.NET interpretation API](../docs/interpretation-api.md)
 - [Inspection diagnostics and limits](inspection.md)
 - [Substitution policies, diagnostics and limits](substitution.md)
+
+Implementation contracts are documented separately:
+
+- [.NET inspection API](../docs/inspection-api.md)
+- [.NET interpretation API](../docs/interpretation-api.md)
 - [.NET binding API](../docs/binding-api.md)
 - [Command-line interface](cli.md), including help and human-readable presentation
 - [CLI packaging and release](tool-distribution.md)
@@ -108,9 +134,8 @@ evidence and defers aggregation to hosts. The
 allocation-free writes to supplied storage without changing the template format.
 
 The root marker is `data-svt-version="0"`; see [bindings and syntax](bindings.md). It remains 0 at
-stable 1.0, independently of the package version. The RC is provisionally frozen during
-production-template evaluation; formal stable guarantees begin at `1.0.0`. The
-[compatibility policy](compatibility.md) defines that transition without prerelease migrations.
+stable 1.0, independently of the package version. Formal .NET stable guarantees begin at `1.0.0`.
+The [compatibility policy](compatibility.md) defines that transition without prerelease migrations.
 
 The specification must be usable without the .NET implementation or any consuming application. See
 [design issues](https://github.com/svt-project/svt-dotnet/issues) for unresolved choices.

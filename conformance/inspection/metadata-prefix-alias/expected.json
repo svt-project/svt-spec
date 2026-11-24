@@ -1,0 +1,45 @@
+{
+  "format_version": 0,
+  "template_available": true,
+  "inputs": [
+    {
+      "key": "a",
+      "label": "Central",
+      "kind": "paint",
+      "targets": [
+        {
+          "hook": "fill",
+          "element_name": "rect",
+          "location": {
+            "line": 6,
+            "column": 7
+          },
+          "default": {
+            "state": "present",
+            "raw": "red",
+            "source": "fill"
+          }
+        }
+      ],
+      "default": {
+        "state": "common",
+        "raw": "red"
+      },
+      "description": "Help",
+      "label_source": "metadata",
+      "order": 2
+    }
+  ],
+  "input_groups": [
+    {
+      "key": "content",
+      "label": "Content",
+      "description": null,
+      "order": 1,
+      "input_keys": [
+        "a"
+      ]
+    }
+  ],
+  "diagnostics": []
+}

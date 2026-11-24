@@ -213,7 +213,10 @@ validated. The payload is opaque even when empty, malformed base64 or otherwise 
 
 ## Budgets and precedence
 
-All options are positive integers, measured in UTF-16 code units except nesting depth. Defaults:
+All options are positive integers, measured in UTF-16 code units except nesting depth. The following
+profile supplies .NET defaults and conformance-fixture settings. Other hosts may configure different
+positive limits; fixture runners select this profile unless a case overrides it. Counting units and
+failure precedence are portable and do not depend on programming-language property names.
 
 | Option                     | Default | ExceededLimit           |
 | -------------------------- | ------: | ----------------------- |

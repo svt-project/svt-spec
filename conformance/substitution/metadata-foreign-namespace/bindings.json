@@ -1,0 +1,10 @@
+{
+  "format_version": 0,
+  "bindings": [
+    {
+      "key": "a",
+      "kind": "paint",
+      "value": "blue"
+    }
+  ]
+}
