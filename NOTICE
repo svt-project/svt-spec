@@ -1,9 +1,6 @@
 SVT — Scalable Vector Templates
 Copyright (c) 2026 Bathos Pty Ltd
 
-The source code, specification, documentation and repository-authored examples
-and conformance assets are provided under the MIT License; see LICENSE.
-Third-party material, if introduced, retains its applicable license and notices.
-
-SVT is public and prerelease. Licensing does not indicate that the format or API
-is stable; consult the release documentation for published package versions.
+Specification, documentation and repository-authored conformance assets are
+provided under the MIT License; see LICENSE. Third-party material retains
+its applicable notices. See PROVENANCE.md for extraction history.

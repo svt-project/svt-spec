@@ -265,28 +265,27 @@ is discovered first. Giving `c` order 0 and leaving `b` unordered puts `c` befor
 Even if `d` has order 0, it remains in the final unnamed section. Changing declaration order does
 not change these results.
 
-## API and acceptance boundary
+## Conformance and acceptance boundary
 
-The [.NET inspection API](../docs/inspection-api.md#presentation-metadata-extension) defines the
-immutable resolved model; [CLI discovery JSON](cli.md#discovery-json) exposes equivalent evidence.
-No binding lifecycle, assignment shape or default interpretation changes.
+Metadata resolution exposes presentation independently of structural discovery. No binding
+lifecycle, assignment shape or default interpretation changes.
 
 Implementation acceptance must cover hook-only and partially annotated templates; shared paint and
 multiple hooks per element; label precedence and provenance; description whitespace/CDATA/markup;
 duplicate containers, identities and descriptions; exact and rejected references; namespace, RDF
 subject/literal and placement boundaries; invalid fields with independent recovery;
 equal/absent/extreme orders; empty groups; zero inputs; deterministic ties; and complete, unique
-presentation membership. Verify the same input object identities in both API views, explicit JSON
-nulls and unchanged structural order.
+presentation membership. Verify corresponding input identities in structural and presentation views,
+explicit absence states and unchanged structural order.
 
 Exercise budget equality/excess, diagnostic suppression/locations, cancellation and semantic
 preservation through binding. Hooks inside metadata must neither become inputs nor affect artwork
 ambiguity, but must still count toward the hook budget. Keep malformed XML terminal and raw defaults
-unchanged. Use portable fixtures and focused API/CLI tests for these observable behaviors, not tests
-that synchronize documentation text with implementation.
+unchanged. Use portable fixtures and focused implementation tests for these observable behaviors,
+not tests that synchronize documentation text with implementation.
 
-Separately verify a representative metadata-bearing template through the repeatable Inkscape
-save/reopen checks and Chrome/resvg release rendering checks. Record tool versions and annotation
-preservation separately from rendering evidence. Portable conformance does not prove editor
-round-trip preservation or renderer equivalence, and native evidence must identify the exact tested
-source and tools.
+For a supported editor/rendering workflow, separately verify representative metadata-bearing
+templates through save/reopen and rendering checks. Record tool versions and annotation preservation
+separately from rendering evidence. These observations are informative: portable conformance does
+not prove editor round-trip preservation or renderer equivalence. Native evidence identifies the
+exact tested source and tools.

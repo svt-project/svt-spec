@@ -1,8 +1,7 @@
 # SVT substitution
 
-This contract defines substitution behavior. The [.NET binding API](../docs/binding-api.md) defines
-the public surface, including caller-buffer export. Inspection remains independent of substitution
-and optional value interpretation.
+This contract defines substitution behavior. Implementations map the operations to their own APIs.
+Inspection remains independent of substitution and optional value interpretation.
 
 ## Admission and atomicity
 
@@ -47,18 +46,6 @@ Output uses UTF-8 without BOM when exported as bytes, omits the XML declaration,
 pretty-printing option. Empty binding lists follow the same serialization policy. Lexical formatting
 may change; character values must survive reparsing, including carriage returns and attribute tabs.
 No CSS evaluation, resource resolution, color normalization or annotation stripping occurs.
-
-### Caller-owned byte output
-
-The [.NET output export contract](../docs/binding-api.md#output-export) provides exact UTF-8 sizing
-and writing into caller-owned storage after successful binding. Its bytes must equal the allocating
-export, and insufficient destination capacity must leave that destination unchanged. The immutable
-document retains no destination memory and remains independently reusable. This is an output API
-extension, not a template-format change or a new binding mode.
-
-The output budget is enforced before the completed document becomes available, not deferred until
-export. Export adds no configuration, diagnostics, cancellation or resource access. Successful
-binding and bounded byte export do not guarantee atomic publication by a later host operation.
 
 ## Validation order
 
@@ -111,10 +98,10 @@ is allowed and there is no unlimited sentinel. Use overflow-safe accounting. Con
 immutable and reusable, but limits apply per operation, not to application-wide retained objects or
 concurrent work.
 
-The following profile supplies the .NET defaults and conformance-fixture settings. Budget names are
-fixture identifiers, not a requirement to expose matching programming-language properties. Other
-hosts may configure different positive limits while preserving the counting and failure rules. This
-does not relax the .NET implementation's compatibility promises for its defaults.
+The following profile supplies conformance-reference settings. Budget names are fixture identifiers,
+not a requirement to expose matching programming-language properties. Other hosts may configure
+different positive limits while preserving the counting and failure rules. Each implementation owns
+compatibility promises for its defaults.
 
 | Option                    | Default    | Counting rule                                                                                                      |
 | ------------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------ |
@@ -148,13 +135,3 @@ diagnostics, cancellation without sleeps, XML-sensitive characters, comment/proc
 preservation and placement, mixed-fault validation precedence, ignored unknown values, image
 reference precedence and matching updates to existing XLink attributes. Keep renderer evidence
 separate from portable substitution conformance.
-
-For the caller-buffer extension, verify exact byte/count equivalence across Unicode (including
-supplementary characters), XML-sensitive text, empty values, encoded-image URLs and preserved XML
-structure. Cover empty/default, exact, one-byte-short and oversized spans, sliced destinations with
-sentinel bytes, unchanged storage on insufficient capacity, and unchanged suffixes on success.
-Verify repeated and concurrent exports into disjoint storage, mutation independence, and mixed use
-with Xml and newly allocated ToUtf8Bytes results. Check output-budget equality and rejection below
-the required size during Bind; an oversized destination must not change that admission policy.
-Measure export allocations and throughput separately from binding and destination allocation for
-small and near-budget documents; preserve the distinction from native renderer performance.

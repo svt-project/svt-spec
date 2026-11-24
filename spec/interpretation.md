@@ -12,9 +12,7 @@ continues to own Common/Mixed/Absent summaries.
 
 Interpretation has no input-level aggregate, color-equivalence policy, normalization serializer or
 automatic binding conversion. Hosts may traverse targets in structural order and choose their own
-comparison policy. Text requires no interpretation operation. The
-[.NET API](../docs/interpretation-api.md) uses the existing assembly and immutable inspected
-targets.
+comparison policy. Text requires no interpretation operation.
 
 ## Paint outcomes
 
@@ -214,9 +212,9 @@ validated. The payload is opaque even when empty, malformed base64 or otherwise 
 ## Budgets and precedence
 
 All options are positive integers, measured in UTF-16 code units except nesting depth. The following
-profile supplies .NET defaults and conformance-fixture settings. Other hosts may configure different
-positive limits; fixture runners select this profile unless a case overrides it. Counting units and
-failure precedence are portable and do not depend on programming-language property names.
+profile supplies conformance-reference settings. Hosts may configure different positive limits;
+fixture runners select this profile unless a case overrides it. Counting units and failure
+precedence are portable and do not depend on programming-language property names.
 
 | Option                     | Default | ExceededLimit           |
 | -------------------------- | ------: | ----------------------- |
@@ -279,21 +277,17 @@ Use focused behavioral tests and language-neutral examples for:
   deliberately invalid payloads remaining unexamined.
 - Equality/excess for each budget, deterministic precedence, malformed-but-oversized input,
   cancellation and reuse of options across calls.
-- Exact target object identity, raw/origin/location preservation, nullable result invariants,
-  original target order when hosts iterate, and no aggregate or inferred edit.
+- Exact target identity, raw/origin/location preservation, nullable result invariants, original
+  target order when hosts iterate, and no aggregate or inferred edit.
 - Discovery and binding remaining usable independently of interpretation, including unsupported
-  strings and limit results; no new CLI output fields or default interpretation.
+  strings and limit results; no implicit interpretation.
 
 Consumer interaction acceptance must distinguish authored evidence, interpreted presentation and
 initial chooser state. Initialization notifications, no-edit acceptance, cancel and a change back to
 the session's initial chooser value preserve existing binding intent. A genuine accepted change
 creates an explicit replacement; Reset removes it. Widget quantization is display-only until such an
 edit, alpha must not be silently discarded, and raw Mixed stays Mixed even when swatches match. A
-paint-server fallback is never an effective chooser default. The
-[executable editor example](../examples/editor/README.md) demonstrates these checks with a
-conservative opaque RGB chooser policy. That policy and editing lifecycle belong to the host;
-interpretation adds no editor state, binding service or aggregate result to the core.
-
-Run the full portable validation gate and isolated public API/package consumption after
-implementation. Native rendering is not an oracle for authored-value interpretation and cannot
-establish effective appearance from direct attributes.
+paint-server fallback is never an effective chooser default. A host owns its chooser policy and
+editing lifecycle; interpretation adds no editor state, binding service or aggregate result to the
+core. Native rendering is not an oracle for authored-value interpretation and cannot establish
+effective appearance from direct attributes.

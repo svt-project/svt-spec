@@ -1,7 +1,7 @@
 # Image values and resource ownership
 
 SVT supports two supplied image forms. Both are immutable values, independent of image acquisition
-or rendering. The [.NET binding API](../docs/binding-api.md) implements these supplied values.
+or rendering. Implementations map these forms to their own APIs.
 
 | Form            | Ownership and output                                                                        |
 | --------------- | ------------------------------------------------------------------------------------------- |

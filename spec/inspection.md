@@ -8,8 +8,8 @@ Support UTF-8 and UTF-16 XML encodings, including their optional byte-order mark
 encoding detection. Reject other declared encodings. Invalid byte sequences are errors, never
 replacement characters. XML 1.0 processing is required; duplicate attributes are malformed XML. DTD
 declarations are rejected and external resolution is disabled. Cancellation must remain distinct
-from malformed input and must not return a partial result. The [.NET API](../docs/inspection-api.md)
-maps cancellation to OperationCanceledException.
+from malformed input and must not return a partial result. Implementations document how their APIs
+signal cancellation.
 
 ## Diagnostic model
 
@@ -57,11 +57,11 @@ Defaults are operational policy, not format restrictions or performance guarante
 raise or lower each positive integer limit explicitly; invalid options are programming errors. There
 is no unlimited sentinel. A value exactly equal to a limit is permitted.
 
-The table defines the named budget profile used by the .NET implementation and conformance fixtures.
-Other implementations may expose different configuration APIs and host defaults; fixture runs must
-select these values unless the fixture overrides them. Counting units, equality and terminal-failure
-semantics remain portable. A different host budget does not change the template grammar or authorize
-unbounded parsing. Changing a published .NET default remains subject to its compatibility policy.
+The table defines the named budget profile used by the conformance references. Implementations may
+expose different configuration APIs and host defaults; fixture runs must select these values unless
+the fixture overrides them. Counting units, equality and terminal-failure semantics remain portable.
+A different host budget does not change the template grammar or authorize unbounded parsing. Each
+implementation owns compatibility promises for its host defaults.
 
 | Option                    | Default    | Counting rule                                                                                         |
 | ------------------------- | ---------- | ----------------------------------------------------------------------------------------------------- |

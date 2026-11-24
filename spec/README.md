@@ -1,11 +1,11 @@
 # SVT specification
 
-The initial contract describes a structurally discoverable SVG document with named text, image and
-paint inputs. Ordinary SVG values remain the authored preview. Templates retain `.svg` filenames.
+This contract describes a structurally discoverable SVG document with named text, image and paint
+inputs. Ordinary SVG values remain the authored preview. Templates retain `.svg` filenames.
 
 SVG owns geometry, clipping, transforms, paint order, fonts and layout. Expressions, loops,
 conditional elements, arbitrary attribute mutation, automatic text fitting and CSS precedence repair
-are outside the initial scope.
+are outside this contract.
 
 ## Binding keys and display labels
 
@@ -81,8 +81,8 @@ The key is still `heading`; its display label becomes `Headline`. Its authored d
 multiple inputs on one element. Group/input order guides automatic forms while structural discovery
 order remains available. SVG artwork remains the sole source of authored defaults.
 
-See the [authoring guide](../docs/authoring.md) and
-[original examples](../examples/authoring/README.md) for save/reopen and rendering checks.
+The [conformance references](../conformance/README.md) supply small inputs and expected results.
+Authoring tools and renderers require separate validation for their supported workflows.
 
 ## Contract boundaries
 
@@ -118,24 +118,9 @@ The contracts are specified in these focused references:
 - [Inspection diagnostics and limits](inspection.md)
 - [Substitution policies, diagnostics and limits](substitution.md)
 
-Implementation contracts are documented separately:
+Implementation API, CLI, package and release policy belong to each implementation. The
+[.NET implementation](https://github.com/svt-project/svt-dotnet) supplies one such mapping.
 
-- [.NET inspection API](../docs/inspection-api.md)
-- [.NET interpretation API](../docs/interpretation-api.md)
-- [.NET binding API](../docs/binding-api.md)
-- [Command-line interface](cli.md), including help and human-readable presentation
-- [CLI packaging and release](tool-distribution.md)
-- [Compatibility and Semantic Versioning](compatibility.md)
-
-Structural inspection and substitution are implemented. Discovery preserves raw authored values; it
-does not certify SVG validity or rendering. Optional per-target interpretation preserves raw
-evidence and defers aggregation to hosts. The
-[.NET caller-buffer export](../docs/binding-api.md#output-export) supports exact UTF-8 sizing and
-allocation-free writes to supplied storage without changing the template format.
-
-The root marker is `data-svt-version="0"`; see [bindings and syntax](bindings.md). It remains 0 at
-stable 1.0, independently of the package version. Formal .NET stable guarantees begin at `1.0.0`.
-The [compatibility policy](compatibility.md) defines that transition without prerelease migrations.
-
-The specification must be usable without the .NET implementation or any consuming application. See
-[design issues](https://github.com/svt-project/svt-dotnet/issues) for unresolved choices.
+The root marker remains `data-svt-version="0"`; see [format identity](versions.md). The
+specification and canonical reference assets are versioned together by reviewed Git revisions.
+[Contribution guidance](../CONTRIBUTING.md) describes changes and reference-asset publication.

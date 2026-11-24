@@ -2,9 +2,9 @@
 
 This directory contains original language-neutral inspection fixtures in `inspection/`, covering raw
 default evidence, conflict isolation, root rejection, invalid encoding and budget failures. The
-fixtures are MIT-licensed under the repository LICENSE. The MSTest fixture runner compares all
-structured fields through the public inspection API. The `substitution/` fixtures exercise typed
-bindings and semantic XML output.
+fixtures are MIT-licensed; see [LICENSE](LICENSE). Implementation runners compare the structured
+observations defined below. The `substitution/` fixtures exercise typed bindings and semantic XML
+output.
 
 Compare semantic structure where XML serialization is allowed to change; do not accidentally require
 attribute ordering, quote style or byte-identical formatting. Preserve meaningful text whitespace,
@@ -109,29 +109,21 @@ authored grammar, context, resource, header and budget examples. Generated tests
 payloads, deep nesting, nullable/argument boundaries, cancellation, culture, concurrent reuse and
 independence from binding. They do not compute effective appearance or fetch resources.
 
-The [host editor example](../examples/editor/README.md) is also compiled into behavioral tests and
-the isolated package consumer. Its separate interaction checks establish that chooser
-initialization, quantization and unchanged/canceled interactions do not become implicit bindings.
-These are host intent tests, not additional color grammar, inspection admission rules or
-documentation wording tests.
+## Snapshot publication and adoption
 
-## CLI validation
+[manifest.json](manifest.json) inventories the canonical data and license by relative path and
+SHA-256. The asset-set digest is SHA-256 of the UTF-8 concatenation of sorted `path`, NUL, lowercase
+file digest, and LF records. The manifest excludes this explanatory README and itself.
 
-The CLI test project also executes the inspection and substitution fixtures through the real command
-entry point. It compares discovery data, structured diagnostics and semantic XML output, while
-checking exit status and separating stdout results from stderr diagnostics. Fixture options are
-translated explicitly into CLI configuration; the fixture envelope is not an additional CLI format.
+A full repository commit identifies the specification revision and manifest. Together with the
+asset-set digest it identifies an immutable reference snapshot; named editions may label reviewed
+commits without changing template or fixture format markers. Existing snapshots are never rewritten.
 
-Additional tests generate small isolated requests for strict JSON and Unicode, configuration
-precedence, stdin ownership, relative image acquisition, admission policies, resource limits and
-publication behavior. File tests cover resolved input collisions, symbolic links, distinct hard
-links, filesystem case behavior, overwrite races and preservation of existing output. Staging
-boundaries and controlled streams exercise cancellation and reporting failures without timing-based
-polling. Native rendering and authoring-tool round trips remain separate evidence.
+Implementations copy or embed the selected files and record the source repository, full commit,
+asset digest, license/attribution and intentional exclusions. They run their own adapters against
+these references and retain implementation-specific regression tests separately. Adoption is an
+explicit reviewed change; ordinary builds need no network access to this repository.
 
-## Authoring examples
-
-The [authoring corpus](../examples/authoring/README.md) adds independently authored visual examples,
-raw inventories and expected SVGs. The API/CLI tests exercise these alongside portable conformance.
-The [native runner](../eng/visual/README.md) separately records editor round trips, resource
-readiness and rendered comparisons; its reports are not portable conformance fixtures.
+Run `node eng/assets.mjs` to verify the inventory, and `node eng/assets.mjs --write` only when
+deliberately preparing a revised asset set. Review changed cases, expected behavior and the manifest
+together. An inventory check verifies captured bytes; implementation runners establish conformance.

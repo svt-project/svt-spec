@@ -1,9 +1,9 @@
 # Format identity and versioning
 
 The SVG root marker `data-svt-version="0"` identifies the SVT template format. The marker is
-independent of implementation package versions and specification publication revisions. Format 0
-remains the supported template format at the .NET implementation's stable 1.0 release; zero does not
-mean that a processor may reinterpret the document using its latest rules.
+independent of implementation package versions and specification publication revisions. Zero
+identifies this format; it does not mean that a processor may reinterpret a document using its
+latest rules.
 
 The metadata vocabulary uses the exact namespace name `https://svt-project.github.io/ns/svt`. The
 name has no package or specification revision suffix. The `svt` prefix is an authoring convention,
@@ -20,6 +20,6 @@ inputs and expectations; it is not a CLI request or response protocol. The
 [fixture convention](../conformance/README.md) defines its field names and settings independently of
 any implementation's object model.
 
-Package compatibility and support periods belong to implementations. The .NET implementation's
-[compatibility policy](compatibility.md) defines its stable support commitments and
-[CLI contract](cli.md) defines command JSON versioning, including omitted-version behavior.
+Implementations document supported format revisions and their own compatibility/support policy. CLI
+request and response protocols are separate implementation contracts; fixture envelopes do not
+define their versioning or omitted-field behavior.
