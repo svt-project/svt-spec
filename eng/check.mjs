@@ -13,6 +13,7 @@ const remark = [
 for (const [file, args] of [
   ["git", ["diff", "--check"]],
   ["git", ["diff", "--cached", "--check"]],
+  ["node", ["--test", "eng/version.test.mjs"]],
   ["node", ["eng/assets.mjs"]],
   ["npx", ["--yes", "prettier@3.9.10", "--check", "**/*.md"]],
   [
