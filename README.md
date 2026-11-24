@@ -9,9 +9,12 @@ values and apply replacements while SVG retains responsibility for layout and re
 - [.NET library and CLI](https://github.com/svt-project/svt-dotnet).
 - [Project coordination](https://github.com/svt-project/.github/issues).
 
+The contract defines successful processing of conforming templates using ordinary XML processors.
+Detailed diagnostics, malformed-input recovery and operational limits are implementation policy.
+
 Technical Markdown, tables and supporting resources are reviewed together in this repository.
 Specification editions use Semantic Versioning; [version.json](version.json) records the working
-edition and its template format. The working candidate is `1.0.0-rc.1`, targeting template format
+edition and its template format. The working candidate is `1.0.0-rc.2`, targeting template format
 `1.0`. Published editions use immutable `v<specification_version>` tags, including prerelease
 suffixes; preparing a candidate does not publish its tag. A full Git commit and asset digest
 identify the exact reference snapshot. Implementations explicitly adopt stamped copies; subsequent

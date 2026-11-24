@@ -3,17 +3,13 @@
   "template_available": true,
   "inputs": [
     {
-      "key": "a",
-      "label": "Inline",
+      "key": "inside",
+      "label": "inside",
       "kind": "paint",
       "targets": [
         {
           "hook": "fill",
           "element_name": "rect",
-          "location": {
-            "line": 6,
-            "column": 7
-          },
           "default": {
             "state": "present",
             "raw": "red",
@@ -26,7 +22,30 @@
         "raw": "red"
       },
       "description": null,
-      "label_source": "element",
+      "label_source": "key",
+      "order": null
+    },
+    {
+      "key": "outside",
+      "label": "outside",
+      "kind": "paint",
+      "targets": [
+        {
+          "hook": "fill",
+          "element_name": "rect",
+          "default": {
+            "state": "present",
+            "raw": "blue",
+            "source": "fill"
+          }
+        }
+      ],
+      "default": {
+        "state": "common",
+        "raw": "blue"
+      },
+      "description": null,
+      "label_source": "key",
       "order": null
     }
   ],
@@ -37,21 +56,9 @@
       "description": null,
       "order": null,
       "input_keys": [
-        "a"
+        "inside",
+        "outside"
       ]
-    }
-  ],
-  "diagnostics": [
-    {
-      "code": "svt.metadata.invalid",
-      "severity": "warning",
-      "key": null,
-      "location": {
-        "line": 3,
-        "column": 13
-      },
-      "related_locations": [],
-      "limit": null
     }
   ]
 }

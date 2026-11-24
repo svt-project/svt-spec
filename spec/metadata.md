@@ -22,7 +22,7 @@ This uses the established
 [XML literal mechanism](https://www.w3.org/TR/rdf-syntax-grammar/#section-Syntax-XML-literals). SVG
 also permits non-RDF metadata; RDF is an SVT representation choice, not a requirement for all SVG
 extensions. A general RDF reader sees one XML-valued property; interpreting its inputs still
-requires the SVT vocabulary. SVT validates this bounded XML profile, not arbitrary RDF graphs or
+requires the SVT vocabulary. SVT interprets this bounded XML profile, not arbitrary RDF graphs or
 semantically equivalent RDF serializations. No RDF library, schema loading or network access is
 required.
 
@@ -39,7 +39,7 @@ scheme identifies another namespace. HTTP redirects do not create aliases. A nam
 page is informative; processors must not fetch it to recognize metadata.
 
 Metadata in any other namespace is foreign content, preserved without supplying SVT labels,
-descriptions, groups or ordering. Such content does not itself produce an SVT warning or disable
+descriptions, groups or ordering. Such content does not supply SVT presentation values or disable
 binding hooks; the normal inline-label/key fallback applies. See
 [format identity and versioning](versions.md).
 
@@ -56,24 +56,18 @@ or resource access by SVT. SVT selects this exact local XML profile, not other s
 that could resolve to the same URI. Descriptions with absent or nonempty `rdf:about` are opaque:
 they describe anonymous or other resources and do not supply template metadata.
 
-Count direct `svt:inputs` properties across all matching descriptions in all root-level SVG
-`metadata` elements and their direct `rdf:RDF` children. At most one may occur, even if its literal
-marker is invalid. Multiple containers disable central metadata before envelope or field validation.
-A single container requires exactly `rdf:parseType="Literal"`; missing, differently cased or other
-values produce one `svt.metadata.invalid` warning and discard its contents. No additional
-RDF-namespace attributes are supported on that description or property, including alternate
-identity, reference and datatype attributes. They invalidate the container rather than changing its
-meaning. Check the literal marker first, then the description's RDF attributes, then the property's
-RDF attributes; report only the first offending attribute in source order in that stage. Missing
-markers point at the property element. No descendant findings are produced for a discarded
-container.
+A conforming template has at most one direct `svt:inputs` property across all matching root-level
+descriptions. When present it has exactly `rdf:parseType="Literal"`. The selected description and
+property have no additional RDF-namespace attributes; alternate identity, reference and datatype
+attributes are outside this profile. Missing markers, conflicting containers and invalid envelope
+attributes are nonconforming metadata; diagnostics and recovery are implementation policy.
 
 Empty containers are valid. Direct SVT children of a matching description other than `svt:inputs`
-warn as unknown and their subtrees are ignored. Unrelated RDF properties, foreign subtrees, typed
-RDF node elements, nested SVGs and other wrappers are opaque. Direct `svt:inputs` children of SVG
-`metadata` have no presentation meaning. SVT does not search descendants for an alternate layout,
-merge containers, validate unrelated RDF, or repair metadata. Whitespace, comments and processing
-instructions around the envelope do not change selection.
+have no SVT meaning and their subtrees are ignored. Unrelated RDF properties, foreign subtrees,
+typed RDF node elements, nested SVGs and other wrappers are opaque. Direct `svt:inputs` children of
+SVG `metadata` have no presentation meaning. SVT does not search descendants for an alternate
+layout, merge containers, validate unrelated RDF, or repair metadata. Whitespace, comments and
+processing instructions around the envelope do not change selection.
 
 Within a recognized XML-literal property, only these relationships and unnamespaced attributes are
 defined:
@@ -85,32 +79,33 @@ defined:
 | `svt:group`       | `svt:inputs`               | Required `key`; optional `label`, `order`          | At most one `svt:description` |
 | `svt:description` | `svt:input` or `svt:group` | None                                               | Plain text                    |
 
-Known names in the wrong position inside the literal are unknown elements, ignored with their
+Known names in the wrong position inside the literal have no meaning and are ignored with their
 subtrees. This includes nested groups and nested containers. Unnamespaced or foreign-namespaced
 elements are opaque rather than alternate spellings. Unknown unnamespaced attributes and attributes
-in the SVT namespace warn and are ignored; attributes in other namespaces and namespace declarations
-are ignored, except for the envelope's RDF rules above. Recognized input/group attributes must be
+in the SVT namespace are ignored; attributes in other namespaces and namespace declarations are
+ignored, except for the envelope's RDF rules above. Recognized input/group attributes must be
 unnamespaced. No metadata meaning is assigned to SVT elements outside the placement rules above.
 
 All SVG-namespace `metadata` elements and their entire subtrees, wherever located, are nonbinding
 content. Do not discover hooks, inline labels, unknown `data-svt-*` annotations or nested version
 markers on them or their descendants. For example, an embedded sample SVG must not become an input.
-This exclusion does not exempt content from XML parsing or inspection budgets. Foreign elements
+This exclusion does not change XML processing or implementation resource policy. Foreign elements
 merely named `metadata` do not establish this exclusion. On recognized SVT metadata elements,
-unsupported attributes still follow the metadata unknown-attribute rules; they have no binding
-meaning.
+unsupported attributes still have no SVT interpretation; they have no binding meaning.
 
 ## Values and resolution
 
 Input keys use the [binding key rules](bindings.md): nonempty after XML attribute normalization,
 ordinal comparison, no trimming or case folding. Group keys use the same rules but occupy a separate
 identity space; an input and a group may share a key. A nonempty `group` value is an exact reference
-to a declared group key. Empty keys invalidate declarations; an empty group reference is an invalid
-optional field. Whitespace-only keys remain nonempty exact identities, although they are poor
-authoring choices. Declarations may precede or follow their references and artwork targets.
+to a declared group key. Empty keys and empty group references are nonconforming. Whitespace-only
+keys remain nonempty exact identities, although they are poor authoring choices. Declarations may
+precede or follow their references and artwork targets.
 
-Resolve inputs only after hook admission and structural ambiguity checks. A declaration for an
-unknown or rejected key warns and is ignored. Inputs without declarations remain available.
+In conforming metadata, input declarations refer to discovered inputs; input keys and group keys are
+each unique within their own identity space. Each group reference names a declared group. Inputs
+without declarations remain available. Violations follow implementation policy, not a portable
+field-by-field recovery algorithm.
 
 Labels and descriptions trim only leading and trailing XML whitespace (space, tab, CR, LF). Missing,
 empty or whitespace-only values are absent. Preserve interior text after normal XML processing,
@@ -124,25 +119,25 @@ The effective input label and its source are:
 2. A nonempty inline label on the first admitted target: `Element`.
 3. The input key: `Key`.
 
-Do not search later targets for an inline label. A central label deliberately overrides all target
-labels without warning. Emit the existing `svt.input.labels` warning for differing effective target
-labels only when no central label resolves for that input. A description-only declaration does not
-suppress that warning. The input description is the valid central description or null. Group labels
-resolve to their nonempty label or their key; group descriptions follow the same description rules.
-Neither changes identity or raw default evidence.
+Do not search later targets for an inline label. A central label overrides all target labels. A
+description-only declaration does not change label selection. Diagnostics for differing inline
+labels are implementation policy. The input description is the valid central description or null.
+Group labels resolve to their nonempty label or their key; group descriptions follow the same
+description rules. Neither changes identity or raw default evidence.
 
 `order` is an optional integer from 0 through 2,147,483,647 inclusive, represented after XML
 normalization by one or more ASCII digits. Leading zeros are allowed. Signs, whitespace, decimals,
-exponents, non-ASCII digits and overflow are invalid. Missing order is absent; an invalid order
-warns and becomes absent.
+exponents, non-ASCII digits and overflow are invalid. Missing order is absent; an invalid order is
+nonconforming metadata.
 
 ## Ordering and single-level groups
 
 Structural `Inputs` and each input's `Targets` keep their existing discovery order. Build a separate
 resolved presentation view containing the same input objects:
 
-1. Assign each input to its valid referenced group, or to the unnamed section if no group resolves.
-2. Omit declared groups with no admitted members. Empty groups are still validated.
+1. Assign each input to its valid referenced group, or to the unnamed section if no group is
+   specified.
+2. Omit declared groups with no admitted members. Empty groups follow the same authoring rules.
 3. Sort named groups by explicit order before absent order, then ascending numeric order, then the
    discovery position of their first member. Use that member's structural position, not its position
    after input sorting. Group declaration order has no effect.
@@ -151,74 +146,31 @@ resolved presentation view containing the same input objects:
 5. Append the unnamed section last, if it has members, with the same input sorting rules. It has no
    key, label, description or order.
 
-Equal order values are valid and produce no warning. Every admitted input appears exactly once; none
-may be hidden by metadata. With no metadata, all inputs appear in discovery order in one unnamed
-section. With zero admitted inputs, the presentation collection is empty. Authors can use spaced
-orders such as 10, 20 and 30 to make insertion easy; spacing is not required.
+Equal order values are valid. Every admitted input appears exactly once; none may be hidden by
+metadata. With no metadata, all inputs appear in discovery order in one unnamed section. With zero
+admitted inputs, the presentation collection is empty. Authors can use spaced orders such as 10, 20
+and 30 to make insertion easy; spacing is not required.
 
 There is only one level of groups and at most one membership per input. Tabs, columns, nested
 groups, widgets, visibility expressions, required fields and validation constraints are outside this
 contract.
 
-## Diagnostics and recovery
+## Implementation policy
 
-All metadata semantic findings are warnings. They do not reject artwork inputs or prevent binding.
-Malformed XML and exceeded inspection budgets still reject the whole template under the existing
-[inspection contract](inspection.md). Binding preserves metadata semantically, including ignored
-declarations, alongside unrelated artwork; it does not repair or remove metadata.
+Conforming metadata follows the envelope, field and reference rules above. Nonconforming metadata
+may cause rejection or documented recovery. The specification does not require field-by-field
+salvage, duplicate-group suppression, cascading-warning control, exact diagnostics or source
+locations. Optional authoring validation belongs to implementations.
 
-Warning messages explain the specific failed rule and what was ignored: for example, the permitted
-`order` grammar/range, the prohibition on description child elements, or the single-description
-limit. Findings sharing a code must still distinguish those failures for authors. Message wording is
-explanatory, not a machine interface; use the existing codes and structured fields for program
-logic. Locations, severity, recovery and diagnostic budgets are unchanged by message detail.
+Foreign content and explicitly ignored elements/attributes retain their defined opaque behavior;
+they are not malformed metadata. Within recognized inputs, input and group elements, character data
+between child elements must be XML whitespace. Descriptions follow their separate text rules.
+Comments and processing instructions are allowed and do not supply presentation values.
 
-| Code                     | Condition                                                                               | Recovery                                                                                                  |
-| ------------------------ | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `svt.metadata.container` | More than one eligible `svt:inputs` container                                           | Ignore all central metadata; use inline/key labels and the unnamed section                                |
-| `svt.metadata.duplicate` | Repeated input or group key, even with identical declarations                           | Ignore every declaration of that identity, not just later occurrences                                     |
-| `svt.metadata.input`     | Input declaration references an unknown or rejected input                               | Ignore the declaration                                                                                    |
-| `svt.metadata.group`     | Input references an unknown or discarded group                                          | Ignore membership; retain its other valid fields                                                          |
-| `svt.metadata.invalid`   | Invalid RDF envelope, missing/empty identity, invalid optional field or unexpected text | Ignore the container for an invalid envelope, declaration for an invalid identity, or affected field/text |
-| `svt.metadata.unknown`   | Unknown SVT element or unknown attribute in the interpreted vocabulary                  | Ignore that attribute or the element's complete subtree                                                   |
-
-Apply these precedence rules to avoid document-order-dependent recovery and cascading diagnostics:
-
-- Multiple containers produce one container warning at the first container with the remaining
-  containers as related locations. Do not interpret or diagnose their envelopes or contents.
-- For a single container, identify all direct input/group declarations by their keys first. A
-  missing/empty key produces one invalid warning and suppresses further diagnostics in that
-  declaration. A nonempty key participates in duplicate detection even if its other fields are
-  invalid or it references no admitted input.
-- Duplicate detection is separate for input keys and group keys. Emit one duplicate warning at the
-  first declaration with the others as related locations. Ignore their contents without additional
-  field/reference warnings. For a unique unknown/rejected input, emit one input warning and ignore
-  its contents before checking optional fields.
-- Resolve optional fields independently for remaining declarations. A discarded group remains
-  unresolved: each otherwise usable input referencing it receives a group warning. Invalid group
-  reference syntax receives only an invalid warning, not an additional unresolved-group warning.
-- Multiple description children produce one invalid warning at the first description, with the
-  others as related locations; ignore all of those descriptions without inspecting their contents. A
-  single description with any child element produces one invalid warning at that description and
-  loses the description only. Do not flatten nested markup or produce descendant findings.
-- Within `svt:inputs`, `svt:input` and `svt:group`, whitespace, comments and processing instructions
-  between child elements are ignored. Other character data produces one invalid warning per parent
-  element and is ignored. This restriction does not apply to the enclosing SVG `metadata` element.
-  Unknown and foreign subtrees are not recursively interpreted.
-
-Input-scoped findings carry the exact input key when it is available. Container and group findings,
-and findings for missing/empty identities, have a null diagnostic key. An input's bad group
-reference is input-scoped. Attribute findings point at the attribute name; missing identity and
-element/text findings point at the relevant element name. Duplicate/container locations point at
-element names. Related locations retain document order. Use the existing one-based UTF-16
-coordinates, final source-position/code ordering and diagnostic budget. There is no new severity,
-policy switch or budget option.
-
-All metadata markup, text and attributes count toward existing source, XML, depth, element and
-attribute budgets. Known hook attributes still count toward `MaxHooks`, including occurrences in
-nonbinding metadata. Metadata warnings count toward `MaxDiagnostics`. Resolution must be linear
-apart from bounded diagnostic and presentation sorting; do not perform repeated whole-document
-searches per declaration. Cancellation also applies during metadata resolution and sorting.
+Metadata never creates binding inputs or changes artwork defaults. Binding preserves metadata
+alongside unrelated artwork. It does not repair, remove or rewrite metadata as a side effect.
+Implementations own resource controls for all content, including metadata, under the
+[processing policy boundary](inspection.md#diagnostics-and-operational-controls).
 
 ## Authoring example
 
@@ -270,19 +222,16 @@ not change these results.
 Metadata resolution exposes presentation independently of structural discovery. No binding
 lifecycle, assignment shape or default interpretation changes.
 
-Implementation acceptance must cover hook-only and partially annotated templates; shared paint and
-multiple hooks per element; label precedence and provenance; description whitespace/CDATA/markup;
-duplicate containers, identities and descriptions; exact and rejected references; namespace, RDF
-subject/literal and placement boundaries; invalid fields with independent recovery;
-equal/absent/extreme orders; empty groups; zero inputs; deterministic ties; and complete, unique
-presentation membership. Verify corresponding input identities in structural and presentation views,
-explicit absence states and unchanged structural order.
+Portable acceptance covers hook-only and partially annotated templates; shared paint and multiple
+hooks per element; label precedence and provenance; description whitespace and CDATA; conforming
+namespace aliases, RDF envelopes and placement; equal/absent/extreme orders; empty groups; zero
+inputs; deterministic ties; and complete, unique presentation membership. Verify unchanged
+structural order and semantic preservation through binding. Hooks inside SVG metadata never become
+artwork inputs, including in embedded examples.
 
-Exercise budget equality/excess, diagnostic suppression/locations, cancellation and semantic
-preservation through binding. Hooks inside metadata must neither become inputs nor affect artwork
-ambiguity, but must still count toward the hook budget. Keep malformed XML terminal and raw defaults
-unchanged. Use portable fixtures and focused implementation tests for these observable behaviors,
-not tests that synchronize documentation text with implementation.
+Duplicate/invalid declarations, field recovery, diagnostics, source positions, resource limits and
+cancellation belong to implementation tests. These tests may be valuable without defining another
+implementation's behavior on nonconforming metadata.
 
 For a supported editor/rendering workflow, separately verify representative metadata-bearing
 templates through save/reopen and rendering checks. Record tool versions and annotation preservation

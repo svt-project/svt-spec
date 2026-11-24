@@ -46,7 +46,7 @@ rectangle's fill and the path's stroke. Their matching authored strings produce 
 - Without a nonempty central or inline label, the key is also the display label. Labels trim XML
   whitespace; keys remain exact and case-sensitive.
 - An inline label applies to every hook on its element. Without a central override, the first target
-  supplies a shared paint input's label; differing labels produce a warning.
+  supplies a shared paint input's label. Diagnostics for differing labels are implementation policy.
 - Text and image inputs each have one target. Paint inputs may share a key across fill and stroke
   targets. Reusing a key across different input kinds is an error.
 
@@ -88,19 +88,19 @@ Authoring tools and renderers require separate validation for their supported wo
 
 The portable contracts define observable behavior without requiring the .NET library or CLI:
 
-| Area                    | Contract                                                                                   |
-| ----------------------- | ------------------------------------------------------------------------------------------ |
-| Template format         | SVG admission, hooks, exact keys, raw defaults, metadata and format identity               |
-| Processing              | Discovery order, scoped rejection, atomic substitution, preservation and diagnostics       |
-| Resource bounds         | Explicit counting units, equality and failure rules; named fixture settings                |
-| Optional interpretation | Bounded authored-value grammar and results, independent of binding admission               |
-| Conformance data        | Implementation-neutral requests and expected observations with a separate fixture envelope |
+| Area                    | Contract                                                                     |
+| ----------------------- | ---------------------------------------------------------------------------- |
+| Template format         | SVG admission, hooks, exact keys, raw defaults, metadata and format identity |
+| Processing              | Successful discovery, defaults, presentation, substitution and preservation  |
+| Implementation policy   | XML error reporting, diagnostics, recovery, operational limits and API shape |
+| Optional interpretation | Authored-value grammar and results, independent of binding admission         |
+| Conformance data        | Portable observations of conforming inputs, with a separate fixture envelope |
 
-UTF-16 source columns and budget units are explicit cross-language conventions. They do not require
-a particular string representation. Budget profile defaults are operational settings, not template
-grammar. The .NET API's types, exceptions, allocation guarantees and configuration surface are
-implementation contracts. CLI transport, filesystem publication, package compatibility and release
-policy likewise belong to the implementation.
+SVT builds on ordinary XML processing. It does not prescribe a DOM or streaming parser, require
+independent XML validation, or standardize malformed-input recovery. See the
+[processing boundary](inspection.md). Implementations document diagnostics, optional source
+locations, operational controls, ownership and cancellation. CLI transport, filesystem publication,
+package compatibility and release policy also belong to implementations.
 
 Authoring recipes and named renderer observations are informative. SVG owns layout and appearance;
 successful SVT conformance does not certify font availability, resource loading or identical pixels.
@@ -115,8 +115,8 @@ The contracts are specified in these focused references:
 - [Image values and resource ownership](images.md)
 - [Authored defaults](defaults.md)
 - [Optional per-target interpretation](interpretation.md)
-- [Inspection diagnostics and limits](inspection.md)
-- [Substitution policies, diagnostics and limits](substitution.md)
+- [Inspection and implementation policy](inspection.md)
+- [Substitution and output preservation](substitution.md)
 
 Implementation API, CLI, package and release policy belong to each implementation. The
 [.NET implementation](https://github.com/svt-project/svt-dotnet) supplies one such mapping.
