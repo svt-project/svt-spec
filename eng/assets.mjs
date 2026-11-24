@@ -3,6 +3,7 @@ import { createHash } from "node:crypto";
 import { readdir, readFile, writeFile } from "node:fs/promises";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import { templateFormatForVersion } from "./version.mjs";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "../conformance");
 const hash = (bytes) => createHash("sha256").update(bytes).digest("hex");
@@ -34,10 +35,9 @@ const sha256 = hash(
     .join(""),
 );
 const edition = JSON.parse(await readFile(resolve(root, "../version.json"), "utf8"));
-assert.match(edition.specification_version, /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/);
 assert.equal(
   edition.template_format,
-  edition.specification_version.split(".").slice(0, 2).join("."),
+  templateFormatForVersion(edition.specification_version),
 );
 const manifest = { manifest_version: 1, ...edition, sha256, files: sorted };
 const path = resolve(root, "manifest.json");

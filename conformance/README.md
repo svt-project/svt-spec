@@ -115,10 +115,13 @@ independence from binding. They do not compute effective appearance or fetch res
 SHA-256. The asset-set digest is SHA-256 of the UTF-8 concatenation of sorted `path`, NUL, lowercase
 file digest, and LF records. The manifest excludes this explanatory README and itself.
 
-The manifest records the SemVer specification edition and its major/minor template format. An
-immutable edition tag names the published revision; a full source commit and asset-set digest
-identify the exact snapshot. Existing snapshots are never rewritten. Editorial patch revisions do
-not change the template marker or require consumers to refresh unchanged assets.
+The manifest records the full SemVer specification edition, including any prerelease suffix, and its
+major/minor template format. For example, edition `1.0.0-rc.1` still targets template format `1.0`.
+An immutable edition tag names the published revision; a full source commit and asset-set digest
+identify the exact snapshot. Existing snapshots are never rewritten or retroactively relabeled.
+Identical asset bytes may occur in several editions; their shared asset digest does not replace
+edition/commit provenance. Editorial patch revisions do not change the template marker or require
+consumers to refresh unchanged assets.
 
 Implementations copy or embed the selected files and record the source repository, specification
 edition, template format, full commit, asset digest, license/attribution and intentional exclusions.

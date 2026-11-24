@@ -2,15 +2,17 @@
 
 ## Specification editions and template formats
 
-The specification and canonical reference assets share a Semantic Versioning release series.
-[version.json](../version.json) records the working specification edition, currently `1.0.0`, and
-its template format, `1.0`. An edition is published under an immutable `vMAJOR.MINOR.PATCH` tag;
-preparing the working edition does not itself publish that tag.
+The specification and canonical reference assets share a [Semantic Versioning](https://semver.org/)
+release series. [version.json](../version.json) records the working specification edition, currently
+`1.0.0-rc.1`, and its template format, `1.0`. An edition is published under an immutable
+`v<specification_version>` tag, for example `v1.0.0-rc.1` or `v1.0.0`. Preparing the working edition
+does not itself publish that tag.
 
 The SVG root must carry the unnamespaced attribute `data-svt-version="1.0"`. Its value identifies
-one target template format using the specification's `MAJOR.MINOR` components. Patch revisions do
-not appear in templates. The exact marker selects processing rules; it is not an implementation
-package version, a version range or an instruction to use the latest rules.
+one target template format using the specification's `MAJOR.MINOR` components. Patch revisions,
+prerelease identifiers and build metadata do not appear in templates. The exact marker selects
+processing rules; it is not an implementation package version, a version range or an instruction to
+use the latest rules.
 
 | Edition change | Meaning                                                                                                              | Template marker                                            |
 | -------------- | -------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
@@ -22,6 +24,28 @@ A correction that changes the meaning of valid templates requires an explicit co
 calling it an erratum does not make it an editorial patch. Published editions and their assets are
 never replaced. The changelog identifies affected rules and whether implementation changes are
 required. Implementation package versions evolve independently.
+
+## Candidate editions and acceptance
+
+A candidate such as `1.0.0-rc.1` identifies a reviewed proposal for template format `1.0`; it does
+not establish the stable compatibility guarantees of the eventual `1.0.0` edition. Candidate
+numbering is independent of implementation package numbering. A later candidate receives a new
+edition and tag; published candidate text and reference assets are never replaced.
+
+Before the first stable edition, explicitly reviewed candidate revisions may correct contract gaps
+while retaining the intended `1.0` marker. Such changes must be described in the changelog and
+explicitly adopted by implementations. The marker alone does not distinguish candidate revisions;
+implementations must identify their accepted specification edition and exact snapshot. Do not infer
+a candidate version from a template, add fallback readers, or silently adopt newer rules.
+
+Formal `1.0.0` publication follows explicit acceptance, not merely removal of an RC suffix. The
+[coordinator acceptance issue](https://github.com/svt-project/.github/issues/9) tracks production
+use, independent implementation and cookbook findings, and implementation security review. After
+stable publication, the edition-change rules above govern the established contract.
+
+Existing implementation snapshots retain the metadata and provenance they actually accepted. An
+earlier working snapshot labeled `1.0.0` was not a published stable edition; preparing this
+candidate does not relabel that snapshot or force consumers to refresh unchanged reference bytes.
 
 ## Processor support
 
