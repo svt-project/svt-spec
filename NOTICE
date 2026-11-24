@@ -5,5 +5,5 @@ The source code, specification, documentation and repository-authored examples
 and conformance assets are provided under the MIT License; see LICENSE.
 Third-party material, if introduced, retains its applicable license and notices.
 
-SVT is under private, unreleased development. Licensing does not indicate that
-a package has been published or that the format or API is stable.
+SVT is public and prerelease. Licensing does not indicate that the format or API
+is stable; consult the release documentation for published package versions.

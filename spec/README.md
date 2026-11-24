@@ -113,4 +113,4 @@ production-template evaluation; formal stable guarantees begin at `1.0.0`. The
 [compatibility policy](compatibility.md) defines that transition without prerelease migrations.
 
 The specification must be usable without the .NET implementation or any consuming application. See
-[design issues](https://github.com/bathos-labs/svt-dotnet/issues) for unresolved choices.
+[design issues](https://github.com/svt-project/svt-dotnet/issues) for unresolved choices.
