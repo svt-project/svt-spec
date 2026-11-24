@@ -31,7 +31,7 @@ required.
 Use the namespace name `https://svt-project.github.io/ns/svt` for SVT metadata elements and
 `http://www.w3.org/1999/02/22-rdf-syntax-ns#` for the RDF envelope. Both are exact, case-sensitive
 identifiers, not resources to fetch. Prefix spelling is immaterial. Binding hooks remain
-unnamespaced `data-svt-*` attributes and the root marker remains `data-svt-version="0"`.
+unnamespaced `data-svt-*` attributes and the root marker is `data-svt-version="1.0"`.
 
 The SVT namespace name is versionless and independent of package and specification revision numbers.
 Compare the complete name without normalization: a trailing slash, different case or a different
@@ -229,7 +229,7 @@ on the same element. Central declaration order does not determine form order:
 <svg xmlns="http://www.w3.org/2000/svg"
      xmlns:svt="https://svt-project.github.io/ns/svt"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     data-svt-version="0" viewBox="0 0 320 120">
+     data-svt-version="1.0" viewBox="0 0 320 120">
   <metadata>
     <rdf:RDF>
       <rdf:Description rdf:about="">

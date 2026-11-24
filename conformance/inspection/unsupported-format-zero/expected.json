@@ -1,0 +1,19 @@
+{
+  "format_version": 0,
+  "template_available": false,
+  "inputs": [],
+  "diagnostics": [
+    {
+      "code": "svt.version.invalid",
+      "severity": "error",
+      "key": null,
+      "location": {
+        "line": 2,
+        "column": 3
+      },
+      "related_locations": [],
+      "limit": null
+    }
+  ],
+  "input_groups": []
+}

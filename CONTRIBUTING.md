@@ -16,11 +16,18 @@ raw strings, diagnostic order, source units and explicit absence states. Read th
 [fixture convention](conformance/README.md) before editing cases. Regenerate the inventory with
 `node eng/assets.mjs --write` only for intentional changes and review the changed files and digest.
 
-Identify a reviewed edition by its full Git commit and asset digest. A consumer records both when
-copying the accepted snapshot, preserves its license, and explicitly reviews future updates. A spec
-change does not require every consumer to adopt immediately. Published editions and asset snapshots
-remain immutable; release tags/publication require separate authorization. No new edition changes
-the namespace or format marker implicitly.
+Prepare editions using the [SemVer and template-format policy](spec/versions.md). Update
+`version.json`, the changelog and the canonical manifest together. Use the highest compatibility
+classification required by the changes; no patch changes the meaning of valid templates. Published
+editions use immutable `vMAJOR.MINOR.PATCH` tags; never move a tag to include corrections. Current
+repository documentation may advance independently of a consumer's accepted snapshot.
+
+A consumer records the specification edition, template format, full source commit and asset digest
+when copying a snapshot, preserves its license, and explicitly reviews future asset updates.
+Editorial changes do not require existing consumers to adopt a new snapshot. Ordinary documentation
+links may point to current material; supported-contract claims identify the accepted edition and
+provenance. Release tags/publication require separate authorization. Namespace changes remain a
+separate decision.
 
 Preserve applicable authorship and legal attribution. Keep machine paths, private examples,
 credentials and generated evidence out of the repository. See [LICENSE](LICENSE) and

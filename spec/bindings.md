@@ -5,10 +5,10 @@ This document defines the normative SVT binding syntax and inspection behavior.
 ## Document and annotations
 
 An SVT document is well-formed XML with a root named `svg` in `http://www.w3.org/2000/svg`, carrying
-the unnamespaced attribute `data-svt-version="0"`. The marker value is exact: no trimming, alternate
-versions or development aliases. XML namespace prefix spelling is immaterial. DTDs are prohibited
-and external entity resolution is disabled. Templates retain `.svg` filenames. Unknown non-SVT
-content remains renderer-owned.
+the unnamespaced attribute `data-svt-version="1.0"`. The marker value is exact: no trimming,
+alternate versions or development aliases. XML namespace prefix spelling is immaterial. DTDs are
+prohibited and external entity resolution is disabled. Templates retain `.svg` filenames. Unknown
+non-SVT content remains renderer-owned.
 
 These unnamespaced, case-sensitive attributes define binding annotations. Optional structured
 [presentation metadata](metadata.md) uses a separate namespace without changing these hooks:

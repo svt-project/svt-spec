@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:s="https://svt-project.github.io/ns/svt" xmlns:r="http://www.w3.org/1999/02/22-rdf-syntax-ns#" data-svt-version="0">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:s="https://svt-project.github.io/ns/svt" xmlns:r="http://www.w3.org/1999/02/22-rdf-syntax-ns#" data-svt-version="1.0">
 <metadata data-svt-fill="accent" fill="orange"><r:RDF><r:Description r:about=""><s:inputs r:parseType="Literal">
 <s:group key="colors" label="Palette" order="10"><s:description>Colors</s:description></s:group>
 <s:input key="line" label="Outline" order="0" group="colors"/>

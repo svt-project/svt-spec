@@ -30,7 +30,7 @@ guaranteed. Related locations preserve discovery order.
 | `svt.xml.encoding`       | Error    | Unsupported declared encoding; no template                                                      |
 | `svt.xml.dtd`            | Error    | Prohibited DTD; no template                                                                     |
 | `svt.root.invalid`       | Error    | Wrong root namespace/name; no template                                                          |
-| `svt.version.invalid`    | Error    | Missing/nonzero root marker; no template                                                        |
+| `svt.version.invalid`    | Error    | Missing, malformed or unsupported root marker; no template                                      |
 | `svt.limit.exceeded`     | Error    | No template; structured `limit` identifies the exceeded option                                  |
 | `svt.hook.target`        | Error    | Reject incompatible hook                                                                        |
 | `svt.hook.key`           | Error    | Reject empty-key hook                                                                           |

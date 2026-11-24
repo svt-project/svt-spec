@@ -16,7 +16,7 @@ for an editor or form; changing the label does not change the key.
 For example, this template exposes a text input with key `heading` and display label `Main heading`:
 
 ```xml
-<svg xmlns="http://www.w3.org/2000/svg" data-svt-version="0" viewBox="0 0 320 80">
+<svg xmlns="http://www.w3.org/2000/svg" data-svt-version="1.0" viewBox="0 0 320 80">
   <text x="16" y="48" data-svt-text="heading" data-svt-label="Main heading">Welcome</text>
 </svg>
 ```
@@ -26,7 +26,7 @@ Inspection reports `Welcome` as the authored default. A binding call addresses `
 never changes the SVG; binding produces an independent SVG document.
 
 The same key-and-label pairing applies to images and paints. These elements could appear inside a
-root carrying `data-svt-version="0"`:
+root carrying `data-svt-version="1.0"`:
 
 ```xml
 <image x="16" y="16" width="64" height="64" href="portrait.svg"
@@ -121,6 +121,7 @@ The contracts are specified in these focused references:
 Implementation API, CLI, package and release policy belong to each implementation. The
 [.NET implementation](https://github.com/svt-project/svt-dotnet) supplies one such mapping.
 
-The root marker remains `data-svt-version="0"`; see [format identity](versions.md). The
-specification and canonical reference assets are versioned together by reviewed Git revisions.
+The root marker is `data-svt-version="1.0"`; see [format identity](versions.md). The specification
+and canonical reference assets are versioned together as SemVer editions; the template marker
+selects the edition's major/minor format, independently of editorial patch revisions.
 [Contribution guidance](../CONTRIBUTING.md) describes changes and reference-asset publication.

@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:x="http://www.w3.org/1999/xlink" data-svt-version="0">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:x="http://www.w3.org/1999/xlink" data-svt-version="1.0">
   <text data-svt-text=" a&amp;b ">&amp; &lt; &gt; " ' &amp;amp; &amp;#13; %2F %252F + # ?</text>
   <text data-svt-text="é">composed: é 😀</text>
   <text data-svt-text="é">decomposed: é 😀</text>

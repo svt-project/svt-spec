@@ -115,14 +115,16 @@ independence from binding. They do not compute effective appearance or fetch res
 SHA-256. The asset-set digest is SHA-256 of the UTF-8 concatenation of sorted `path`, NUL, lowercase
 file digest, and LF records. The manifest excludes this explanatory README and itself.
 
-A full repository commit identifies the specification revision and manifest. Together with the
-asset-set digest it identifies an immutable reference snapshot; named editions may label reviewed
-commits without changing template or fixture format markers. Existing snapshots are never rewritten.
+The manifest records the SemVer specification edition and its major/minor template format. An
+immutable edition tag names the published revision; a full source commit and asset-set digest
+identify the exact snapshot. Existing snapshots are never rewritten. Editorial patch revisions do
+not change the template marker or require consumers to refresh unchanged assets.
 
-Implementations copy or embed the selected files and record the source repository, full commit,
-asset digest, license/attribution and intentional exclusions. They run their own adapters against
-these references and retain implementation-specific regression tests separately. Adoption is an
-explicit reviewed change; ordinary builds need no network access to this repository.
+Implementations copy or embed the selected files and record the source repository, specification
+edition, template format, full commit, asset digest, license/attribution and intentional exclusions.
+They run their own adapters against these references and retain implementation-specific regression
+tests separately. Adoption is an explicit reviewed change; ordinary builds need no network access to
+this repository.
 
 Run `node eng/assets.mjs` to verify the inventory, and `node eng/assets.mjs --write` only when
 deliberately preparing a revised asset set. Review changed cases, expected behavior and the manifest

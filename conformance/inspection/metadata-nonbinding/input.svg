@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:s="https://svt-project.github.io/ns/svt" xmlns:r="http://www.w3.org/1999/02/22-rdf-syntax-ns#" data-svt-version="0">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:s="https://svt-project.github.io/ns/svt" xmlns:r="http://www.w3.org/1999/02/22-rdf-syntax-ns#" data-svt-version="1.0">
 <metadata data-svt-version="99" data-svt-unknown="ignored"><r:RDF><r:Description r:about=""><s:inputs r:parseType="Literal"><s:input key="hidden"/></s:inputs></r:Description></r:RDF>
 <svg><text data-svt-text="hidden">Sample</text><rect data-svt-fill="a"/></svg></metadata>
 <g><metadata><rect data-svt-fill="a"/><r:RDF><r:Description r:about=""><s:inputs r:parseType="Literal"><s:input key="a" label="Nested"/></s:inputs></r:Description></r:RDF></metadata></g>
