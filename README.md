@@ -7,6 +7,7 @@ values and apply replacements while SVG retains responsibility for layout and re
   interpretation.
 - [Conformance reference assets](conformance/README.md): canonical inputs and expected observations.
 - [.NET library and CLI](https://github.com/svt-project/svt-dotnet).
+- [JavaScript library](https://github.com/svt-project/svt-js).
 - [Project coordination](https://github.com/svt-project/.github/issues).
 
 The contract defines successful processing of conforming templates using ordinary XML processors.
@@ -24,6 +25,6 @@ deployment is required.
 The XML metadata namespace is `https://svt-project.github.io/ns/svt`; the template root marker is
 `data-svt-version="1.0"`. See [format identity](spec/versions.md).
 
-[Contributing](CONTRIBUTING.md) covers review and validation. Bathos is the founding maintainer.
-Repository-authored text and assets are [MIT-licensed](LICENSE); see [NOTICE](NOTICE) and
-[provenance](PROVENANCE.md).
+[Contributing](CONTRIBUTING.md) covers review and validation. Bathos Pty Ltd is the founding
+maintainer. Repository-authored text and assets are [MIT-licensed](LICENSE); see [NOTICE](NOTICE)
+and [provenance](PROVENANCE.md).
