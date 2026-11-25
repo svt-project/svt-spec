@@ -6,8 +6,8 @@
   implementation APIs, CLI/package policy and cookbook/site content in their respective projects.
 - Discuss consequential format, vocabulary, diagnostic, ownership or compatibility changes before
   implementation. This is prerelease; add no migrations, aliases or compatibility readers.
-- Preserve MIT licensing and Bathos attribution. Keep private paths, credentials, IDE state and
-  generated evidence out of commits.
+- Preserve MIT licensing and attribution to Bathos Pty Ltd. Keep private paths, credentials, IDE
+  state and generated evidence out of commits.
 - Specification editions use SemVer, including candidate suffixes; prepare 1.0.0-rc.2 without
   publishing a tag. Templates declare only the major/minor format, currently 1.0. Reject unsupported
   markers, including 0; preserve the independent JSON envelope version 0.
