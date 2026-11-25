@@ -5,10 +5,10 @@ editor controls from supplied authored defaults. It does not establish rendered 
 SVG/CSS/URI validity, or participate in inspection or binding admission.
 
 The lifecycle is inspect, optionally interpret individual targets, present host controls, and bind
-only explicit edits. Retain the original target, its XML-processed raw string, source attribute and
-location on every outcome. Never rewrite raw evidence, synthesize missing defaults, fetch resources,
-or infer an edit from opening and accepting a control. The [raw default contract](defaults.md)
-continues to own Common/Mixed/Absent summaries.
+only explicit edits. Retain the original target, its XML-processed raw string, and source attribute
+on every outcome. Preserve any implementation-provided location when available. Never rewrite raw
+evidence, synthesize missing defaults, fetch resources, or infer an edit from opening and accepting
+a control. The [raw default contract](defaults.md) continues to own Common/Mixed/Absent summaries.
 
 Interpretation has no input-level aggregate, color-equivalence policy, normalization serializer or
 automatic binding conversion. Hosts may traverse targets in structural order and choose their own
@@ -16,19 +16,19 @@ comparison policy. Text requires no interpretation operation.
 
 ## Paint outcomes
 
-| Kind                      | Meaning                                                                                        |
-| ------------------------- | ---------------------------------------------------------------------------------------------- |
-| Absent                    | The marked attribute is absent; no implicit SVG default is supplied.                           |
-| Literal                   | A supported self-contained color; expose normalized sRGB and alpha.                            |
-| NoPaint                   | The complete value is `none`; distinct from transparent color.                                 |
-| RequiresContext           | A recognized context keyword or variable dependency; no color is supplied.                     |
-| ResourceReference         | A supported `url(...)` paint expression; its fallback is not an effective default.             |
-| UnsupportedOrUnrecognized | Outside this bounded grammar, malformed, numerically unrepresentable, or over a parsing limit. |
+| Kind                      | Meaning                                                                            |
+| ------------------------- | ---------------------------------------------------------------------------------- |
+| Absent                    | The marked attribute is absent; no implicit SVG default is supplied.               |
+| Literal                   | A supported self-contained color; expose normalized sRGB and alpha.                |
+| NoPaint                   | The complete value is `none`; distinct from transparent color.                     |
+| RequiresContext           | A recognized context keyword or variable dependency; no color is supplied.         |
+| ResourceReference         | A supported `url(...)` paint expression; its fallback is not an effective default. |
+| UnsupportedOrUnrecognized | Outside this grammar, malformed, or numerically unrepresentable.                   |
 
-Only Literal has a color. Only limit exhaustion has an ExceededLimit value. Empty and
-whitespace-only present paint strings are UnsupportedOrUnrecognized, not Absent or NoPaint. There
-are no interpretation diagnostics, warnings, severity policies or template errors. A host may
-explain the outcome using its kind, exceeded limit and retained source evidence.
+Only Literal has a color. Operational failures and limit reporting are implementation policy. Empty
+and whitespace-only present paint strings are UnsupportedOrUnrecognized, not Absent or NoPaint.
+These classifications do not introduce template errors or gate binding. Additional diagnostics are
+implementation policy. A host may explain the outcome using its kind and retained source evidence.
 
 ## Literal grammar
 
@@ -66,15 +66,14 @@ Numeric syntax, using ASCII digits, is:
 This is a whole-token grammar, based on
 [CSS number tokenization](https://www.w3.org/TR/css-syntax-3/#consume-number); it does not inherit
 platform numeric parser extensions. It admits `+.5` and `1e2`, but not `1.`, NaN, Infinity,
-thousands separators or non-ASCII digits. Count the sign, decimal point, exponent and exponent
-sign/digits toward the numeric-token limit; exclude a trailing percent sign or hue unit.
+thousands separators or non-ASCII digits.
 
 ### Numeric meaning and precision
 
 Interpret components as finite IEEE 754 binary64 numbers using invariant conversion. Finite
 subnormal values and underflow to zero are permitted; numeric overflow to infinity is
-UnsupportedOrUnrecognized before clamping, without ExceededLimit. Limits describe work budgets, not
-numeric representability.
+UnsupportedOrUnrecognized rather than a clamped color. Numeric representability is separate from
+implementation resource limits.
 
 Clamp RGB numbers to `[0,255]` and percentages to `[0,100]`, then normalize to `[0,1]`. Clamp alpha
 numbers to `[0,1]` and percentages to `[0,100]`. Clamp HSL saturation/lightness to `[0,100]`. Wrap
@@ -127,19 +126,19 @@ double-quoted strings must close, have no backslashes or raw CR/LF/form feed, an
 function and numeric recognition. Parentheses inside strings are not nesting. Unmatched delimiters
 or malformed var() calls yield UnsupportedOrUnrecognized, even if another var() is recognized. Every
 opening parenthesis outside strings/URL bodies must start a function token; bare grouping
-parentheses are unsupported and cannot bypass the nesting limit. This admits `rgb(var(--red) 0 0)`
-and `var(--paint, var(--fallback, red))` without promising that arbitrary enclosing function syntax
-is valid CSS. A complete `calc(1 + 2)` has no recognized dependency and remains unsupported.
+parentheses are unsupported. This admits `rgb(var(--red) 0 0)` and
+`var(--paint, var(--fallback, red))` without promising that arbitrary enclosing function syntax is
+valid CSS. A complete `calc(1 + 2)` has no recognized dependency and remains unsupported.
 
 A resource expression is one complete `url(...)`, optionally followed by whitespace and one
 fallback: none, a supported literal, currentColor, or a complete context expression recognized
 above. Quoted URL bodies permit either quote style; unquoted bodies must not contain quotes,
 parentheses or whitespace. Allow surrounding paint whitespace inside url(). After unquoting, the
-nonempty reference must pass the ordinary reference character scan below, without imposing image
-length limits. Escaped URLs are outside this profile. URL bodies are opaque to variable and numeric
-recognition. A supported URL expression takes ResourceReference precedence over its fallback's kind;
-no fallback becomes the effective color and no URL string is extracted or resolved. This preserves
-the distinction in [SVG paint syntax](https://www.w3.org/TR/SVG2/painting.html#SpecifyingPaint).
+nonempty reference must follow the ordinary reference character grammar below. Escaped URLs are
+outside this profile. URL bodies are opaque to variable and numeric recognition. A supported URL
+expression takes ResourceReference precedence over its fallback's kind; no fallback becomes the
+effective color and no URL string is extracted or resolved. This preserves the distinction in
+[SVG paint syntax](https://www.w3.org/TR/SVG2/painting.html#SpecifyingPaint).
 
 For example, `url(#gradient) red` and `url("#gradient") var(--fallback)` are ResourceReference.
 `url("var(--x)")` is a reference, not a variable dependency. An empty URL, malformed URL wrapper,
@@ -152,13 +151,12 @@ and UnsupportedOrUnrecognized. Preserve the complete raw reference and Href/XLin
 target. Empty means exactly a present zero-length string. Do not trim image references;
 whitespace-only and surrounding-whitespace strings are unsupported.
 
-Ordinary classification is lexical, not URI validation. Within MaxReferenceCharacters, permit ASCII
-letters/digits, `-._~:/?#[]@!$&'()*+,;=`, and percent escapes consisting of `%` and two hexadecimal
-digits. All other characters, including raw whitespace, backslashes and non-ASCII characters, are
-unsupported. Do not percent-decode ordinary references, normalize paths, use a platform URI/path
-parser, infer files from drive letters, or validate hosts, ports or scheme rules. The categories use
-the scheme/relative distinction of
-[RFC 3986](https://www.rfc-editor.org/rfc/rfc3986.html#section-4.1):
+Ordinary classification is lexical, not URI validation. Permit ASCII letters/digits,
+`-._~:/?#[]@!$&'()*+,;=`, and percent escapes consisting of `%` and two hexadecimal digits. All
+other characters, including raw whitespace, backslashes and non-ASCII characters, are unsupported.
+Do not percent-decode ordinary references, normalize paths, use a platform URI/path parser, infer
+files from drive letters, or validate hosts, ports or scheme rules. The categories use the
+scheme/relative distinction of [RFC 3986](https://www.rfc-editor.org/rfc/rfc3986.html#section-4.1):
 
 1. A leading `#` is FragmentReference, including `#` alone.
 2. A leading `[A-Za-z][A-Za-z0-9+.-]*:` is AbsoluteReference, including unfamiliar schemes.
@@ -173,10 +171,9 @@ policy; interpretation never prevents binding the raw string.
 ### Data-URI headers
 
 An ASCII case-insensitive `data:` prefix at character zero selects the data-header path before
-ordinary-reference length or character checks. Search only the bounded header for its first literal
-comma. MaxDataUriHeaderCharacters counts from the initial `d` through that comma, inclusive. Never
-scan, trim, validate, copy, percent-decode or base64-decode the payload. A multi-megabyte payload
-with a short header costs the same parsing work as an empty payload.
+ordinary-reference classification. The header ends at its first literal comma. The payload is
+opaque: do not validate, percent-decode or base64-decode it to classify the header. Header resource
+limits and scanning strategy are implementation policy.
 
 Recognize `data:[type/subtype][;name=value...][;base64],`. The optional bare base64 marker is
 case-insensitive, occurs at most once, and is last. An item named `base64=value` is a parameter, not
@@ -209,56 +206,16 @@ bytes or renderability.
 DataUri means this header profile was recognized, not that a complete URL or encoded image was
 validated. The payload is opaque even when empty, malformed base64 or otherwise unusable.
 
-## Budgets and precedence
+## Implementation policy
 
-All options are positive integers, measured in UTF-16 code units except nesting depth. The following
-profile supplies conformance-reference settings. Hosts may configure different positive limits;
-fixture runners select this profile unless a case overrides it. Counting units and failure
-precedence are portable and do not depend on programming-language property names.
+Resource limits, counting units, operational-failure representation, scan strategy, cancellation and
+failure precedence belong to implementations. The portable grammar defines successful classification
+within those operating limits. No fixed thresholds or ExceededLimit fields are required, and a
+resource failure must not be reported as a successfully interpreted partial color or header.
 
-| Option                     | Default | ExceededLimit           |
-| -------------------------- | ------: | ----------------------- |
-| MaxPaintCharacters         |    4096 | PaintCharacters         |
-| MaxReferenceCharacters     |    4096 | ReferenceCharacters     |
-| MaxDataUriHeaderCharacters |    1024 | DataUriHeaderCharacters |
-| MaxNumericTokenCharacters  |      64 | NumericTokenCharacters  |
-| MaxNestingDepth            |      16 | NestingDepth            |
-
-Equality passes; the first unit beyond a budget fails that interpretation with
-UnsupportedOrUnrecognized and the corresponding ExceededLimit. No partially parsed color or media
-type is returned. Unsupported syntax and numeric overflow have null ExceededLimit. No new
-inspection/binding limit or diagnostic code is introduced.
-
-After API argument/configuration validation, apply these rules:
-
-1. An absent target returns Absent without scanning a value.
-2. Paint checks the complete raw length before trimming or allocating derived strings. Scan
-   left-to-right for the supported lexical structure, numeric-token lengths and nesting before
-   semantic classification. Stop at the first lexical rejection or exceeded scan limit; later
-   findings do not replace it. Numeric-token checks cover tokens outside strings and URL bodies,
-   including opaque var() fallbacks. Nesting counts simultaneously open function parentheses; the
-   outermost function is depth 1, including url(), and quoted parentheses do not count. Identifier
-   and hash-token contents are not numeric tokens: digits inside custom-property names or
-   hexadecimal colors do not consume MaxNumericTokenCharacters.
-3. After a successful paint scan, classify the complete keyword, resource expression, contextual
-   function expression or supported literal under the rules above; otherwise return unsupported.
-4. Images distinguish Empty, then data-prefix selection, then ordinary references. For ordinary
-   references check the complete raw length before any character scan.
-5. For data URIs find the comma within the header budget before interpreting header fields. If no
-   comma occurs and the entire string fits the budget, return unsupported without a limit. If the
-   string extends beyond the budget with no comma inside it, report DataUriHeaderCharacters without
-   scanning farther, even if the unseen suffix contains no comma. Header grammar is checked only
-   after a bounded comma is found.
-
-Numeric and nesting budgets apply only to paint. Reference length applies only to ordinary image
-references. Data headers use their own limit; payload length is not an interpretation budget.
-Inspection still owns source and XML budgets before any target exists.
-
-Use bounded linear scans with no recursive evaluation or backtracking regexes. Extra parsing storage
-is bounded by options; retaining the already immutable target/raw string is not a new copy. No
-allocation-free guarantee is made. Cancellation applies before work, throughout scans and before
-return, including unsupported/limit results. No operation performs I/O, resource callbacks, CSS
-cascade evaluation, image decoding, MIME sniffing, dimension discovery or rendering.
+No interpretation operation resolves resources, evaluates the CSS cascade, decodes images, sniffs
+MIME types or establishes rendered appearance. Preserve raw evidence even when interpretation is
+unsupported or an implementation declines work under its operating policy.
 
 ## Acceptance boundary
 
@@ -275,19 +232,18 @@ Use focused behavioral tests and language-neutral examples for:
 - Every image category; empty versus absent; no trimming; scheme/relative edge cases; data-header
   parameters/escapes and constructor-produced subtypes; omitted/invalid declarations; long and
   deliberately invalid payloads remaining unexamined.
-- Equality/excess for each budget, deterministic precedence, malformed-but-oversized input,
-  cancellation and reuse of options across calls.
-- Exact target identity, raw/origin/location preservation, nullable result invariants, original
-  target order when hosts iterate, and no aggregate or inferred edit.
+- Target association, raw/origin preservation, explicit absence states, original target order when
+  hosts iterate, and no aggregate or inferred edit.
 - Discovery and binding remaining usable independently of interpretation, including unsupported
-  strings and limit results; no implicit interpretation.
+  strings; no implicit interpretation. Resource-boundary and cancellation tests are implementation
+  responsibilities.
 
-Consumer interaction acceptance must distinguish authored evidence, interpreted presentation and
-initial chooser state. Initialization notifications, no-edit acceptance, cancel and a change back to
-the session's initial chooser value preserve existing binding intent. A genuine accepted change
-creates an explicit replacement; Reset removes it. Widget quantization is display-only until such an
-edit, alpha must not be silently discarded, and raw Mixed stays Mixed even when swatches match. A
-paint-server fallback is never an effective chooser default. A host owns its chooser policy and
-editing lifecycle; interpretation adds no editor state, binding service or aggregate result to the
-core. Native rendering is not an oracle for authored-value interpretation and cannot establish
-effective appearance from direct attributes.
+For editor integrations, the following guidance is informative. Distinguish authored evidence,
+interpreted presentation and initial chooser state. Initialization notifications, no-edit
+acceptance, cancel and a change back to the session's initial chooser value preserve existing
+binding intent. A genuine accepted change creates an explicit replacement; Reset removes it. Widget
+quantization is display-only until such an edit, alpha must not be silently discarded, and raw Mixed
+stays Mixed even when swatches match. A paint-server fallback is never an effective chooser default.
+A host owns its chooser policy and editing lifecycle; interpretation adds no editor state, binding
+service or aggregate result to the core. Native rendering is not an oracle for authored-value
+interpretation and cannot establish effective appearance from direct attributes.

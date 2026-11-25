@@ -6,9 +6,10 @@ This document defines the normative SVT binding syntax and inspection behavior.
 
 An SVT document is well-formed XML with a root named `svg` in `http://www.w3.org/2000/svg`, carrying
 the unnamespaced attribute `data-svt-version="1.0"`. The marker value is exact: no trimming,
-alternate versions or development aliases. XML namespace prefix spelling is immaterial. DTDs are
-prohibited and external entity resolution is disabled. Templates retain `.svg` filenames. Unknown
-non-SVT content remains renderer-owned.
+alternate versions or development aliases. XML namespace prefix spelling is immaterial. Conforming
+templates have no DTD; external resolution is disabled as described in the
+[XML processing boundary](inspection.md#xml-processing-boundary). Templates retain `.svg` filenames.
+Unknown non-SVT content remains renderer-owned.
 
 These unnamespaced, case-sensitive attributes define binding annotations. Optional structured
 [presentation metadata](metadata.md) uses a separate namespace without changing these hooks:
@@ -25,10 +26,11 @@ These unnamespaced, case-sensitive attributes define binding annotations. Option
 Keys are nonempty strings after XML attribute normalization. Compare ordinally; do not trim,
 case-fold or impose an ASCII identifier grammar. Labels trim leading and trailing XML whitespace
 (space, tab, CR, LF); missing or empty inline labels use the key. Labels never establish identity.
-Unknown unnamespaced `data-svt-*` attributes produce a warning and no binding behavior. A version
-marker on a descendant produces a warning; it does not introduce a nested template. A label without
-a hook is inert. Foreign-namespaced lookalikes are not binding annotations. SVG `metadata` elements
-and their subtrees are excluded from binding-annotation interpretation under the
+Unknown unnamespaced `data-svt-*` attributes have no binding behavior. A version marker on a
+descendant does not introduce a nested template. Implementations may diagnose these annotations
+without changing their defined meaning. A label without a hook is inert. Foreign-namespaced
+lookalikes are not binding annotations. SVG `metadata` elements and their subtrees are excluded from
+binding-annotation interpretation under the
 [metadata contract](metadata.md#vocabulary-and-placement).
 
 ## Targets and conflicts
@@ -47,37 +49,31 @@ Text and image keys each identify exactly one target. Fill and stroke share the 
 may occur at several targets, including fill and stroke on one element. Authored values may differ;
 see [defaults](defaults.md). A valid central label overrides inline labels under the
 [metadata precedence rules](metadata.md#values-and-resolution). Otherwise the first target supplies
-the effective input label. Differing effective target labels then produce one warning at the first
-target, with only differing-label targets as related locations, but do not reject a usable binding.
-Emit this warning only after the group passes ambiguity checks and no central label resolves.
+the effective input label, even if later targets have different inline labels.
 
 Process known hooks in document preorder, with hook order `text`, `image`, `fill`, `stroke` within
-an element, independent of XML attribute order. Check target compatibility, then key presence. A
-hook failing either check produces one error and is excluded before grouping. Group the remaining
-hooks by exact key. Duplicate text/image targets or mixed kinds reject every member of that group.
-Report one ambiguity error at its first hook, with the other hook locations as related locations.
-Retain unrelated valid inputs.
+an element, independent of XML attribute order. Group hooks by exact key. A conforming template has
+nonempty keys, compatible targets and no duplicate text/image targets or mixed kinds for one key.
+Handling violations, including whether unrelated inputs remain available, is implementation policy.
 
-Inputs appear in first-valid-target order. Targets within an input retain discovery order. The
-separate [presentation view](metadata.md#ordering-and-single-level-groups) never reorders either
-structural collection. An invalid hook excluded before grouping cannot invalidate a compatible hook
-elsewhere.
+Inputs appear in first-target order. Targets within an input retain discovery order. The separate
+[presentation view](metadata.md#ordering-and-single-level-groups) never reorders either structural
+collection.
 
 ## Binding semantics
 
 Omission preserves authored content. An explicit value replaces every admitted target for its key.
-Unknown keys fail by default; configured IgnoreWithWarning skips them with a warning. Rejected keys,
-duplicate assignments, wrong value kinds and XML-unrepresentable replacements fail the complete
-operation. No partial output or fallback to defaults is published. Each bind starts from the
-immutable inspected template; previous results cannot affect later calls. See
-[substitution](substitution.md) for policies, diagnostics and budgets.
+Each bind starts from the independently captured template; previous results cannot affect later
+calls. [Substitution](substitution.md) defines conforming requests and successful output.
+Implementations own behavior for unknown keys, conflicting assignments and other invalid requests.
 
 Text is literal character data, including the empty string. Replacement preserves comments,
 processing instructions and unrelated nodes and never interprets markup. Paint and image references
 are raw strings, including empty strings. Encode text and attribute values through XML
 serialization; do not validate paint syntax, URI syntax, SVG schemas or resource availability. XML
-1.0 forbidden characters cannot be made representable by escaping and fail binding. Wrong value
-kinds refer to binding target categories, not the semantic validity of their strings.
+1.0 forbidden characters cannot be made representable by escaping and are outside the conforming
+request contract. Wrong value kinds refer to binding target categories, not the semantic validity of
+their strings.
 
 No CSS cascade evaluation or precedence repair occurs. A marked presentation attribute is authored
 evidence, not effective paint. Styling may override it. Optional interpretation helpers never gate
@@ -85,4 +81,5 @@ inspection or replacement and never rewrite omitted values.
 
 SVG retains geometry, transforms, clipping, paint order and text layout. XML serialization may
 change lexical formatting; semantic preservation does not imply byte-identical output. See the
-[substitution contract](substitution.md) for operation policies and limits.
+[substitution contract](substitution.md) for output requirements and the implementation-policy
+boundary.

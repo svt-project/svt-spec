@@ -10,10 +10,6 @@
         {
           "hook": "fill",
           "element_name": "rect",
-          "location": {
-            "line": 2,
-            "column": 9
-          },
           "default": {
             "state": "present",
             "raw": "red",
@@ -23,10 +19,6 @@
         {
           "hook": "stroke",
           "element_name": "path",
-          "location": {
-            "line": 3,
-            "column": 9
-          },
           "default": {
             "state": "present",
             "raw": "#ff0000",
@@ -43,7 +35,6 @@
       "order": null
     }
   ],
-  "diagnostics": [],
   "input_groups": [
     {
       "key": null,

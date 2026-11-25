@@ -10,10 +10,6 @@
         {
           "hook": "fill",
           "element_name": "rect",
-          "location": {
-            "line": 5,
-            "column": 7
-          },
           "default": {
             "state": "present",
             "raw": "red",
@@ -39,19 +35,6 @@
       "input_keys": [
         "a"
       ]
-    }
-  ],
-  "diagnostics": [
-    {
-      "code": "svt.metadata.input",
-      "severity": "warning",
-      "key": "hidden",
-      "location": {
-        "line": 2,
-        "column": 134
-      },
-      "related_locations": [],
-      "limit": null
     }
   ]
 }

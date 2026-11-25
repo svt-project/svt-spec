@@ -4,7 +4,7 @@
 
 The specification and canonical reference assets share a [Semantic Versioning](https://semver.org/)
 release series. [version.json](../version.json) records the working specification edition, currently
-`1.0.0-rc.1`, and its template format, `1.0`. An edition is published under an immutable
+`1.0.0-rc.2`, and its template format, `1.0`. An edition is published under an immutable
 `v<specification_version>` tag, for example `v1.0.0-rc.1` or `v1.0.0`. Preparing the working edition
 does not itself publish that tag.
 
@@ -50,10 +50,10 @@ candidate does not relabel that snapshot or force consumers to refresh unchanged
 ## Processor support
 
 This edition defines only template format `1.0`. Processors must reject a missing or unsupported
-root marker with `svt.version.invalid` and return no template. Values such as `0`, `1`, `1.0.0`,
-`1.1`, `2.0`, `01.0`, whitespace-padded values and prerelease labels are not aliases for `1.0`.
-Compare the XML-normalized attribute value exactly; do not trim, numerically normalize, infer a
-version or try another format after rejection.
+root marker rather than interpret the document as supported SVT. Diagnostic details are
+implementation policy. Values such as `0`, `1`, `1.0.0`, `1.1`, `2.0`, `01.0`, whitespace-padded
+values and prerelease labels are not aliases for `1.0`. Compare the XML-normalized attribute value
+exactly; do not trim, numerically normalize, infer a version or try another format after rejection.
 
 Implementations declare the template formats they support. Future minor editions preserve existing
 valid template meanings, but that does not imply that an older implementation understands a newer
@@ -76,8 +76,8 @@ or fetch namespace documents during processing.
 
 The conformance corpus retains its JSON `format_version: 0` envelope. That envelope describes test
 inputs and expectations; it is not the template format or a CLI request/response protocol. The
-[fixture convention](../conformance/README.md) defines its field names and settings independently of
-any implementation's object model. A template marker change does not renumber this envelope.
+[fixture convention](../conformance/README.md) defines its field names independently of any
+implementation's object model. A template marker change does not renumber this envelope.
 
 Implementations document their own package compatibility and CLI protocol policies. Fixture
 envelopes do not define CLI versioning or omitted-field behavior.

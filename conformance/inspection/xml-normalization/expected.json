@@ -1,0 +1,40 @@
+{
+  "format_version": 0,
+  "template_available": true,
+  "inputs": [
+    {
+      "key": "title",
+      "label": "title",
+      "kind": "text",
+      "targets": [
+        {
+          "hook": "text",
+          "element_name": "text",
+          "default": {
+            "state": "present",
+            "raw": "A\rB & <C>",
+            "source": "text_content"
+          }
+        }
+      ],
+      "default": {
+        "state": "common",
+        "raw": "A\rB & <C>"
+      },
+      "description": null,
+      "label_source": "key",
+      "order": null
+    }
+  ],
+  "input_groups": [
+    {
+      "key": null,
+      "label": null,
+      "description": null,
+      "order": null,
+      "input_keys": [
+        "title"
+      ]
+    }
+  ]
+}

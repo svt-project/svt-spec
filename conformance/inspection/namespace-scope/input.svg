@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:s="http://www.w3.org/2000/svg" xmlns:f="urn:example:foreign" data-svt-version="1.0">
+  <g xmlns="urn:example:foreign"><metadata><s:rect data-svt-fill="inside" fill="red" f:data-svt-text="ignored"/></metadata></g>
+  <rect data-svt-fill="outside" fill="blue"/>
+</svg>

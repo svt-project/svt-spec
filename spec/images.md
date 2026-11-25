@@ -1,18 +1,17 @@
 # Image values and resource ownership
 
-SVT supports two supplied image forms. Both are immutable values, independent of image acquisition
-or rendering. Implementations map these forms to their own APIs.
+SVT supports two supplied image forms. Both describe values independent of image acquisition or
+rendering. Implementations map these forms to their own APIs.
 
-| Form            | Ownership and output                                                                        |
-| --------------- | ------------------------------------------------------------------------------------------- |
-| Encoded content | Capture independent bytes and a declared image media type; binding writes a base64 data URI |
-| URI reference   | Retain the supplied reference without resolving or opening it; binding writes it to `href`  |
+| Form            | Ownership and output                                                                       |
+| --------------- | ------------------------------------------------------------------------------------------ |
+| Encoded content | Encoded bytes and a declared image media type; binding writes a base64 data URI            |
+| URI reference   | Retain the supplied reference without resolving or opening it; binding writes it to `href` |
 
-Neither form contains a pixel buffer, stream, decoder, native handle or callback. Changing a
-caller's original encoded buffer cannot change a captured value. The host owns decoding, sample
-preparation, color conversion and renderer resource lifetimes. SVT never fetches, checks existence
-or decodes an image. A declared media type is not evidence that bytes decode or that a renderer
-supports them.
+The portable model is encoded content or reference text, not decoded pixels. Implementations
+document capture and ownership of supplied bytes. The host owns decoding, sample preparation, color
+conversion and renderer resource lifetimes. SVT never fetches, checks existence or decodes an image.
+A declared media type is not evidence that bytes decode or that a renderer supports them.
 
 ## References and base locations
 
@@ -20,8 +19,7 @@ Relative and absolute references are supported. Preserve authored reference text
 normalization; do not perform path normalization, percent-decoding, case folding or
 working-directory lookup on the reference. The eventual consumer resolves relative references
 against the SVG element's effective base. The host must retain that context or explicitly prepare
-new references when relocating output. Inspection accepts source bytes without requiring a
-filesystem location.
+new references when relocating output. Inspection does not require a filesystem location.
 
 For default evidence, use unnamespaced `href` when present, including when empty; otherwise use
 `href` in `http://www.w3.org/1999/xlink`. Record which attribute supplied the evidence. This follows
@@ -40,17 +38,16 @@ resource-access policy at their execution boundary.
 
 ## Encoded-content convenience
 
-Encoded content is an optional formatting convenience, not an image validator. Preparation checks
-encoded-byte limit, media-type length, then media-type grammar before copying supplied bytes. A
-successful image owns its bytes and declared media type and can be reused. Failure returns a
-diagnostic result; callers must not silently omit a failed image selection. Empty bytes are allowed.
-Binding rechecks image limits under its own configuration.
+Encoded content is an optional formatting convenience, not an image validator. A conforming supplied
+image has encoded bytes and a media type in the grammar below. Empty bytes are allowed. Resource
+limits, capture, diagnostics and validation order are implementation policy. A failed image
+preparation must not silently become an omitted binding.
 
 The media type must contain case-insensitive `image/` followed by a nonempty ASCII subtype
-containing only letters, digits or `!$&^_.+-`. Store it in lowercase. Reject whitespace, parameters,
-wildcards, percent escapes, fragment delimiters (`#`) and entire data URLs. This is the convenience
-grammar, not a registry lookup or proof of MIME correctness. No decoding, signature validation or
-PNG/JPEG admission rule is introduced.
+containing only letters, digits or `!$&^_.+-`. Store it in lowercase. Whitespace, parameters,
+wildcards, percent escapes, fragment delimiters (`#`) and entire data URLs are outside this grammar.
+This is the convenience grammar, not a registry lookup or proof of MIME correctness. No decoding,
+signature validation or PNG/JPEG admission rule is introduced.
 
 Format output as `data:<media-type>;base64,<content>` with standard padded base64 and no line
 breaks. Write the normalized media type literally, preserving admitted punctuation, including the
@@ -66,7 +63,7 @@ lowercase type.
 
 More elaborate data URLs remain available through raw reference replacement. These construction
 rules do not constrain authored defaults or raw reference strings. See
-[substitution](substitution.md) for capture, aggregate replacement and serialized-output budgets.
+[substitution](substitution.md) for replacement semantics and implementation policy.
 
 The [optional interpretation contract](interpretation.md#image-reference-interpretation) classifies
 one inspected image target at a time. Its bounded data-header reader reports a lowercase literal

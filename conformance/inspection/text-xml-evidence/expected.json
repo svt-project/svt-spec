@@ -10,10 +10,6 @@
         {
           "hook": "text",
           "element_name": "text",
-          "location": {
-            "line": 2,
-            "column": 9
-          },
           "default": {
             "state": "present",
             "raw": "A & <B>!",
@@ -30,7 +26,6 @@
       "order": null
     }
   ],
-  "diagnostics": [],
   "input_groups": [
     {
       "key": null,

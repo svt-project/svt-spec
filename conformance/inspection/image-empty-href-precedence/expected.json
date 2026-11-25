@@ -10,10 +10,6 @@
         {
           "hook": "image",
           "element_name": "image",
-          "location": {
-            "line": 2,
-            "column": 10
-          },
           "default": {
             "state": "present",
             "raw": "",
@@ -30,7 +26,6 @@
       "order": null
     }
   ],
-  "diagnostics": [],
   "input_groups": [
     {
       "key": null,

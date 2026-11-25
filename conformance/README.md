@@ -1,134 +1,109 @@
-# Conformance fixtures
+# Conformance reference assets
 
-This directory contains original language-neutral inspection fixtures in `inspection/`, covering raw
-default evidence, conflict isolation, root rejection, invalid encoding and budget failures. The
-fixtures are MIT-licensed; see [LICENSE](LICENSE). Implementation runners compare the structured
-observations defined below. The `substitution/` fixtures exercise typed bindings and semantic XML
-output.
+These MIT-licensed assets describe portable observations for conforming SVT templates and binding
+requests. See [LICENSE](LICENSE). Small root/format rejection cases also verify that processors do
+not treat another document or unsupported marker as SVT. They prescribe no diagnostic details.
 
-Compare semantic structure where XML serialization is allowed to change; do not accidentally require
-attribute ordering, quote style or byte-identical formatting. Preserve meaningful text whitespace,
-element order, geometry and references.
+Conformance compares discovery, authored defaults, presentation and successful replacement output.
+It does not compare parser error detection, diagnostics, source positions, malformed-input recovery,
+resource thresholds, cancellation or API design. Implementations test those policies separately.
+Their stricter behavior and richer diagnostics are permitted without becoming portable obligations.
 
-Cover root failures separately from scoped hook findings, conflicting keys, value-kind mismatches,
-literal XML-sensitive text, default intent, shared paints and supplied image references. Keep native
-renderer checks and authoring-tool round trips distinct from core conformance.
+Use an implementation's normal XML processor and configure operating limits sufficient for these
+small cases. A resource refusal is not a passing semantic result; record unavailable capabilities or
+an unexecuted case rather than silently skipping it. UTF-8 is the byte encoding used here.
+Additional encoding and malformed-byte tests belong to implementation suites.
 
-Use small original fixtures with explicit redistribution terms before publication. Do not import
-private consumer artwork or generated preview corpora.
+Compare XML semantically where lexical serialization may change. Preserve meaningful text
+whitespace, comments, processing instructions, element order, geometry and references. Attribute
+order, namespace prefix spelling, quote style, CDATA versus equivalent text, and empty-element
+spelling are not equality requirements. Retain raw strings and namespace identities, and do not
+normalize resource or paint values during comparison. Native renderer and editor tests are separate.
 
 ## Inspection fixture convention
 
-Each case has its own directory containing `input.svg` and `expected.json`, with optional
-`options.json` for budget overrides. Malformed-byte cases may use `input.bin` instead of input.svg;
-exactly one input file is present. JSON fixtures use `format_version: 0`.
-
-The fixture schema below defines observations independently of implementation types or CLI output.
-All listed expected fields are present; unavailable values use explicit JSON null, not omission.
-Object-property order is insignificant. Array order, string values and enum spelling are
-significant.
+Each case has `input.svg` and `expected.json`. JSON envelopes use `format_version: 0`. The fields
+below define a projection of portable observations, not an implementation API or CLI response.
+Runners map their implementation into this projection and omit implementation-specific fields. All
+listed fields are present; absence is explicit JSON null. Object-property order is irrelevant; array
+order and string values matter.
 
 | Object            | Fields                                                                                                                                                                                                     |
 | ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Inspection result | `format_version`: 0; `template_available`: boolean; `inputs`, `input_groups`, `diagnostics`: arrays                                                                                                        |
+| Inspection result | `format_version`: 0; `template_available`: boolean; `inputs`, `input_groups`: arrays                                                                                                                       |
 | Input             | `key`, `label`: strings; `kind`: `text`, `image` or `paint`; `targets`: array; `default`: input default; `description`: string/null; `label_source`: `key`, `element` or `metadata`; `order`: integer/null |
-| Target            | `hook`: `text`, `image`, `fill` or `stroke`; `element_name`: SVG local-name string; `location`: location; `default`: target default                                                                        |
+| Target            | `hook`: `text`, `image`, `fill` or `stroke`; `element_name`: SVG local name; `default`: target default                                                                                                     |
 | Target default    | `state`: `present` or `absent`; `raw`: string/null; `source`: `text_content`, `fill`, `stroke`, `href`, `xlink_href` or null                                                                               |
 | Input default     | `state`: `common`, `mixed` or `absent`; `raw`: string/null                                                                                                                                                 |
-| Input group       | `key`, `label`, `description`: string/null; `order`: integer/null; `input_keys`: ordered array of string keys                                                                                              |
-| Diagnostic        | `code`: string; `severity`: `error` or `warning`; `key`: string/null; `location`: location/null; `related_locations`: array of locations; `limit`: budget-name string/null                                 |
-| Location          | `line`, `column`: positive integers using the [inspection location convention](../spec/inspection.md#diagnostic-model)                                                                                     |
+| Input group       | `key`, `label`, `description`: string/null; `order`: integer/null; `input_keys`: ordered array of strings                                                                                                  |
 
-Inputs and targets use structural discovery order; groups and their key references use presentation
-order. Diagnostics and related locations use the specified diagnostic order. When no template is
-available, inputs and groups are empty arrays. A present target's raw value is a string, including
-empty; an absent target has null raw. Absent paint retains `fill` or `stroke` as its source; absent
-image has null source. Only a common input default has a non-null raw string. The unnamed group has
-null key, label, description and order. Orders, when present, are integers from 0
-through 2147483647. Diagnostic messages are omitted because wording is not normative.
+Inputs and targets use structural discovery order; groups and their inputs use presentation order.
+When no template is available, both arrays are empty. Present target evidence includes an empty
+string; absent evidence has null raw. Absent paint still identifies fill or stroke; absent image has
+null source. Only a Common summary has a non-null raw value. The unnamed group has null key, label,
+description and order. Orders range from 0 through 2147483647.
 
-`options.json` contains `format_version: 0` and any positive-integer inspection budget overrides:
-`MaxSourceBytes`, `MaxXmlCharacters`, `MaxElementDepth`, `MaxElements`, `MaxAttributesPerElement`,
-`MaxHooks` and `MaxDiagnostics`. Omitted settings use the
-[inspection profile values](../spec/inspection.md#configurable-inspection-budgets). These exact
-names identify fixture settings and diagnostic limits; a runner maps them to its implementation's
-configuration surface. They do not require CLR properties or a CLI wire format.
+There are no canonical diagnostic, location or budget-option fields. Root/marker cases assert only
+that no supported template is returned; exceptions and diagnostic results may both be mapped to that
+observation. For conforming cases, an unexpected failure fails the case regardless of its error
+transport. Warnings do not alter the projected portable observations.
 
-Boundary tests exercise limits at equality and immediately above, immutable ownership after caller
-buffer mutation, cancellation, UTF-8/UTF-16 and invalid encodings, multiline/non-ASCII positions,
-root failures, common/mixed/absent summaries and present/absent target evidence and conflict
-isolation. Large boundary inputs may be generated deterministically in tests rather than committed
-as bulky fixtures. Do not assert exact parser locations for invalid-byte sequences where the
-contract leaves them unspecified.
-
-Include empty attributes, malformed paint and URI strings, CSS expressions, unknown SVG elements,
-Unicode keys and ordinal differences such as `red` versus `#ff0000`. These must remain discoverable
-without value diagnostics. Cover mixed presence, conflicting labels retained with a warning, foreign
-namespace targets and text child elements rejected structurally. Interpretation fixtures belong to
-the optional helpers and must not become discovery admission tests.
+Cover entity-decoded keys, namespace aliases and scope, foreign metadata, nonbinding embedded
+examples, text/CDATA, comments, processing instructions, empty versus absent values, mixed paint
+strings and presentation order. Unknown SVG elements and unfamiliar paint/reference strings remain
+eligible input content; the parser and renderer do not decide SVT property-value admission.
 
 ## Substitution fixture convention
 
-Each directory contains `input.svg`, `bindings.json` and `expected.json`. Successful cases also
-contain `output.svg`, compared as XML with whitespace, comments and processing instructions
-preserved. Lexical attribute order and quote style are not requirements.
+Each case has `input.svg`, `bindings.json`, `expected.json` and `output.svg`. Both JSON files use
+`format_version: 0`. Requests contain a `bindings` array of `key`, `kind` and `value`; kinds are
+`text`, `paint`, `image_reference` and `image_content`. String values are literal replacements.
+Image-content values are standard base64 and have a `media_type` string. The runner decodes those
+bytes and maps the request to its own API. All requests in this corpus conform to the binding rules.
 
-Both JSON files contain `format_version: 0`. Requests contain an ordered `bindings` array of `key`,
-`kind` and `value`. Kinds are `text`, `paint`, `image_reference` and `image_content`.
-Encoded-content values are base64 bytes and include `media_type`. Expected results contain
-`document_available` and ordered structured `diagnostics` using the inspection fixture field
-conventions, without messages. Fixtures use default configuration; generated boundary tests cover
-configurable policies and limits. For `text`, `paint` and `image_reference`, `value` is a raw
-string. For `image_content`, `value` is a base64 string and the assignment also has a `media_type`
-string. Keys are strings; array order is assignment order. The default profile rejects unknown keys
-and uses the [substitution budget values](../spec/substitution.md#budgets). A runner must select
-this profile even when its host normally uses different settings.
+Expected results contain only `format_version` and `document_available: true`. Compare actual XML
+with `output.svg` using semantic equality as described above. Also verify the byte-output policy
+when byte export is available: UTF-8 without BOM, no XML declaration. An empty request is an
+ordinary binding operation with no replacements, not a byte-for-byte copy instruction.
 
-## Interpretation fixture convention
+Malformed requests, unknown/duplicate keys, scoped-recovery policy, error order, output-budget
+boundaries and cancellation are implementation tests, not this corpus's requirements.
 
-The optional interpreter uses `interpretation/cases.json`: format_version 0 with ordered cases
-containing hook (fill or image), nullable raw evidence, nullable options using public budget names,
-expected kind, nullable normalized RGBA color array, declared_media_type and exceeded_limit. These
-are fixture fields, not additions to CLI output. The runner creates an ordinary annotated SVG,
-inspects it, and interprets the resulting target through the public API. Every case checks target
-identity and raw preservation; colors use the contract's absolute tolerance of 1e-12.
+## Optional interpretation fixture convention
 
-Every case contains `hook`, `raw`, `options`, `kind`, `color`, `declared_media_type` and
-`exceeded_limit`. A null raw value means an absent attribute; an empty string means present and
-empty. `options` is null or an object of positive-integer overrides using the exact names in the
-[interpretation budget profile](../spec/interpretation.md#budgets-and-precedence); omitted values
-use that profile. `color` is null or four numbers in R, G, B, A order. `declared_media_type` is a
-string or null. Unlike inspection enums, interpretation kind and exceeded-limit strings use the
-PascalCase spellings in the interpretation contract (for example `RequiresContext` and
-`NumericTokenCharacters`). These fixture spellings are independent of a runner's enum names.
+`interpretation/cases.json` contains `format_version: 0` and a `cases` array. Each case has `hook`
+(fill or image), nullable `raw`, expected `kind`, nullable `color` and nullable
+`declared_media_type`. A null raw value means absent; an empty string means present and empty.
+Colors are four numbers in R, G, B, A order, compared with absolute tolerance 1e-12. Kind spellings
+follow the optional interpretation contract, for example `RequiresContext`.
+
+The runner creates a conforming annotated SVG and interprets its discovered target. Preserve raw
+evidence and its target association. Unsupported property syntax is valid raw SVG evidence and has a
+defined optional classification; it is not malformed XML or a reason to reject inspection. There are
+no budget overrides or exceeded-limit expectations in this corpus.
 
 `interpretation/named-colors.json` records the fixed named-color keyword/hex facts from
 [CSS Color 4, November 18, 2026](https://www.w3.org/TR/2026/CRD-css-color-4-20261118/#named-colors).
-The runner covers the complete table, aliases and ASCII casing. Other fixtures are independently
-authored grammar, context, resource, header and budget examples. Generated tests cover large
-payloads, deep nesting, nullable/argument boundaries, cancellation, culture, concurrent reuse and
-independence from binding. They do not compute effective appearance or fetch resources.
+Exercise the complete table, aliases and ASCII casing. Other cases are original grammar, context,
+reference and data-header examples. Interpretation never computes effective appearance, validates
+encoded payloads or fetches resources.
+
+## Edition changes and implementation policy
+
+Candidate `1.0.0-rc.2` removes policy-only fixtures and diagnostic/location/budget fields from the
+working corpus. The independent JSON envelope remains `0` during this prerelease revision; runner
+updates accompany explicit adoption of the new edition. No dual-format reader is required. The
+published `v1.0.0-rc.1` assets and existing stamped copies remain unchanged and can continue to
+support implementation policy tests. See [implementation impact](../implementation-impact.md).
 
 ## Snapshot publication and adoption
 
-[manifest.json](manifest.json) inventories the canonical data and license by relative path and
-SHA-256. The asset-set digest is SHA-256 of the UTF-8 concatenation of sorted `path`, NUL, lowercase
-file digest, and LF records. The manifest excludes this explanatory README and itself.
+[manifest.json](manifest.json) inventories canonical data and LICENSE by relative path and SHA-256.
+The asset-set digest is SHA-256 of the UTF-8 concatenation of sorted `path`, NUL, lowercase file
+digest and LF records. The manifest excludes this guide and itself.
 
-The manifest records the full SemVer specification edition, including any prerelease suffix, and its
-major/minor template format. For example, edition `1.0.0-rc.1` still targets template format `1.0`.
-An immutable edition tag names the published revision; a full source commit and asset-set digest
-identify the exact snapshot. Existing snapshots are never rewritten or retroactively relabeled.
-Identical asset bytes may occur in several editions; their shared asset digest does not replace
-edition/commit provenance. Editorial patch revisions do not change the template marker or require
-consumers to refresh unchanged assets.
-
-Implementations copy or embed the selected files and record the source repository, specification
-edition, template format, full commit, asset digest, license/attribution and intentional exclusions.
-They run their own adapters against these references and retain implementation-specific regression
-tests separately. Adoption is an explicit reviewed change; ordinary builds need no network access to
-this repository.
-
-Run `node eng/assets.mjs` to verify the inventory, and `node eng/assets.mjs --write` only when
-deliberately preparing a revised asset set. Review changed cases, expected behavior and the manifest
-together. An inventory check verifies captured bytes; implementation runners establish conformance.
+It records the full SemVer edition and its major/minor template format. An immutable edition tag
+names a published revision; a full source commit and asset digest identify an exact snapshot.
+Implementations embed explicitly accepted stamped copies. Subsequent spec changes never update
+consumer tests automatically. Preserve licenses and provenance when copying; do not fetch live
+assets during builds or relabel earlier snapshots.
