@@ -1,6 +1,6 @@
 {
   "manifest_version": 1,
-  "specification_version": "1.0.0-rc.2",
+  "specification_version": "1.0.0",
   "template_format": "1.0",
   "sha256": "fbf11e9ed31d1e794337d6171a114ef3cdf28af1fd5e07e4c47c776203bc5a0f",
   "files": {

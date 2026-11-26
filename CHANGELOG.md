@@ -1,5 +1,12 @@
 # Specification changelog
 
+## 1.0.0 — first stable edition
+
+- Adopt the reviewed shared-key contract for text, image and paint inputs. Omitted assignments
+  preserve each target’s authored value.
+- Retain the 65 canonical files validated by both implementations on the RC.2 working snapshot. The
+  template marker stays `1.0` and the metadata namespace stays the same.
+
 ## 1.0.0-rc.2 — conforming-input contract
 
 - Define SVT as template injection over ordinary XML processing. Preserve namespace identity, hooks,

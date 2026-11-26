@@ -15,12 +15,11 @@ Detailed diagnostics, malformed-input recovery and operational limits are implem
 
 Technical Markdown, tables and supporting resources are reviewed together in this repository.
 Specification editions use Semantic Versioning; [version.json](version.json) records the working
-edition and its template format. The working candidate is `1.0.0-rc.2`, targeting template format
-`1.0`. Published editions use immutable `v<specification_version>` tags, including prerelease
-suffixes; preparing a candidate does not publish its tag. A full Git commit and asset digest
-identify the exact reference snapshot. Implementations explicitly adopt stamped copies; subsequent
-changes here do not change their tests automatically. No live repository dependency or site
-deployment is required.
+edition and its template format. Edition `1.0.0` defines template format `1.0`. Published editions
+use immutable `v<specification_version>` tags, including prerelease suffixes; preparing a candidate
+does not publish its tag. A full Git commit and asset digest identify the exact reference snapshot.
+Implementations explicitly adopt stamped copies; subsequent changes here do not change their tests
+automatically. No live repository dependency or site deployment is required.
 
 The XML metadata namespace is `https://svt-project.github.io/ns/svt`; the template root marker is
 `data-svt-version="1.0"`. See [format identity](spec/versions.md).

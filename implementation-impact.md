@@ -1,8 +1,8 @@
-# Candidate implementation impact
+# Implementation impact of the RC.2 revision
 
-The `1.0.0-rc.2` working candidate reduces portable obligations to SVT semantics on conforming
-inputs. It retains template marker `1.0` and does not change namespace identity. Publication and
-consumer adoption remain separate steps.
+The revision prepared as `1.0.0-rc.2` and adopted in `1.0.0` reduced portable obligations to SVT
+semantics on conforming inputs. It retains template marker `1.0` and does not change namespace
+identity. Publication and consumer adoption remain separate steps.
 
 ## Shared input keys
 

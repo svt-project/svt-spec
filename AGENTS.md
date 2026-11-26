@@ -8,9 +8,9 @@
   implementation. This is prerelease; add no migrations, aliases or compatibility readers.
 - Preserve MIT licensing and attribution to Bathos Pty Ltd. Keep private paths, credentials, IDE
   state and generated evidence out of commits.
-- Specification editions use SemVer, including candidate suffixes; prepare 1.0.0-rc.2 without
-  publishing a tag. Templates declare only the major/minor format, currently 1.0. Reject unsupported
-  markers, including 0; preserve the independent JSON envelope version 0.
+- Specification editions use SemVer, including candidate suffixes; stable edition 1.0.0 defines the
+  compatibility baseline. Templates declare only the major/minor format, currently 1.0. Reject
+  unsupported markers, including 0; preserve the independent JSON envelope version 0.
 - Implementations adopt stamped copies explicitly; do not introduce live consumer dependencies.
 - Define portable behavior for conforming inputs. Keep detailed diagnostics, recovery, source
   coordinates and resource-limit mechanisms in implementation policy, not canonical expectations.
