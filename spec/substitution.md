@@ -13,9 +13,10 @@ request contract; implementations define their failure or recovery policy. They 
 replacement strings as unescaped markup or report malformed generated XML as a successful binding of
 a conforming request.
 
-Omission preserves original content, including different authored defaults across shared paint
-targets. An empty string is an explicit replacement. No completeness requirement, default sentinel
-or implicit assignment is introduced. Each supplied value replaces every target of its input.
+Omitting a shared input preserves the authored content of each target, even when the targets have
+different defaults. An empty string is an explicit replacement. No completeness requirement, default
+sentinel or implicit assignment is introduced. Each supplied value replaces every target of its
+input.
 
 Every bind starts from the independently captured source; earlier results do not affect later
 bindings. A successful operation returns one complete document. Errors, cancellation and operational
@@ -64,10 +65,10 @@ The specification does not prescribe their counters, threshold values or account
 ## Conformance obligations
 
 Verify conforming requests for omission versus empty values, literal XML-sensitive text, unchanged
-unrelated content, repeated binding independence, shared paints, image reference precedence and
-matching updates to existing XLink attributes. Compare semantic XML, preserving meaningful
-whitespace, comments, processing instructions and replacement placement. Attribute order, quote
-style and empty-element spelling are not conformance observations.
+unrelated content, repeated binding independence, shared text, image and paint inputs, image
+reference precedence and matching updates to existing XLink attributes. Compare semantic XML,
+preserving meaningful whitespace, comments, processing instructions and replacement placement.
+Attribute order, quote style and empty-element spelling are not conformance observations.
 
 Keep malformed-request, diagnostic, cancellation and resource-boundary tests with implementation
 policy. Keep renderer evidence separate from portable substitution conformance.

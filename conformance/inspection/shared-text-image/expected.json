@@ -1,0 +1,91 @@
+{
+  "format_version": 0,
+  "template_available": true,
+  "inputs": [
+    {
+      "key": "title",
+      "label": "Event title",
+      "kind": "text",
+      "targets": [
+        {
+          "hook": "text",
+          "element_name": "text",
+          "default": {
+            "state": "present",
+            "raw": "Morning",
+            "source": "text_content"
+          }
+        },
+        {
+          "hook": "text",
+          "element_name": "tspan",
+          "default": {
+            "state": "present",
+            "raw": "Evening",
+            "source": "text_content"
+          }
+        },
+        {
+          "hook": "text",
+          "element_name": "title",
+          "default": {
+            "state": "present",
+            "raw": "",
+            "source": "text_content"
+          }
+        }
+      ],
+      "default": {
+        "state": "mixed",
+        "raw": null
+      },
+      "description": null,
+      "label_source": "element",
+      "order": null
+    },
+    {
+      "key": "poster",
+      "label": "poster",
+      "kind": "image",
+      "targets": [
+        {
+          "hook": "image",
+          "element_name": "image",
+          "default": {
+            "state": "present",
+            "raw": "poster.png",
+            "source": "href"
+          }
+        },
+        {
+          "hook": "image",
+          "element_name": "image",
+          "default": {
+            "state": "present",
+            "raw": "poster.png",
+            "source": "xlink_href"
+          }
+        }
+      ],
+      "default": {
+        "state": "common",
+        "raw": "poster.png"
+      },
+      "description": null,
+      "label_source": "key",
+      "order": null
+    }
+  ],
+  "input_groups": [
+    {
+      "key": null,
+      "label": null,
+      "description": null,
+      "order": null,
+      "input_keys": [
+        "title",
+        "poster"
+      ]
+    }
+  ]
+}

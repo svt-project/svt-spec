@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:x="http://www.w3.org/1999/xlink" data-svt-version="1.0">
+  <text data-svt-text="title" data-svt-label="Event title">Morning</text>
+  <image data-svt-image="poster" href="poster.png" x:href="alternate.png" preserveAspectRatio="xMidYMid meet"/>
+  <text><tspan data-svt-text="title" data-svt-label="Footer">Evening</tspan></text>
+  <image data-svt-image="poster" x:href="poster.png" preserveAspectRatio="xMidYMid slice"/>
+  <title data-svt-text="title"/>
+</svg>

@@ -46,9 +46,10 @@ rectangle's fill and the path's stroke. Their matching authored strings produce 
 - Without a nonempty central or inline label, the key is also the display label. Labels trim XML
   whitespace; keys remain exact and case-sensitive.
 - An inline label applies to every hook on its element. Without a central override, the first target
-  supplies a shared paint input's label. Diagnostics for differing labels are implementation policy.
-- Text and image inputs each have one target. Paint inputs may share a key across fill and stroke
-  targets. Reusing a key across different input kinds is an error.
+  supplies a shared input's label. Diagnostics for differing labels are implementation policy.
+- Repeat a key on any number of targets of the same kind. For example, two `<image>` elements can
+  share `data-svt-image="portrait"` and each set its own size and `preserveAspectRatio`. A single
+  assignment replaces both image references. Mixing kinds under one key is an error.
 
 ## Optional presentation metadata
 

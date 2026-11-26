@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:x="http://www.w3.org/1999/xlink" data-svt-version="1.0">
+  <text data-svt-text="title">Arts &amp; sciences<!-- divider --></text>
+  <text><tspan data-svt-text="title"><!-- footer -->Arts &amp; sciences</tspan></text>
+  <image data-svt-image="poster" href="event.png" preserveAspectRatio="xMidYMid meet"/>
+  <image data-svt-image="poster" href="event.png" x:href="event.png" preserveAspectRatio="xMidYMid slice"/>
+  <image data-svt-image="poster" href="event.png" x:href="event.png"/>
+  <text data-svt-text="credit">Photo by A</text>
+  <desc data-svt-text="credit">Illustration by B</desc>
+  <image data-svt-image="seal" href="main.png"/>
+  <image data-svt-image="seal" x:href="alternate.png"/>
+</svg>

@@ -4,6 +4,14 @@ The `1.0.0-rc.2` working candidate reduces portable obligations to SVT semantics
 inputs. It retains template marker `1.0` and does not change namespace identity. Publication and
 consumer adoption remain separate steps.
 
+## Shared input keys
+
+Group binding targets by key and require one input kind per group. Implementations that previously
+rejected repeated text or image targets must now discover and replace all of them, including in
+image-content bindings. Keep first-target order and label resolution, per-target default evidence,
+one presentation entry per input and at most one assignment per key. Apply existing output limits to
+the full expansion across the targets.
+
 ## Existing .NET implementation
 
 The .NET implementation may retain its detailed diagnostics, exact source coordinates, bounded
@@ -37,6 +45,8 @@ Worker portability is a planned TypeScript runtime choice, not a template-format
 
 ## Canonical corpus changes
 
+- Add inspection and substitution cases for shared text and image targets, including distinct
+  authored values, per-target image attribute handling and omission.
 - Remove conflict-isolation, malformed-byte, element-limit and invalid-metadata recovery cases.
 - Remove unknown/duplicate binding-request policy cases.
 - Remove diagnostic and source-location assertions from remaining inspection/substitution cases.
