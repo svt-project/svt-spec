@@ -1,1 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" data-svt-version="1.0"><text data-svt-text="heading"><!--before-->new &amp; &lt;<?note keep?><!--after--></text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" data-svt-version="1.0"><text data-svt-text="heading"><!--before-->new &amp; &lt;<?note keep?><!--after--></text><text data-svt-text="heading">new &amp; &lt;<!--after--></text></svg>

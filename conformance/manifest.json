@@ -2,7 +2,7 @@
   "manifest_version": 1,
   "specification_version": "1.0.0-rc.2",
   "template_format": "1.0",
-  "sha256": "458c415c14815f5cbb098152893399cade0fb9027c5fe6647dd58d27fe42a968",
+  "sha256": "fbf11e9ed31d1e794337d6171a114ef3cdf28af1fd5e07e4c47c776203bc5a0f",
   "files": {
     "LICENSE": "958949cc03ff1df8d4216478bc1228a70146a9fbb35d738a46fb259eeab6bb6c",
     "inspection/image-empty-href-precedence/expected.json": "3db007fba96ed4b57d7c4e0ead422674f4d64fa96895bbf05ece108f3eb7d831",
@@ -67,7 +67,7 @@
     "substitution/svg-image-content/output.svg": "0585f7f06cb82ca797f5157e81aeacb9dfdda54c5cd4de22d0b6e698f318c636",
     "substitution/text-placement/bindings.json": "63d9fd7212471860752ba5f4c7402f7e56db48b09a4de357b6f8d56e1b850dd2",
     "substitution/text-placement/expected.json": "158c93f9cf678b9f7a3843ee72f30de921fd51472cce11f2d4546fbd91b0484f",
-    "substitution/text-placement/input.svg": "51a1c51800e298bbe69e17cc50c814c8c2074be6a5ec0dab7ccbd575b4c6d69f",
-    "substitution/text-placement/output.svg": "23678fb86cb19e16cea840ae0d123ad61361a0992a89e63894dc42f76cfc8d7a"
+    "substitution/text-placement/input.svg": "4b6e62d5730e191554bb72377caea9cb5ea4bd8833be2f1a6506ddfbf1a3cd23",
+    "substitution/text-placement/output.svg": "d0edacbb6987f564154478c3c1baa4c8109e3374eb052eef37acf4856113c230"
   }
 }

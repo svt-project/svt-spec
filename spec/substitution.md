@@ -38,7 +38,8 @@ text after existing non-character nodes. Empty replacement removes direct charac
 adding a text node. Whitespace-only text is character data and participates in these rules.
 
 For example, `<!--before-->old<?note keep?>tail<!--after-->` becomes
-`<!--before-->new<?note keep?><!--after-->` when replaced with `new`.
+`<!--before-->new<?note keep?><!--after-->` when replaced with `new`. An empty CDATA section also
+marks a position: `<![CDATA[]]><!--after-->` becomes `new<!--after-->`.
 
 Output uses UTF-8 without BOM when exported as bytes and omits the XML declaration. Empty binding
 lists follow the same output policy. Lexical formatting may change; character values must survive
