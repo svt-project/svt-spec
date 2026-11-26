@@ -49,9 +49,10 @@ observation. For conforming cases, an unexpected failure fails the case regardle
 transport. Warnings do not alter the projected portable observations.
 
 Cover entity-decoded keys, namespace aliases and scope, foreign metadata, nonbinding embedded
-examples, text/CDATA, comments, processing instructions, empty versus absent values, mixed paint
-strings and presentation order. Unknown SVG elements and unfamiliar paint/reference strings remain
-eligible input content; the parser and renderer do not decide SVT property-value admission.
+examples, text/CDATA, comments, processing instructions, empty versus absent values, shared inputs
+of every kind with ordered target evidence, and presentation order. Unknown SVG elements and
+unfamiliar paint/reference strings remain eligible input content; the parser and renderer do not
+decide SVT property-value admission.
 
 ## Substitution fixture convention
 
@@ -66,8 +67,8 @@ with `output.svg` using semantic equality as described above. Also verify the by
 when byte export is available: UTF-8 without BOM, no XML declaration. An empty request is an
 ordinary binding operation with no replacements, not a byte-for-byte copy instruction.
 
-Malformed requests, unknown/duplicate keys, scoped-recovery policy, error order, output-budget
-boundaries and cancellation are implementation tests, not this corpus's requirements.
+Malformed requests, unknown keys, duplicate assignments, scoped-recovery policy, error order,
+output-budget boundaries and cancellation are implementation tests, not this corpus's requirements.
 
 ## Optional interpretation fixture convention
 

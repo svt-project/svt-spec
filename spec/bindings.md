@@ -45,16 +45,16 @@ These are structural requirements, not SVG schema checks. Unknown SVG element na
 Text may contain character data, comments and processing instructions; replacement preserves the
 non-character nodes. Foreign-namespace elements are incompatible targets.
 
-Text and image keys each identify exactly one target. Fill and stroke share the Paint kind: a key
-may occur at several targets, including fill and stroke on one element. Authored values may differ;
-see [defaults](defaults.md). A valid central label overrides inline labels under the
-[metadata precedence rules](metadata.md#values-and-resolution). Otherwise the first target supplies
-the effective input label, even if later targets have different inline labels.
+All targets with the same key form one input and must have the same kind. Any number of text targets
+may share a text key, and any number of image targets may share an image key. Fill and stroke both
+have the paint kind and may share a key, including on the same element. Each target retains its own
+[authored default](defaults.md). The first target supplies the effective input label unless a
+central label overrides it under the [metadata precedence rules](metadata.md#values-and-resolution).
 
 Process known hooks in document preorder, with hook order `text`, `image`, `fill`, `stroke` within
 an element, independent of XML attribute order. Group hooks by exact key. A conforming template has
-nonempty keys, compatible targets and no duplicate text/image targets or mixed kinds for one key.
-Handling violations, including whether unrelated inputs remain available, is implementation policy.
+nonempty keys, compatible targets and exactly one kind per key. Handling violations, including
+whether unrelated inputs remain available, is implementation policy.
 
 Inputs appear in first-target order. Targets within an input retain discovery order. The separate
 [presentation view](metadata.md#ordering-and-single-level-groups) never reorders either structural

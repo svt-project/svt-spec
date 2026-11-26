@@ -4,7 +4,7 @@
 
 The specification and canonical reference assets share a [Semantic Versioning](https://semver.org/)
 release series. [version.json](../version.json) records the working specification edition, currently
-`1.0.0-rc.2`, and its template format, `1.0`. An edition is published under an immutable
+`1.0.0`, and its template format, `1.0`. An edition is published under an immutable
 `v<specification_version>` tag, for example `v1.0.0-rc.1` or `v1.0.0`. Preparing the working edition
 does not itself publish that tag.
 
